@@ -34,8 +34,6 @@ jobs:
                   raise SystemExit('Home Things To Do tile not found')
               s = s.replace(home_tile, home_tile + eat_tile, 1)
 
-          # Replace the old Eat & Drink page completely. This avoids the broken partial page
-          # that has been getting carried forward by the previous repair workflows.
           eat_page = '''<div class="pagehead"><button class="back" data-p="more">←</button><h2>Eat & Drink</h2></div>
           <div class="card"><div class="cardbody"><span class="badge">BROCKVILLE DINING</span><h3>Local food & drink</h3><p class="muted">Restaurants, cafés, takeout, pubs and international food around Brockville.</p><button class="tile primary" style="width:100%" onclick="openLink('https://brockvilletourism.com/eat-and-drink/restaurants/')">📋 Full Brockville Tourism Restaurant Directory</button></div></div>
           <section class="sec"><h3>🍕 Pizza & Italian</h3><div class="grid">
@@ -81,6 +79,59 @@ jobs:
           if count != 1:
               raise SystemExit('Could not replace Eat & Drink page')
           p.write_text(s2, encoding='utf-8')
+          PY
+
+      - name: Add Local Directory
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('app/src/main/assets/index.html')
+          s = p.read_text(encoding='utf-8')
+
+          directory_page = '''<div class="pagehead"><button class="back" data-p="home">←</button><h2>Local Directory</h2></div>
+          <div class="card"><div class="cardbody"><span class="badge">BROCKVILLE LOCAL</span><h3>Shopping & Services</h3><p class="muted">A curated starting point for local shops, specialty stores and useful services. Listings open in Google Maps.</p><button class="tile primary" style="width:100%" onclick="openLink('https://www.downtownbrockville.com/businessdirectory/')">📋 Full Downtown Brockville Business Directory</button></div></div>
+          <section class="sec"><h3>🛍️ Shopping & Specialty</h3><div class="grid">
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=H+%26+T+Comics+and+Collectables%2C+Brockville%2C+ON')">🎮<b>H & T Comics and Collectables</b><span>Comics, cards & collectibles · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Spitfire+Records%2C+Brockville%2C+ON')">💿<b>Spitfire Records</b><span>Records & music · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Golden+Age+Comics+and+Collectibles%2C+Brockville%2C+ON')">🦸<b>Golden Age Comics & Collectibles</b><span>Comics & collectibles · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Cover+to+Cover%2C+88+King+St+W%2C+Brockville%2C+ON')">📚<b>Cover to Cover</b><span>Independent bookstore · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Casual+Living%2C+6+Broad+St%2C+Brockville%2C+ON')">🛋️<b>Casual Living</b><span>Furniture & home décor · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Dollar+Bazaar+Plus%2C+30+King+St+W%2C+Brockville%2C+ON')">🛒<b>Dollar Bazaar Plus</b><span>Discount & everyday goods · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Alan+Browns+Clothing%2C+56+King+St+W%2C+Brockville%2C+ON')">👔<b>Alan Browns Clothing</b><span>Clothing & formalwear · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=River+West+Co%2C+80+King+St+W%2C+Brockville%2C+ON')">👕<b>River West Co.</b><span>Clothing & lifestyle · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Penny%27s+Jewellery%2C+56+King+St+E%2C+Brockville%2C+ON')">💍<b>Penny's Jewellery</b><span>Jewellery & gifts · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=The+Coin+Hunter%2C+Brockville%2C+ON')">🪙<b>The Coin Hunter</b><span>Coins & collectibles · Maps</span></button>
+          </div></section>
+          <section class="sec"><h3>🔧 Local Services</h3><div class="grid">
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Dependable+Vacuum%2C+17+Apple+St%2C+Brockville%2C+ON')">🧹<b>Dependable Vacuum</b><span>Vacuum sales & repair · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Hang+Ups+Creative+Picture+Framing%2C+24+St+Andrew+St%2C+Brockville%2C+ON')">🖼️<b>Hang Ups Creative Picture Framing</b><span>Custom framing · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Artistic+Hair+Gallery%2C+47+Broad+St%2C+Brockville%2C+ON')">💇<b>Artistic Hair Gallery</b><span>Hair salon · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Flair+FX+Salon+%2B+Spa%2C+Brockville%2C+ON')">💆<b>Flair FX Salon + Spa</b><span>Salon & spa · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=City+Taxi%2C+223+King+St+W%2C+Brockville%2C+ON')">🚕<b>City Taxi</b><span>Local transportation · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Service+Canada+Centre%2C+14+Court+House+Ave%2C+Brockville%2C+ON')">🇨🇦<b>Service Canada Centre</b><span>Federal government services · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=McDougall+Insurance+%26+Financial%2C+35+King+St+W%2C+Brockville%2C+ON')">💼<b>McDougall Insurance & Financial</b><span>Insurance & financial services · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Leonard+Group+Financial%2C+9+Broad+St%2C+Brockville%2C+ON')">💰<b>Leonard Group Financial</b><span>Financial planning · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Brockville+Yacht+Club%2C+3+St+Paul+St%2C+Brockville%2C+ON')">⛵<b>Brockville Yacht Club</b><span>Boating & marina services · Maps</span></button>
+          </div></section>'''
+
+          # Add a dedicated page before the existing More page.
+          if 'directory:`' not in s:
+              s2, count = re.subn(r"more:`", 'directory:`' + directory_page.replace('`','\\`') + '`,\nmore:`', s, count=1)
+              if count != 1:
+                  raise SystemExit('Could not add Local Directory page')
+              s = s2
+
+          # Add a prominent Home tile beside Eat & Drink.
+          directory_tile = '<button class="tile" data-p="directory">🛍️<b>Local Directory</b><span>Shopping & services</span></button>'
+          if directory_tile not in s:
+              anchor = '<button class="tile" data-p="eat">🍴<b>Eat & Drink</b><span>Restaurants, cafés & pubs</span></button>'
+              if anchor not in s:
+                  raise SystemExit('Eat & Drink home tile not found')
+              s = s.replace(anchor, anchor + directory_tile, 1)
+
+          p.write_text(s, encoding='utf-8')
           PY
 
       - name: Set up Java 17
