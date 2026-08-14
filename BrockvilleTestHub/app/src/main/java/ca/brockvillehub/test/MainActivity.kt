@@ -1,8 +1,11 @@
 package ca.brockvillehub.test
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.webkit.WebChromeClient
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.OnBackPressedCallback
@@ -18,7 +21,23 @@ class MainActivity : AppCompatActivity() {
         webView = WebView(this)
         webView.settings.javaScriptEnabled = true
         webView.settings.domStorageEnabled = true
-        webView.webViewClient = WebViewClient()
+        webView.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
+                val url = request.url.toString()
+                if (url.startsWith("https://www.google.com/maps/") ||
+                    url.startsWith("https://maps.google.com/") ||
+                    url.startsWith("geo:") ||
+                    url.startsWith("intent:")) {
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                    } catch (_: Exception) {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/search/?api=1&query=Brockville+Ontario")))
+                    }
+                    return true
+                }
+                return false
+            }
+        }
         webView.webChromeClient = WebChromeClient()
         setContentView(webView)
         webView.loadUrl("file:///android_asset/index.html")
@@ -33,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                             isEnabled = false
                             onBackPressedDispatcher.onBackPressed()
                         } else {
-                            webView.evaluateJavascript("show('home')", null)
+                            webView.evaluateJavascript("history.back()", null)
                         }
                     }
                 } else if (webView.canGoBack()) {
