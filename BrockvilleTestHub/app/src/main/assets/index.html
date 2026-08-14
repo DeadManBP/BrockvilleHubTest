@@ -30,14 +30,27 @@ const LINKS={
 };
 
 const m=document.getElementById('m');
+
+const LINKS={
+'🗑️ Garbage & Recycling':'https://brockville.com/city-services/solidwaste/',
+'🏛️ Council & Meetings':'https://brockville.civicweb.net/',
+'📜 Bylaws':'https://brockville.com/local-government/bylaws/',
+'🚌 Transit':'https://brockville.com/city-services/transit/',
+'💧 Water & Sewer':'https://brockville.com/city-services/water-sewer-services/',
+'🚨 Emergency Information':'https://brockville.com/city-services/emergency-services/',
+'👮 Brockville Police':'https://brockvillepolice.com/',
+'🌊 River Webcams':'https://brockville.com/river-webcams/',
+'🌳 Parks & Trails':'https://brockville.com/things-to-do/parks-trails/',
+'❤️ Things To Do':'https://brockville.com/things-to-do/',
+'🏖️ Tourism':'https://brockvilletourism.com/',
+'📢 City News':'https://brockville.com/news/',
+'🏛️ City of Brockville':'https://brockville.com/',
+'🚧 Citywide Portal':'https://citywideportal.com/'
+};
+
 const cards=(a)=>a.map(x=>LINKS[x]
 ?`<button class="tile" onclick="openLink('${LINKS[x]}')">${x}</button>`
 :`<button class="tile">${x}</button>`).join('');
-
-const LINKS={
-  function openLink(url){
-  window.location.href=url;
-  }
 
 function openLink(url){
   window.location.href=url;
