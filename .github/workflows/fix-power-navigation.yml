@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   fix-power-navigation:
-    if: ${{ !contains(github.event.head_commit.message, '[power nav v4]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[power nav v5]') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -38,7 +38,7 @@ jobs:
 
           if 'function openPowerUtilities()' not in s:
               page = '''<div class="pagehead"><button class="back" data-p="home">←</button><h2>Power & Utilities</h2></div><div class="card"><div class="cardbody"><span class="badge">HYDRO ONE</span><h3>⚡ Power Outages</h3><p class="muted">Check current outages, affected areas, crew status and estimated restoration times for Hydro One customers.</p><button class="tile primary" style="width:100%" onclick="openLink('https://www.hydroone.com/power-outages-and-safety/storm-centre')">⚡ Open Hydro One Storm Centre</button></div></div><section class="sec"><h3>🔌 Outage Tools</h3><div class="grid"><button class="tile" onclick="openLink('https://www.hydroone.com/power-outages-and-safety/storm-centre')">🗺️<b>Outage Map</b><span>View current outages · Hydro One</span></button><button class="tile" onclick="openLink('https://www.hydroone.com/support/contact')">🚨<b>Report an Outage</b><span>Online or call 1-800-434-1235</span></button><button class="tile" onclick="openLink('https://www.hydroone.com/request-a-service/outage-alerts')">🔔<b>Outage Alerts</b><span>Sign up for outage notifications</span></button><button class="tile" onclick="openLink('https://www.hydroone.com/power-outages-and-safety')">🛡️<b>Power Outage Safety</b><span>Storm preparation & safety information</span></button></div></section><section class="sec"><div class="card"><div class="cardbody"><span class="badge">LIVE DATA</span><h3>Storm Centre updates</h3><p class="muted">Hydro One says its outage map is updated as information comes in from crews.</p><button class="tile" style="width:100%" onclick="openLink('https://www.hydroone.com/power-outages-and-safety/storm-centre')">🌐 View live outage information</button></div></div></section>'''
-              script = 'function openPowerUtilities(){m.innerHTML=`' + page.replace('`','\\`') + '`; window.scrollTo(0,0);}\ndocument.addEventListener("click",function(e){const b=e.target.closest("[data-power-open]");if(b){e.preventDefault();openPowerUtilities();}});\n'
+              script = 'function openPowerUtilities(){m.innerHTML=`' + page.replace('`','\\`') + '`;}\ndocument.addEventListener("click",function(e){const b=e.target.closest("[data-power-open]");if(b){e.preventDefault();openPowerUtilities();}});\n'
               s = s.replace('</script>', script + '</script>', 1)
 
           if 'data-power-open' not in s:
@@ -49,6 +49,14 @@ jobs:
           p.write_text(s, encoding='utf-8')
           PY
 
+      - name: Verify source fix
+        working-directory: BrockvilleTestHub
+        run: |
+          grep -q 'data-power-open' app/src/main/assets/index.html
+          grep -q 'function openPowerUtilities()' app/src/main/assets/index.html
+          ! grep -q 'onclick="show(\x27power\x27)"' app/src/main/assets/index.html
+          ! grep -q 'onclick="document.getElementById(\x27m\x27).innerHTML=P.power' app/src/main/assets/index.html
+
       - name: Commit fix
         run: |
           git config user.name "github-actions[bot]"
@@ -58,5 +66,5 @@ jobs:
             echo "No Power navigation change needed"
             exit 0
           fi
-          git commit -m "Fix Power & Utilities dedicated renderer [power nav v4]"
+          git commit -m "Fix Power & Utilities dedicated renderer [power nav v5]"
           git push
