@@ -1,0 +1,46 @@
+name: Add City Facebook
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: ${{ !contains(github.event.head_commit.message, '[city facebook]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Add official City Facebook to City Notices
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('app/src/main/assets/index.html')
+          s = p.read_text(encoding='utf-8')
+          if 'City of Brockville Facebook' in s:
+              print('Facebook link already present')
+              raise SystemExit(0)
+          marker = "<button class=\"tile primary\" style=\"width:100%\" onclick=\"openLink('https://brockville.com/announcements/')\">📢 View All Official City Announcements</button>"
+          addition = marker + "<button class=\"tile\" style=\"width:100%;margin-top:8px\" onclick=\"openLink('https://www.facebook.com/BrockvilleON/')\">📘<b>City of Brockville Facebook</b><span>Official City updates and notices</span></button>"
+          if marker not in s:
+              raise SystemExit('City Notices marker not found')
+          s = s.replace(marker, addition, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit source change
+        run: |
+          git config user.name "BrockvilleHub Bot"
+          git config user.email "actions@github.com"
+          git add BrockvilleTestHub/app/src/main/assets/index.html
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+            exit 0
+          fi
+          git commit -m "Add official City Facebook to City Notices [city facebook]"
+          git push
