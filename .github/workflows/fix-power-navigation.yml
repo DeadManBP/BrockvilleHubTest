@@ -1,0 +1,45 @@
+name: Fix Power & Utilities navigation
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix-power-navigation:
+    if: ${{ !contains(github.event.head_commit.message, '[power nav]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Make Power & Utilities tile directly open its page
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('app/src/main/assets/index.html')
+          s = p.read_text(encoding='utf-8')
+          old = '<button class="tile" data-p="power">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
+          new = '<button class="tile" data-p="power" onclick="show(\'power\')">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
+          if old not in s:
+              if new in s:
+                  print('Power navigation already fixed')
+                  raise SystemExit(0)
+              raise SystemExit('Power & Utilities tile not found')
+          p.write_text(s.replace(old, new, 1), encoding='utf-8')
+          PY
+
+      - name: Commit fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add BrockvilleTestHub/app/src/main/assets/index.html
+          if git diff --cached --quiet; then
+            echo "No Power navigation change needed"
+            exit 0
+          fi
+          git commit -m "Fix Power & Utilities navigation [power nav]"
+          git push
