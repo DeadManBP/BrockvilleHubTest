@@ -8,7 +8,11 @@ main{padding:0 15px}.sec{margin-top:18px}.head{display:flex;justify-content:spac
 <nav class="bottom"><button data-p="home">⌂<br>Home</button><button data-p="events">◷<br>Events</button><button data-p="report">⚠<br>Report</button><button data-p="map">⌖<br>Map</button><button data-p="more">☰<br>More</button></nav></div>
 <script>
 const m=document.getElementById('m');
-const const LINKS={
+const cards=(a)=>a.map(x=>LINKS[x]
+?`<button class="tile" onclick="openLink('${LINKS[x]}')">${x}</button>`
+:`<button class="tile">${x}</button>`).join('');
+
+const LINKS={
 '🗑️ Garbage & Recycling':'https://brockville.com/city-services/solidwaste/',
 '🏛️ Council & Meetings':'https://brockville.civicweb.net/',
 '📜 Bylaws':'https://brockville.com/local-government/bylaws/',
