@@ -1,0 +1,58 @@
+name: Cleanup Power Utilities duplicates
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: ${{ !contains(github.event.head_commit.message, '[power cleanup]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Keep exactly one working Power & Utilities tile
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('app/src/main/assets/index.html')
+          s=p.read_text(encoding='utf-8')
+          tile=r'<button class="tile" data-power-open>⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
+          # Remove every injected/broken data-power-open tile.
+          s=s.replace(tile,'')
+          # Remove any existing generic power tile too, then insert exactly one known-working router tile.
+          generic=r'<button class="tile" data-p="power">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
+          s=s.replace(generic,'')
+          home_marker='<button class="tile" data-p="explore">❤️<b>Things To Do</b><span>Explore Brockville</span></button>'
+          power='<button class="tile" data-p="power">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
+          if home_marker not in s:
+              raise SystemExit('Things To Do home tile not found')
+          s=s.replace(home_marker,home_marker+power,1)
+          if s.count('Power & Utilities') < 1:
+              raise SystemExit('Power tile was not inserted')
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Verify exactly one Power tile
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('app/src/main/assets/index.html').read_text(encoding='utf-8')
+          if s.count('data-power-open') != 0:
+              raise SystemExit('Broken data-power-open tile still exists')
+          if s.count('data-p="power"') != 1:
+              raise SystemExit(f'Expected exactly one data-p=power tile, found {s.count("data-p=\\"power\\"")}')
+          print('Power Utilities: exactly one working tile verified')
+          PY
+      - name: Commit cleanup
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add BrockvilleTestHub/app/src/main/assets/index.html
+          git diff --cached --quiet && exit 0
+          git commit -m '[power cleanup] Keep one working Power & Utilities tile'
+          git push
