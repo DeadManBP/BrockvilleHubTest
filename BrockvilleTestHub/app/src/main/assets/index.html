@@ -29,7 +29,15 @@ const LINKS={
 '🚧 Citywide Portal':'https://citywideportal.com/'
 };
 
+const LINKS={
+...
+'🚧 Citywide Portal':'https://citywideportal.com/'
+};
 
+function openLink(url){
+  window.location.href=url;
+}
+const P={
 function show(p){m.innerHTML=P[p]||P.home;document.querySelectorAll('.bottom button').forEach(b=>b.classList.toggle('active',b.dataset.p===p));document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>show(b.dataset.p));scrollTo(0,0)}
 show('home');document.getElementById('q').onkeydown=e=>{if(e.key==='Enter'&&e.target.value.trim())show('more')};
 </script></body></html>
