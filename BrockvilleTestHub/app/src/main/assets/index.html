@@ -8,7 +8,30 @@ main{padding:0 15px}.sec{margin-top:18px}.head{display:flex;justify-content:spac
 <nav class="bottom"><button data-p="home">⌂<br>Home</button><button data-p="events">◷<br>Events</button><button data-p="report">⚠<br>Report</button><button data-p="map">⌖<br>Map</button><button data-p="more">☰<br>More</button></nav></div>
 <script>
 const m=document.getElementById('m');
-const cards=(a)=>a.map(x=>`<button class="tile">${x}</button>`).join('');
+const const LINKS={
+'🗑️ Garbage & Recycling':'https://brockville.com/city-services/solidwaste/',
+'🏛️ Council & Meetings':'https://brockville.civicweb.net/',
+'📜 Bylaws':'https://brockville.com/local-government/bylaws/',
+'🚌 Transit':'https://brockville.com/city-services/transit/',
+'💧 Water & Sewer':'https://brockville.com/city-services/water-sewer-services/',
+'🚨 Emergency Information':'https://brockville.com/city-services/emergency-services/',
+'👮 Brockville Police':'https://brockvillepolice.com/',
+'🌊 River Webcams':'https://brockville.com/river-webcams/',
+'🌳 Parks & Trails':'https://brockville.com/things-to-do/parks-trails/',
+'❤️ Things To Do':'https://brockville.com/things-to-do/',
+'🏖️ Tourism':'https://brockvilletourism.com/',
+'📢 City News':'https://brockville.com/news/',
+'🏛️ City of Brockville':'https://brockville.com/',
+'🚧 Citywide Portal':'https://citywideportal.com/'
+};
+
+const cards=(a)=>a.map(x=>LINKS[x]
+?`<button class="tile" onclick="openLink('${LINKS[x]}')">${x}</button>`
+:`<button class="tile">${x}</button>`).join('');
+
+function openLink(url){
+  window.location.href=url;
+}
 const P={
 home:`<section class="sec"><div class="grid"><button class="tile primary" data-p="report">🚧<b>Report an Issue</b><span>Citywide Portal</span></button><button class="tile" data-p="events">📅<b>What's Happening</b><span>Events & activities</span></button><button class="tile" data-p="news">📢<b>City Notices</b><span>News & announcements</span></button><button class="tile" data-p="explore">❤️<b>Things To Do</b><span>Explore Brockville</span></button></div></section>
 <section class="sec"><div class="head"><h2>City at a glance</h2><span class="badge">PROTOTYPE</span></div><div class="stats"><div class="stat">🚧<b>6+</b><small>projects</small></div><div class="stat">📢<b>5</b><small>notices</small></div><div class="stat">🗳️<b>2026</b><small>election</small></div></div></section>
