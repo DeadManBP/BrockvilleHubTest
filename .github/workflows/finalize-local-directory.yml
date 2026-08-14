@@ -30,6 +30,11 @@ jobs:
           from pathlib import Path
           p = Path('patch/assets/index.html')
           s = p.read_text(encoding='utf-8')
+
+          # Remove City Taxi from the generic Local Services section.
+          city_taxi = '<button class="tile" onclick="openLink(\'https://www.google.com/maps/search/?api=1&query=City+Taxi%2C+223+King+St+W%2C+Brockville%2C+ON\')">🚕<b>City Taxi</b><span>Local transportation · Maps</span></button>'
+          s = s.replace(city_taxi + '\n', '', 1)
+
           marker = '<section class="sec"><h3>🛍️ Shopping & Specialty</h3>'
           if '🚕 Transportation' not in s:
               extra = '''<section class="sec"><h3>🧥 Thrift & Second Hand</h3><div class="grid">
@@ -42,11 +47,12 @@ jobs:
           </div></section>
           <section class="sec"><h3>🚕 Transportation</h3><div class="grid">
           <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Executive+Taxi%2C+Brockville%2C+ON')">🚕<b>Executive Taxi</b><span>(613) 342-2000 · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=City+Taxi%2C+223+King+St+W%2C+Brockville%2C+ON')">🚕<b>City Taxi</b><span>(613) 342-9767 · Maps</span></button>
           </div></section>'''
               if marker not in s:
                   raise SystemExit('Local Directory marker not found')
               s = s.replace(marker, extra + '\n' + marker, 1)
-              p.write_text(s, encoding='utf-8')
+          p.write_text(s, encoding='utf-8')
           PY
           cp patch/assets/index.html clean/assets/index.html
           zip -d BrockvilleHub-patched.apk 'assets/index.html' 'META-INF/*' >/dev/null
