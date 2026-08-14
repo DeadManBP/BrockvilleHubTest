@@ -13,31 +13,60 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fix Eat and Drink navigation and add Chinese restaurants
+      - name: Add food and drink categories
         working-directory: BrockvilleTestHub
         run: |
           python3 - <<'PY'
           from pathlib import Path
           p = Path('app/src/main/assets/index.html')
           s = p.read_text(encoding='utf-8')
-          s = s.replace("'🍴 Eat & Drink':'#eat'", "'🍴 Eat & Drink':'__HUB_EAT__'")
-          old = "const cards=(a)=>a.map(x=>LINKS[x]?`<button class=\"tile\" onclick=\"openLink('${LINKS[x]}')\">${x}</button>`:`<button class=\"tile\">${x}</button>`).join('');"
-          new = "const cards=(a)=>a.map(x=>x==='🍴 Eat & Drink'?`<button class=\"tile\" data-p=\"eat\">${x}</button>`:LINKS[x]?`<button class=\"tile\" onclick=\"openLink('${LINKS[x]}')\">${x}</button>`:`<button class=\"tile\">${x}</button>`).join('');"
-          if old in s:
-              s = s.replace(old, new)
-          else:
-              raise SystemExit('Could not find cards() function; refusing to build a possibly broken app.')
-          old_home = '<button class="tile" data-p="explore">❤️<b>Things To Do</b><span>Explore Brockville</span></button>'
-          new_home = old_home + '<button class="tile" data-p="eat">🍴<b>Eat & Drink</b><span>Restaurants, cafés & pubs</span></button>'
-          if old_home in s and 'data-p="eat">🍴<b>Eat & Drink' not in s:
-              s = s.replace(old_home, new_home, 1)
 
-          anchor = '<section class="sec"><h3>Popular local spots</h3>'
-          chinese = '''<section class="sec"><h3>🥡 Chinese & Chinese-Thai</h3><div class="grid"><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Lee%27s+Kitchen+Restaurant%2C+2523+Parkedale+Ave%2C+Brockville%2C+ON')">🥡<b>Lee's Kitchen</b><span>2523 Parkedale Ave · Maps</span></button><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Golden+Gate+Restaurant%2C+172+King+St+W%2C+Brockville%2C+ON')">🥡<b>Golden Gate Restaurant</b><span>172 King St W · Maps</span></button><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Island+Delight+Restaurant%2C+140+King+St+W%2C+Brockville%2C+ON')">🥡<b>Island Delight</b><span>140 King St W · Maps</span></button><button class="tile" onclick="openLink('https://www.goldengaterestaurant.ca/')">🌐<b>Golden Gate website</b><span>Menu, hours & delivery</span></button></div></section>'''
-          if anchor in s and '🥡 Chinese & Chinese-Thai' not in s:
-              s = s.replace(anchor, chinese + anchor, 1)
-          elif '🥡 Chinese & Chinese-Thai' not in s:
-              raise SystemExit('Could not find Eat & Drink insertion point; refusing to build a possibly broken app.')
+          sections = '''<section class="sec"><h3>🍕 Pizza & Italian</h3><div class="grid">
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=1000+Islands+Restaurant+%26+Pizzeria%2C+Brockville%2C+ON')">🍕<b>1000 Islands Restaurant & Pizzeria</b><span>226 King St W · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Luna+Pizzeria+%26+Restaurant%2C+Brockville%2C+ON')">🍕<b>Luna Pizzeria & Restaurant</b><span>Pizza & Italian · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=241+Pizza%2C+Brockville%2C+ON')">🍕<b>241 Pizza</b><span>101 King St W · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Papa%27s+Pizzaland%2C+Brockville%2C+ON')">🍕<b>Papa's Pizzaland</b><span>191 King St W · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=The+Mill+Restaurant%2C+Brockville%2C+ON')">🍝<b>The Mill - A Taste of Italy</b><span>123 Water St W · Maps</span></button>
+          </div></section>
+
+          <section class="sec"><h3>☕ Cafés & Breakfast</h3><div class="grid">
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Boboli%2C+Brockville%2C+ON')">☕<b>Boboli</b><span>Café & deli · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Cosies%2C+Brockville%2C+ON')">☕<b>Cosies</b><span>Café & lunch · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Richard%27s+Coffeehouse%2C+Brockville%2C+ON')">☕<b>Richard's Coffeehouse</b><span>Coffee & café · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Jon%27s+Restaurant%2C+Brockville%2C+ON')">🍳<b>Jon's Restaurant</b><span>Diner & breakfast · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Tincap+Restaurant%2C+Brockville%2C+ON')">🍳<b>Tincap Restaurant</b><span>Diner & breakfast · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Sweet+Ofelia+Cafe+%26+Market%2C+Brockville%2C+ON')">☕<b>Sweet Ofelia Cafe & Market</b><span>Café & market · Maps</span></button>
+          </div></section>
+
+          <section class="sec"><h3>🍟 Fish & Chips / Casual</h3><div class="grid">
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Don%27s+Fish+%26+Chips%2C+Brockville%2C+ON')">🍟<b>Don's Fish & Chips</b><span>40 Water St W · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Manoll%27s+Fish+%26+Chips%2C+Brockville%2C+ON')">🍟<b>Manoll's Fish & Chips</b><span>11 Buell St · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Captain+George%27s+Fish+%26+Chips%2C+Brockville%2C+ON')">🐟<b>Captain George's Fish & Chips</b><span>Fish & chips · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Sam%27s+Grill%2C+Brockville%2C+ON')">🍔<b>Sam's Grill</b><span>Burgers & poutine · Maps</span></button>
+          </div></section>
+
+          <section class="sec"><h3>🌮 International</h3><div class="grid">
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Buell+Street+Bistro%2C+Brockville%2C+ON')">🍽️<b>Buell Street Bistro</b><span>Mediterranean & international · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Nakhon+Thai%2C+Brockville%2C+ON')">🍜<b>Nakhon Thai</b><span>Thai cuisine · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Indian+Cuisine+Hub%2C+Brockville%2C+ON')">🍛<b>Indian Cuisine Hub</b><span>Indian cuisine · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Shawarma+Garden%2C+Brockville%2C+ON')">🥙<b>Shawarma Garden</b><span>Middle Eastern · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Mexicali+Rosa%27s%2C+Brockville%2C+ON')">🌮<b>Mexicali Rosa's</b><span>Mexican · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Pho+Hut%2C+Brockville%2C+ON')">🍜<b>Pho Hut</b><span>Vietnamese · Maps</span></button>
+          </div></section>
+
+          <section class="sec"><h3>🍺 Pubs & Bars</h3><div class="grid">
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Barley+Mow%2C+Brockville%2C+ON')">🍺<b>Barley Mow</b><span>Pub & grill · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Keystorm+Pub%2C+Brockville%2C+ON')">🍻<b>Keystorm Pub</b><span>2 Court House Ave · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=1000+Islands+Brewing%2C+Brockville%2C+ON')">🍺<b>1000 Islands Brewing</b><span>Brewery & pub · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Finnigan%27s+Tavern%2C+Brockville%2C+ON')">🍻<b>Finnigan's Tavern</b><span>72 King St W · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Moose+McGuire%27s%2C+Brockville%2C+ON')">🍺<b>Moose McGuire's</b><span>Pub · Maps</span></button>
+          </div></section>'''
+
+          marker = '<section class="sec"><h3>Popular local spots</h3>'
+          if '🍕 Pizza & Italian' not in s:
+              if marker not in s:
+                  raise SystemExit('Could not find Eat & Drink insertion point; refusing to build a possibly broken app.')
+              s = s.replace(marker, sections + '\n' + marker, 1)
 
           p.write_text(s, encoding='utf-8')
           PY
