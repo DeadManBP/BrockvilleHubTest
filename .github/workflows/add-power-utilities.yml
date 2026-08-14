@@ -1,0 +1,54 @@
+name: Add Power & Utilities
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Add Hydro One Storm Centre
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('app/src/main/assets/index.html')
+          s = p.read_text(encoding='utf-8')
+
+          if 'data-p="power"' not in s:
+              home_tile = '<button class="tile" data-p="explore">❤️<b>Things To Do</b><span>Explore Brockville</span></button>'
+              power_tile = '<button class="tile" data-p="power">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
+              if home_tile in s:
+                  s = s.replace(home_tile, home_tile + power_tile, 1)
+
+          if 'power:`' not in s:
+              power_page = '''<div class="pagehead"><button class="back" data-p="home">←</button><h2>Power & Utilities</h2></div>
+          <div class="card"><div class="cardbody"><span class="badge">HYDRO ONE</span><h3>⚡ Power Outages</h3><p class="muted">Check current outages, affected areas, crew status and estimated restoration times for Hydro One customers.</p><button class="tile primary" style="width:100%" onclick="openLink('https://www.hydroone.com/power-outages-and-safety/storm-centre')">⚡ Open Hydro One Storm Centre</button></div></div>
+          <section class="sec"><h3>🔌 Outage Tools</h3><div class="grid">
+          <button class="tile" onclick="openLink('https://www.hydroone.com/power-outages-and-safety/storm-centre')">🗺️<b>Outage Map</b><span>View current outages · Hydro One</span></button>
+          <button class="tile" onclick="openLink('https://www.hydroone.com/support/contact')">🚨<b>Report an Outage</b><span>Online or call 1-800-434-1235</span></button>
+          <button class="tile" onclick="openLink('https://www.hydroone.com/request-a-service/outage-alerts')">🔔<b>Outage Alerts</b><span>Sign up for outage notifications</span></button>
+          <button class="tile" onclick="openLink('https://www.hydroone.com/power-outages-and-safety')">🛡️<b>Power Outage Safety</b><span>Storm preparation & safety information</span></button>
+          </div></section>
+          <section class="sec"><div class="card"><div class="cardbody"><span class="badge">LIVE DATA</span><h3>Storm Centre updates</h3><p class="muted">Hydro One says its outage map is updated every 10 minutes as information comes in from crews. The map can be searched by city, address or postal code.</p><button class="tile" style="width:100%" onclick="openLink('https://www.hydroone.com/power-outages-and-safety/storm-centre')">🌐 View live outage information</button></div></div></section>'''
+              replacement = 'power:`' + power_page.replace('`','\\`') + '`,\nmore:'
+              s, n = re.subn(r'more:`', replacement, s, count=1)
+              if n != 1:
+                  raise SystemExit('Could not add Power page before More page')
+
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Commit source change
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add BrockvilleTestHub/app/src/main/assets/index.html
+          git diff --cached --quiet || git commit -m "Add Hydro One power outage tools"
+          git push
