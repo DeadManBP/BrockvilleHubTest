@@ -25,7 +25,18 @@ class MainActivity : AppCompatActivity() {
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (webView.canGoBack()) {
+                if (webView.url == "file:///android_asset/index.html") {
+                    webView.evaluateJavascript(
+                        "document.querySelector('.bottom .active')?.dataset?.p || 'home'"
+                    ) { page ->
+                        if (page.contains("home")) {
+                            isEnabled = false
+                            onBackPressedDispatcher.onBackPressed()
+                        } else {
+                            webView.evaluateJavascript("show('home')", null)
+                        }
+                    }
+                } else if (webView.canGoBack()) {
                     webView.goBack()
                 } else {
                     isEnabled = false
