@@ -1,0 +1,80 @@
+name: Finalize Power-Fixed APK
+
+on:
+  workflow_run:
+    workflows: ["Build BrockvilleHub APK"]
+    types: [completed]
+
+jobs:
+  power-fix:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+
+    steps:
+      - name: Download debug APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p work
+          gh run download "${{ github.event.workflow_run.id }}" -R "${{ github.repository }}" -n BrockvilleHub-debug-apk -D work
+          mv work/app-debug.apk BrockvilleHub-power-fixed.apk
+
+      - name: Patch Power & Utilities directly into APK
+        run: |
+          mkdir -p patch/assets clean/assets
+          unzip -p BrockvilleHub-power-fixed.apk assets/index.html > patch/assets/index.html
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('patch/assets/index.html')
+          s = p.read_text(encoding='utf-8')
+
+          # Replace any existing Power & Utilities tile handler with a plain button.
+          pattern = r'<button[^>]*>(?:⚡<b>)Power & Utilities(?:</b><span>Outages & Hydro One</span>)</button>'
+          replacement = '<button type="button" class="tile" onclick="window.__powerFix()">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
+          s, count = re.subn(pattern, replacement, s, count=1)
+          if count != 1:
+              raise SystemExit('Power & Utilities tile was not found in APK')
+
+          power_js = r'''\nwindow.__powerFix=function(){\n  var m=document.getElementById('m');\n  if(!m)return;\n  m.innerHTML='<div class="pagehead"><button type="button" class="back" onclick="show(\'home\')">←</button><h2>Power & Utilities</h2></div>' +\n    '<div class="card"><div class="cardbody"><span class="badge">HYDRO ONE</span><h3>⚡ Power Outages</h3><p class="muted">Check current outages, affected areas, crew status and estimated restoration times for Hydro One customers.</p><button type="button" class="tile primary" style="width:100%" id="hydroStorm">⚡ Open Hydro One Storm Centre</button></div></div>' +\n    '<section class="sec"><h3>🔌 Outage Tools</h3><div class="grid">' +\n    '<button type="button" class="tile" id="hydroMap">🗺️<b>Outage Map</b><span>View current outages · Hydro One</span></button>' +\n    '<button type="button" class="tile" id="hydroReport">🚨<b>Report an Outage</b><span>Online or call 1-800-434-1235</span></button>' +\n    '<button type="button" class="tile" id="hydroAlerts">🔔<b>Outage Alerts</b><span>Sign up for outage notifications</span></button>' +\n    '<button type="button" class="tile" id="hydroSafety">🛡️<b>Power Outage Safety</b><span>Storm preparation & safety information</span></button>' +\n    '</div></section>';\n  document.getElementById('hydroStorm').onclick=function(){openLink('https://www.hydroone.com/power-outages-and-safety/storm-centre')};\n  document.getElementById('hydroMap').onclick=function(){openLink('https://www.hydroone.com/power-outages-and-safety/storm-centre')};\n  document.getElementById('hydroReport').onclick=function(){openLink('https://www.hydroone.com/support/contact')};\n  document.getElementById('hydroAlerts').onclick=function(){openLink('https://www.hydroone.com/request-a-service/outage-alerts')};\n  document.getElementById('hydroSafety').onclick=function(){openLink('https://www.hydroone.com/power-outages-and-safety')};\n};\n'''
+          if 'window.__powerFix=function()' not in s:
+              if '</script>' not in s:
+                  raise SystemExit('No script end found in APK')
+              s = s.replace('</script>', power_js + '</script>', 1)
+
+          if 'window.__powerFix=function()' not in s:
+              raise SystemExit('Power fix function missing')
+          if 'onclick="window.__powerFix()"' not in s:
+              raise SystemExit('Power button was not patched')
+
+          p.write_text(s, encoding='utf-8')
+          PY
+          unzip -p BrockvilleHub-power-fixed.apk assets/index.html > clean/index.html.old
+          zip -d BrockvilleHub-power-fixed.apk 'assets/index.html' 'META-INF/*' >/dev/null
+          (cd patch && zip -q0 ../BrockvilleHub-power-fixed.apk assets/index.html)
+
+      - name: Verify patched APK contents
+        run: |
+          unzip -p BrockvilleHub-power-fixed.apk assets/index.html > verified-index.html
+          grep -q 'window.__powerFix=function()' verified-index.html
+          grep -q 'onclick="window.__powerFix()"' verified-index.html
+          ! grep -q 'onclick="show('\''power'\'')"' verified-index.html
+
+      - name: Align and sign APK
+        run: |
+          sdkmanager "build-tools;35.0.0" "platform-tools"
+          $ANDROID_HOME/build-tools/35.0.0/zipalign -f 4 BrockvilleHub-power-fixed.apk BrockvilleHub-power-fixed-aligned.apk
+          keytool -genkeypair -v -keystore debug-power.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+          $ANDROID_HOME/build-tools/35.0.0/apksigner sign --ks debug-power.keystore --ks-pass pass:android --key-pass android --out BrockvilleHub-power-fixed-final.apk BrockvilleHub-power-fixed-aligned.apk
+          $ANDROID_HOME/build-tools/35.0.0/apksigner verify --verbose BrockvilleHub-power-fixed-final.apk
+
+      - name: Upload Power-Fixed APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: BrockvilleHub-power-fixed-apk
+          path: BrockvilleHub-power-fixed-final.apk
+          if-no-files-found: error
+          retention-days: 7
