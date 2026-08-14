@@ -1,0 +1,103 @@
+name: Fix Eat & Drink layout
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix-layout:
+    if: ${{ !contains(github.event.head_commit.message, '[skip eat-fix]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Restore full Eat & Drink directory
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('app/src/main/assets/index.html')
+          s = p.read_text(encoding='utf-8')
+
+          # Make every Eat & Drink tile navigate to the app page instead of '#eat'.
+          s = s.replace("'🍴 Eat & Drink':'#eat'", "'🍴 Eat & Drink':'__HUB_EAT__'")
+          old_cards = "const cards=(a)=>a.map(x=>LINKS[x]?`<button class=\"tile\" onclick=\"openLink('${LINKS[x]}')\">${x}</button>`:`<button class=\"tile\">${x}</button>`).join('');"
+          new_cards = "const cards=(a)=>a.map(x=>x==='🍴 Eat & Drink'?`<button class=\"tile\" data-p=\"eat\">${x}</button>`:LINKS[x]?`<button class=\"tile\" onclick=\"openLink('${LINKS[x]}')\">${x}</button>`:`<button class=\"tile\">${x}</button>`).join('');"
+          if old_cards in s:
+              s = s.replace(old_cards, new_cards, 1)
+
+          # Restore a dedicated Home tile if it is missing.
+          home = '<button class="tile" data-p="explore">❤️<b>Things To Do</b><span>Explore Brockville</span></button>'
+          eat_home = '<button class="tile" data-p="eat">🍴<b>Eat & Drink</b><span>Restaurants, cafés & pubs</span></button>'
+          if home in s and eat_home not in s:
+              s = s.replace(home, home + eat_home, 1)
+
+          # Replace the entire Eat & Drink page. This deliberately has no
+          # "Popular local spots" section, so businesses appear only in their
+          # proper category unless they genuinely do not fit one.
+          eat_page = '''<div class="pagehead"><button class="back" data-p="more">←</button><h2>Eat & Drink</h2></div>
+          <div class="card"><div class="cardbody"><span class="badge">BROCKVILLE DINING</span><h3>Local food & drink</h3><p class="muted">Restaurants, cafés, takeout, pubs and international food around Brockville.</p><button class="tile" style="width:100%" onclick="openLink('https://brockvilletourism.com/eat-and-drink/restaurants/')">📖 Full Brockville Tourism Restaurant Directory</button></div></div>
+          <section class="sec"><h3>🍕 Pizza & Italian</h3><div class="grid">
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=1000+Islands+Restaurant+%26+Pizzeria%2C+Brockville%2C+ON')">🍕<b>1000 Islands Restaurant & Pizzeria</b><span>226 King St W</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Luna+Pizzeria+%26+Restaurant%2C+Brockville%2C+ON')">🍕<b>Luna Pizzeria & Restaurant</b><span>365 Stewart Blvd</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=241+Pizza%2C+Brockville%2C+ON')">🍕<b>241 Pizza</b><span>101 King St W</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Papa%27s+Pizzaland%2C+Brockville%2C+ON')">🍕<b>Papa's Pizzaland</b><span>191 King St W</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=The+Mill+Restaurant%2C+Brockville%2C+ON')">🍝<b>The Mill - A Taste of Italy</b><span>123 Water St W</span></button>
+          </div></section>
+          <section class="sec"><h3>☕ Cafés & Breakfast</h3><div class="grid">
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Boboli%2C+Brockville%2C+ON')">☕<b>Boboli</b><span>32 King St W</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Cosies%2C+Brockville%2C+ON')">☕<b>Cosies</b><span>45 King St W</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Richard%27s+Coffeehouse%2C+Brockville%2C+ON')">☕<b>Richard's Coffeehouse</b><span>234 King St W</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Jon%27s+Restaurant%2C+Brockville%2C+ON')">🍳<b>Jon's Restaurant</b><span>Diner & breakfast</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Sweet+Ofelia+Cafe+%26+Market%2C+Brockville%2C+ON')">☕<b>Sweet Ofelia Cafe & Market</b><span>52 King St E</span></button>
+          </div></section>
+          <section class="sec"><h3>🍟 Fish & Chips / Casual</h3><div class="grid">
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Don%27s+Fish+%26+Chips%2C+Brockville%2C+ON')">🍟<b>Don's Fish & Chips</b><span>40 Water St W</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Manoll%27s+Fish+%26+Chips%2C+Brockville%2C+ON')">🍟<b>Manoll's Fish & Chips</b><span>11 Buell St</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Fat+Les+Waterfront+Patio+and+Chip+Stands%2C+Brockville%2C+ON')">🍟<b>Fat Les</b><span>Waterfront patio & casual</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Sam%27s+Grill%2C+Brockville%2C+ON')">🍔<b>Sam's Grill</b><span>Burgers & poutine</span></button>
+          </div></section>
+          <section class="sec"><h3>🥡 Chinese & Chinese-Thai</h3><div class="grid">
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Lee%27s+Kitchen+Restaurant%2C+2523+Parkedale+Ave%2C+Brockville%2C+ON')">🥡<b>Lee's Kitchen</b><span>2523 Parkedale Ave</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Golden+Gate+Restaurant%2C+172+King+St+W%2C+Brockville%2C+ON')">🥡<b>Golden Gate Restaurant</b><span>172 King St W</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Island+Delight+Restaurant%2C+140+King+St+W%2C+Brockville%2C+ON')">🥡<b>Island Delight</b><span>140 King St W</span></button>
+          </div></section>
+          <section class="sec"><h3>🌮 International</h3><div class="grid">
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Nakhon+Thai%2C+Brockville%2C+ON')">🍜<b>Nakhon Thai</b><span>Thai cuisine</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Indian+Cuisine+Hub%2C+Brockville%2C+ON')">🍛<b>Indian Cuisine Hub</b><span>Indian cuisine</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Shawarma+Garden%2C+Brockville%2C+ON')">🥙<b>Shawarma Garden</b><span>Middle Eastern</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Pho+Hut%2C+Brockville%2C+ON')">🍜<b>Pho Hut</b><span>Vietnamese</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=One+Love+Jamaican+Cuisine%2C+Brockville%2C+ON')">🇯🇲<b>One Love Jamaican Cuisine</b><span>Jamaican</span></button>
+          </div></section>
+          <section class="sec"><h3>🍺 Pubs & Bars</h3><div class="grid">
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Barley+Mow%2C+Brockville%2C+ON')">🍺<b>Barley Mow</b><span>Pub & grill</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Keystorm+Pub%2C+Brockville%2C+ON')">🍻<b>Keystorm Pub</b><span>2 Court House Ave</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=1000+Islands+Brewing%2C+Brockville%2C+ON')">🍺<b>1000 Islands Brewing</b><span>65 King St W</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Finnigan%27s+Tavern%2C+Brockville%2C+ON')">🍻<b>Finnigan's Tavern</b><span>72 King St W</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Moose+McGuire%27s%2C+Brockville%2C+ON')">🍺<b>Moose McGuire's</b><span>6 Broad St</span></button>
+          </div></section>'''
+
+          replacement = 'eat:`' + eat_page.replace('`', '\\`') + '`,\nmap:'
+          s2, count = re.subn(r"eat:`.*?`,\nmap:", replacement, s, count=1, flags=re.S)
+          if count != 1:
+              raise SystemExit('Could not replace Eat & Drink page safely')
+          p.write_text(s2, encoding='utf-8')
+          PY
+
+      - name: Commit fixed app
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add BrockvilleTestHub/app/src/main/assets/index.html
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+          else
+            git commit -m "Fix Eat & Drink directory layout [skip eat-fix]"
+            git push
+          fi
