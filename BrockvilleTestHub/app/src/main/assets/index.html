@@ -25,9 +25,7 @@ const const LINKS={
 '🚧 Citywide Portal':'https://citywideportal.com/'
 };
 
-const cards=(a)=>a.map(x=>LINKS[x]
-?`<button class="tile" onclick="openLink('${LINKS[x]}')">${x}</button>`
-:`<button class="tile">${x}</button>`).join('');
+const<button class="tile primary" style="width:100%" onclick="openLink('https://citywideportal.com/')">🌐 Open Citywide Portal</button>
 
 function openLink(url){
   window.location.href=url;
