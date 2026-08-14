@@ -30,29 +30,22 @@ jobs:
           from pathlib import Path
           p = Path('patch/assets/index.html')
           s = p.read_text(encoding='utf-8')
-
-          # The current source uses data-power-open, not an inline show('power') handler.
           old = '<button class="tile" data-power-open>'
           new = '<button type="button" class="tile" data-power-open onclick="window.__powerFix()">'
           if old not in s:
               raise SystemExit('Expected Power & Utilities button marker was not found')
           s = s.replace(old, new, 1)
-
           power_js = r'''\nwindow.__powerFix=function(){\n  var m=document.getElementById('m');\n  if(!m)return;\n  m.innerHTML='<div class="pagehead"><button type="button" class="back" onclick="show(\'home\')">←</button><h2>Power & Utilities</h2></div>' +\n    '<div class="card"><div class="cardbody"><span class="badge">HYDRO ONE</span><h3>⚡ Power Outages</h3><p class="muted">Check current outages, affected areas, crew status and estimated restoration times for Hydro One customers.</p><button type="button" class="tile primary" style="width:100%" id="hydroStorm">⚡ Open Hydro One Storm Centre</button></div></div>' +\n    '<section class="sec"><h3>🔌 Outage Tools</h3><div class="grid">' +\n    '<button type="button" class="tile" id="hydroMap">🗺️<b>Outage Map</b><span>View current outages · Hydro One</span></button>' +\n    '<button type="button" class="tile" id="hydroReport">🚨<b>Report an Outage</b><span>Online or call 1-800-434-1235</span></button>' +\n    '<button type="button" class="tile" id="hydroAlerts">🔔<b>Outage Alerts</b><span>Sign up for outage notifications</span></button>' +\n    '<button type="button" class="tile" id="hydroSafety">🛡️<b>Power Outage Safety</b><span>Storm preparation & safety information</span></button>' +\n    '</div></section>';\n  document.getElementById('hydroStorm').onclick=function(){openLink('https://www.hydroone.com/power-outages-and-safety/storm-centre')};\n  document.getElementById('hydroMap').onclick=function(){openLink('https://www.hydroone.com/power-outages-and-safety/storm-centre')};\n  document.getElementById('hydroReport').onclick=function(){openLink('https://www.hydroone.com/support/contact')};\n  document.getElementById('hydroAlerts').onclick=function(){openLink('https://www.hydroone.com/request-a-service/outage-alerts')};\n  document.getElementById('hydroSafety').onclick=function(){openLink('https://www.hydroone.com/power-outages-and-safety')};\n};\n'''
           if 'window.__powerFix=function()' not in s:
               if '</script>' not in s:
                   raise SystemExit('No script end found in APK')
               s = s.replace('</script>', power_js + '</script>', 1)
-
           if 'window.__powerFix=function()' not in s:
               raise SystemExit('Power fix function missing')
           if 'onclick="window.__powerFix()"' not in s:
               raise SystemExit('Power button was not patched')
-
           p.write_text(s, encoding='utf-8')
           PY
-
-          unzip -p BrockvilleHub-power-fixed.apk assets/index.html > /tmp/verified-before.txt
           zip -d BrockvilleHub-power-fixed.apk 'assets/index.html' 'META-INF/*' >/dev/null
           (cd patch && zip -q0 ../BrockvilleHub-power-fixed.apk assets/index.html)
 
@@ -65,11 +58,15 @@ jobs:
 
       - name: Align and sign APK
         run: |
-          sdkmanager "build-tools;35.0.0" "platform-tools"
-          $ANDROID_HOME/build-tools/35.0.0/zipalign -f 4 BrockvilleHub-power-fixed.apk BrockvilleHub-power-fixed-aligned.apk
+          BUILD_TOOLS="$ANDROID_HOME/build-tools/35.0.0"
+          if [ ! -x "$BUILD_TOOLS/zipalign" ] || [ ! -x "$BUILD_TOOLS/apksigner" ]; then
+            echo "Required Android build tools are not available on runner"
+            exit 1
+          fi
+          "$BUILD_TOOLS/zipalign" -f 4 BrockvilleHub-power-fixed.apk BrockvilleHub-power-fixed-aligned.apk
           keytool -genkeypair -v -keystore debug-power.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
-          $ANDROID_HOME/build-tools/35.0.0/apksigner sign --ks debug-power.keystore --ks-pass pass:android --key-pass android --out BrockvilleHub-power-fixed-final.apk BrockvilleHub-power-fixed-aligned.apk
-          $ANDROID_HOME/build-tools/35.0.0/apksigner verify --verbose BrockvilleHub-power-fixed-final.apk
+          "$BUILD_TOOLS/apksigner" sign --ks debug-power.keystore --ks-pass pass:android --key-pass android --out BrockvilleHub-power-fixed-final.apk BrockvilleHub-power-fixed-aligned.apk
+          "$BUILD_TOOLS/apksigner" verify --verbose BrockvilleHub-power-fixed-final.apk
 
       - name: Upload Power-Fixed APK
         uses: actions/upload-artifact@v4
