@@ -21,6 +21,7 @@ explore:`<div class="pagehead"><button class="back" data-p="home">←</button><h
 map:`<div class="pagehead"><button class="back" data-p="home">←</button><h2>Brockville Map</h2></div><div class="map"><div class="river"></div><div class="pin p1">📍</div><div class="pin p2">📍</div><div class="pin p3">📍</div></div><section class="sec"><div class="grid">${cards(['🏛️ City Hall','🌲 Parks','🚗 Parking','🚻 Washrooms','🚌 Transit','🚧 Road Work'])}</div></section>`,
 more:`<div class="pagehead"><button class="back" data-p="home">←</button><h2>More Brockville</h2></div><div class="grid">${cards(['📰 Local News','📜 Bylaws','🏛️ Council & Government','📹 River Webcams','💧 Water & Sewer','🚌 Transit','🏗️ Building & Development','💼 City Careers','📞 City Contacts','📝 Forms','🚨 Emergency Information','📣 Community Feedback','⭐ Favorites'])}</div>`
 };
-function show(p){m.innerHTML=P[p]||P.home;document.querySelectorAll('.bottom button').forEach(b=>b.classList.toggle('active',b.dataset.p===p));document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>show(b.dataset.p));scrollTo(0,0)}
-show('home');document.getElementById('q').onkeydown=e=>{if(e.key==='Enter'&&e.target.value.trim())show('more')};
+function show(p,fromHistory=false){m.innerHTML=P[p]||P.home;document.querySelectorAll('.bottom button').forEach(b=>b.classList.toggle('active',b.dataset.p===p));document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>show(b.dataset.p));scrollTo(0,0);if(!fromHistory){history.pushState({page:p},'', '#'+p)}}
+window.addEventListener('popstate',()=>show(location.hash.slice(1)||'home',true));
+show(location.hash.slice(1)||'home',true);document.getElementById('q').onkeydown=e=>{if(e.key==='Enter'&&e.target.value.trim())show('more')};
 </script></body></html>
