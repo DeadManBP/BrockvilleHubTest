@@ -24,7 +24,7 @@ jobs:
 
       - name: Patch APK without rebuilding its ZIP structure
         run: |
-          mkdir -p patch/assets
+          mkdir -p patch/assets clean/assets
           unzip -p BrockvilleHub-patched.apk assets/index.html > patch/assets/index.html
           python3 - <<'PY'
           from pathlib import Path
@@ -33,9 +33,9 @@ jobs:
           marker = '<section class="sec"><h3>🛍️ Shopping & Specialty</h3>'
           if '🚕 Transportation' not in s:
               extra = '''<section class="sec"><h3>🧥 Thrift & Second Hand</h3><div class="grid">
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Value+Village%2C+2399+Parkedale+Ave%2C+Brockville%2C+ON')">🛍️<b>Value Village</b><span>2399 Parkedale Ave · Maps</span></button>
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=The+Score%2C+260+King+St+W%2C+Brockville%2C+ON')">🛍️<b>The Score</b><span>260 King St W · Maps</span></button>
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Second+Time+Around+Thrift+Store%2C+Brockville%2C+ON')">🛍️<b>Second Time Around</b><span>Thrift store · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Value+Village%2C+Brockville%2C+ON')">🛍️<b>Value Village</b><span>Thrift store · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=The+Score%2C+Brockville%2C+ON')">🛍️<b>The Score</b><span>Thrift & second hand · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Second+Time+Around%2C+Brockville%2C+ON')">🛍️<b>Second Time Around</b><span>Thrift store · Maps</span></button>
           <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=The+Greater+Good%2C+Brockville%2C+ON')">🛍️<b>The Greater Good</b><span>Thrift & second hand · Maps</span></button>
           <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=May+Court+Thrift+Shop%2C+Brockville%2C+ON')">🛍️<b>May Court Thrift Shop</b><span>Thrift store · Maps</span></button>
           <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Salvation+Army+Thrift+Store%2C+Brockville%2C+ON')">🛍️<b>Salvation Army Thrift Store</b><span>Thrift store · Maps</span></button>
@@ -48,11 +48,12 @@ jobs:
               s = s.replace(marker, extra + '\n' + marker, 1)
               p.write_text(s, encoding='utf-8')
           PY
-
-          mkdir -p clean/assets
-          cp -a patch/assets/index.html clean/assets/index.html
+          cp patch/assets/index.html clean/assets/index.html
           zip -d BrockvilleHub-patched.apk 'assets/index.html' 'META-INF/*' >/dev/null
           (cd clean && zip -q0 ../BrockvilleHub-patched.apk assets/index.html)
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
 
       - name: Align and sign APK
         run: |
