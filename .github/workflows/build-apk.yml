@@ -13,6 +13,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Fix Eat and Drink navigation
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('app/src/main/assets/index.html')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace("'🍴 Eat & Drink':'#eat'", "'🍴 Eat & Drink':'__HUB_EAT__'")
+          old = "const cards=(a)=>a.map(x=>LINKS[x]?`<button class=\"tile\" onclick=\"openLink('${LINKS[x]}')\">${x}</button>`:`<button class=\"tile\">${x}</button>`).join('');"
+          new = "const cards=(a)=>a.map(x=>x==='🍴 Eat & Drink'?`<button class=\"tile\" data-p=\"eat\">${x}</button>`:LINKS[x]?`<button class=\"tile\" onclick=\"openLink('${LINKS[x]}')\">${x}</button>`:`<button class=\"tile\">${x}</button>`).join('');"
+          if old in s:
+              s = s.replace(old, new)
+          else:
+              raise SystemExit('Could not find cards() function; refusing to build a possibly broken app.')
+          old_home = '<button class="tile" data-p="explore">❤️<b>Things To Do</b><span>Explore Brockville</span></button>'
+          new_home = old_home + '<button class="tile" data-p="eat">🍴<b>Eat & Drink</b><span>Restaurants, cafés & pubs</span></button>'
+          if old_home in s and 'data-p="eat">🍴<b>Eat & Drink' not in s:
+              s = s.replace(old_home, new_home, 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+
       - name: Set up Java 17
         uses: actions/setup-java@v4
         with:
