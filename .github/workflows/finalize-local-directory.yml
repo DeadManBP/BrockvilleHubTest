@@ -14,74 +14,52 @@ jobs:
       contents: read
 
     steps:
-      - name: Download latest APK artifact
+      - name: Download APK
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p work
           gh run download "${{ github.event.workflow_run.id }}" -R "${{ github.repository }}" -n BrockvilleHub-debug-apk -D work
-          find work -type f -maxdepth 2 -print
+          mv work/app-debug.apk BrockvilleHub-patched.apk
 
-      - name: Patch Local Directory
+      - name: Patch APK without rebuilding its ZIP structure
         run: |
+          mkdir -p patch/assets
+          unzip -p BrockvilleHub-patched.apk assets/index.html > patch/assets/index.html
           python3 - <<'PY'
           from pathlib import Path
-          import zipfile
-          import shutil
-
-          apk = next(Path('work').glob('*.apk'))
-          root = Path('apkroot')
-          if root.exists(): shutil.rmtree(root)
-          root.mkdir()
-
-          with zipfile.ZipFile(apk) as z:
-              z.extractall(root)
-
-          html = root / 'assets' / 'index.html'
-          if not html.exists():
-              raise SystemExit('assets/index.html not found in APK')
-
-          s = html.read_text(encoding='utf-8')
+          p = Path('patch/assets/index.html')
+          s = p.read_text(encoding='utf-8')
           marker = '<section class="sec"><h3>🛍️ Shopping & Specialty</h3>'
-
           if '🚕 Transportation' not in s:
               extra = '''<section class="sec"><h3>🧥 Thrift & Second Hand</h3><div class="grid">
           <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Value+Village%2C+2399+Parkedale+Ave%2C+Brockville%2C+ON')">🛍️<b>Value Village</b><span>2399 Parkedale Ave · Maps</span></button>
           <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=The+Score%2C+260+King+St+W%2C+Brockville%2C+ON')">🛍️<b>The Score</b><span>260 King St W · Maps</span></button>
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Second+Time+Around+Thrift+Store%2C+2400+Parkedale+Ave%2C+Brockville%2C+ON')">🛍️<b>Second Time Around</b><span>2400 Parkedale Ave · Maps</span></button>
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=The+Greater+Good%2C+2400+Parkedale+Ave%2C+Brockville%2C+ON')">🛍️<b>The Greater Good</b><span>2400 Parkedale Ave · Maps</span></button>
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=May+Court+Thrift+Shop%2C+75+King+St+W%2C+Brockville%2C+ON')">🛍️<b>May Court Thrift Shop</b><span>75 King St W · Maps</span></button>
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Salvation+Army+Thrift+Store%2C+181+King+St+W%2C+Brockville%2C+ON')">🛍️<b>Salvation Army Thrift Store</b><span>181 King St W · Maps</span></button>
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Thrifty%27s+in+Tincap%2C+4501+Rowsome+Rd+E%2C+Brockville%2C+ON')">🛍️<b>Thrifty's in Tincap</b><span>4501 Rowsome Rd E · Maps</span></button>
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Perth+Street+Flea+Market%2C+27+Perth+St%2C+Brockville%2C+ON')">🛍️<b>Perth Street Flea Market</b><span>27 Perth St · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Second+Time+Around+Thrift+Store%2C+Brockville%2C+ON')">🛍️<b>Second Time Around</b><span>Thrift store · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=The+Greater+Good%2C+Brockville%2C+ON')">🛍️<b>The Greater Good</b><span>Thrift & second hand · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=May+Court+Thrift+Shop%2C+Brockville%2C+ON')">🛍️<b>May Court Thrift Shop</b><span>Thrift store · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Salvation+Army+Thrift+Store%2C+Brockville%2C+ON')">🛍️<b>Salvation Army Thrift Store</b><span>Thrift store · Maps</span></button>
           </div></section>
           <section class="sec"><h3>🚕 Transportation</h3><div class="grid">
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Executive+Taxi%2C+28+Perth+St%2C+Brockville%2C+ON')">🚕<b>Executive Taxi</b><span>28 Perth St · (613) 342-2000 · Maps</span></button>
+          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Executive+Taxi%2C+Brockville%2C+ON')">🚕<b>Executive Taxi</b><span>(613) 342-2000 · Maps</span></button>
           </div></section>'''
               if marker not in s:
-                  raise SystemExit('Local Directory shopping section marker not found')
+                  raise SystemExit('Local Directory marker not found')
               s = s.replace(marker, extra + '\n' + marker, 1)
-              html.write_text(s, encoding='utf-8')
-
-          # Remove the old APK signature so it can be re-signed after the asset change.
-          meta = root / 'META-INF'
-          if meta.exists(): shutil.rmtree(meta)
-          print('Patched:', apk)
+              p.write_text(s, encoding='utf-8')
           PY
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+          mkdir -p clean/assets
+          cp -a patch/assets/index.html clean/assets/index.html
+          zip -d BrockvilleHub-patched.apk 'assets/index.html' 'META-INF/*' >/dev/null
+          (cd clean && zip -q0 ../BrockvilleHub-patched.apk assets/index.html)
 
-      - name: Install build tools
-        run: sdkmanager "build-tools;35.0.0" "platform-tools"
-
-      - name: Repack and sign APK
+      - name: Align and sign APK
         run: |
-          rm -f patched-unsigned.apk patched-aligned.apk BrockvilleHub-final.apk
-          (cd apkroot && zip -qr ../patched-unsigned.apk .)
-          $ANDROID_HOME/build-tools/35.0.0/zipalign -f 4 patched-unsigned.apk patched-aligned.apk
+          sdkmanager "build-tools;35.0.0" "platform-tools"
+          $ANDROID_HOME/build-tools/35.0.0/zipalign -f 4 BrockvilleHub-patched.apk BrockvilleHub-aligned.apk
           keytool -genkeypair -v -keystore debug-final.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
-          $ANDROID_HOME/build-tools/35.0.0/apksigner sign --ks debug-final.keystore --ks-pass pass:android --key-pass pass:android --out BrockvilleHub-final.apk patched-aligned.apk
+          $ANDROID_HOME/build-tools/35.0.0/apksigner sign --ks debug-final.keystore --ks-pass pass:android --key-pass pass:android --out BrockvilleHub-final.apk BrockvilleHub-aligned.apk
           $ANDROID_HOME/build-tools/35.0.0/apksigner verify --verbose BrockvilleHub-final.apk
 
       - name: Upload finalized APK
