@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fix Eat and Drink navigation
+      - name: Fix Eat and Drink navigation and add Chinese restaurants
         working-directory: BrockvilleTestHub
         run: |
           python3 - <<'PY'
@@ -31,6 +31,14 @@ jobs:
           new_home = old_home + '<button class="tile" data-p="eat">🍴<b>Eat & Drink</b><span>Restaurants, cafés & pubs</span></button>'
           if old_home in s and 'data-p="eat">🍴<b>Eat & Drink' not in s:
               s = s.replace(old_home, new_home, 1)
+
+          anchor = '<section class="sec"><h3>Popular local spots</h3>'
+          chinese = '''<section class="sec"><h3>🥡 Chinese & Chinese-Thai</h3><div class="grid"><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Lee%27s+Kitchen+Restaurant%2C+2523+Parkedale+Ave%2C+Brockville%2C+ON')">🥡<b>Lee's Kitchen</b><span>2523 Parkedale Ave · Maps</span></button><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Golden+Gate+Restaurant%2C+172+King+St+W%2C+Brockville%2C+ON')">🥡<b>Golden Gate Restaurant</b><span>172 King St W · Maps</span></button><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Island+Delight+Restaurant%2C+140+King+St+W%2C+Brockville%2C+ON')">🥡<b>Island Delight</b><span>140 King St W · Maps</span></button><button class="tile" onclick="openLink('https://www.goldengaterestaurant.ca/')">🌐<b>Golden Gate website</b><span>Menu, hours & delivery</span></button></div></section>'''
+          if anchor in s and '🥡 Chinese & Chinese-Thai' not in s:
+              s = s.replace(anchor, chinese + anchor, 1)
+          elif '🥡 Chinese & Chinese-Thai' not in s:
+              raise SystemExit('Could not find Eat & Drink insertion point; refusing to build a possibly broken app.')
+
           p.write_text(s, encoding='utf-8')
           PY
 
