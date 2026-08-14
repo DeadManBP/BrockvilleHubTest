@@ -9,27 +9,41 @@ permissions:
 
 jobs:
   fix-power-navigation:
-    if: ${{ !contains(github.event.head_commit.message, '[power nav]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[power nav v3]') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Make Power & Utilities tile directly open its page
+      - name: Replace broken Power & Utilities handler and add delegated routing
         working-directory: BrockvilleTestHub
         run: |
           python3 - <<'PY'
           from pathlib import Path
           p = Path('app/src/main/assets/index.html')
           s = p.read_text(encoding='utf-8')
-          old = '<button class="tile" data-p="power">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
-          new = '<button class="tile" data-p="power" onclick="show(\'power\')">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
-          if old not in s:
-              if new in s:
-                  print('Power navigation already fixed')
-                  raise SystemExit(0)
-              raise SystemExit('Power & Utilities tile not found')
-          p.write_text(s.replace(old, new, 1), encoding='utf-8')
+
+          old = '<button class="tile" data-p="power" onclick="document.getElementById(\'m\').innerHTML=P.power; window.scrollTo(0,0)">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
+          if old in s:
+              s = s.replace(old, '<button class="tile" data-p="power">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>', 1)
+          else:
+              old2 = '<button class="tile" data-p="power" onclick="show(\'power\')">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
+              if old2 in s:
+                  s = s.replace(old2, '<button class="tile" data-p="power">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>', 1)
+
+          marker = "document.addEventListener('click',window.__brockvilleHubPowerRouter)"
+          if marker not in s:
+              script = """\nfunction __brockvilleHubPowerRouter(e){\n  const b=e.target.closest('[data-p]');\n  if(!b) return;\n  const p=b.dataset.p;\n  if(!P[p]) return;\n  e.preventDefault();\n  m.innerHTML=P[p];\n  window.scrollTo(0,0);\n  document.querySelectorAll('.bottom button').forEach(x=>x.classList.toggle('active',x.dataset.p===p));\n}\ndocument.addEventListener('click',window.__brockvilleHubPowerRouter)\n"""
+              s = s.replace('</script>', script + '</script>', 1)
+
+          if 'data-p="power"' not in s:
+              raise SystemExit('Power & Utilities tile missing')
+          if 'function __brockvilleHubPowerRouter' not in s:
+              raise SystemExit('Delegated router injection failed')
+          if 'onclick="document.getElementById(\'m\').innerHTML=P.power' in s or 'onclick="show(\'power\')"' in s:
+              raise SystemExit('Broken Power handler still present')
+
+          p.write_text(s, encoding='utf-8')
           PY
 
       - name: Commit fix
@@ -41,5 +55,5 @@ jobs:
             echo "No Power navigation change needed"
             exit 0
           fi
-          git commit -m "Fix Power & Utilities navigation [power nav]"
+          git commit -m "Fix Power & Utilities routing [power nav v3]"
           git push
