@@ -9,13 +9,13 @@ permissions:
 
 jobs:
   fix-power-navigation:
-    if: ${{ !contains(github.event.head_commit.message, '[power nav v3]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[power nav v4]') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Replace broken Power & Utilities handler and add delegated routing
+      - name: Replace Power tile with dedicated renderer
         working-directory: BrockvilleTestHub
         run: |
           python3 - <<'PY'
@@ -23,25 +23,28 @@ jobs:
           p = Path('app/src/main/assets/index.html')
           s = p.read_text(encoding='utf-8')
 
-          old = '<button class="tile" data-p="power" onclick="document.getElementById(\'m\').innerHTML=P.power; window.scrollTo(0,0)">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
+          old = '<button class="tile" data-p="power">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
+          new = '<button class="tile" data-power-open>⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
           if old in s:
-              s = s.replace(old, '<button class="tile" data-p="power">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>', 1)
+              s = s.replace(old, new, 1)
           else:
-              old2 = '<button class="tile" data-p="power" onclick="show(\'power\')">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
+              old2 = '<button class="tile" data-p="power" onclick="document.getElementById(\'m\').innerHTML=P.power; window.scrollTo(0,0)">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
               if old2 in s:
-                  s = s.replace(old2, '<button class="tile" data-p="power">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>', 1)
+                  s = s.replace(old2, new, 1)
+              else:
+                  old3 = '<button class="tile" data-p="power" onclick="show(\'power\')">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>'
+                  if old3 in s:
+                      s = s.replace(old3, new, 1)
 
-          marker = "document.addEventListener('click',window.__brockvilleHubPowerRouter)"
-          if marker not in s:
-              script = """\nfunction __brockvilleHubPowerRouter(e){\n  const b=e.target.closest('[data-p]');\n  if(!b) return;\n  const p=b.dataset.p;\n  if(!P[p]) return;\n  e.preventDefault();\n  m.innerHTML=P[p];\n  window.scrollTo(0,0);\n  document.querySelectorAll('.bottom button').forEach(x=>x.classList.toggle('active',x.dataset.p===p));\n}\ndocument.addEventListener('click',window.__brockvilleHubPowerRouter)\n"""
+          if 'function openPowerUtilities()' not in s:
+              page = '''<div class="pagehead"><button class="back" data-p="home">←</button><h2>Power & Utilities</h2></div><div class="card"><div class="cardbody"><span class="badge">HYDRO ONE</span><h3>⚡ Power Outages</h3><p class="muted">Check current outages, affected areas, crew status and estimated restoration times for Hydro One customers.</p><button class="tile primary" style="width:100%" onclick="openLink('https://www.hydroone.com/power-outages-and-safety/storm-centre')">⚡ Open Hydro One Storm Centre</button></div></div><section class="sec"><h3>🔌 Outage Tools</h3><div class="grid"><button class="tile" onclick="openLink('https://www.hydroone.com/power-outages-and-safety/storm-centre')">🗺️<b>Outage Map</b><span>View current outages · Hydro One</span></button><button class="tile" onclick="openLink('https://www.hydroone.com/support/contact')">🚨<b>Report an Outage</b><span>Online or call 1-800-434-1235</span></button><button class="tile" onclick="openLink('https://www.hydroone.com/request-a-service/outage-alerts')">🔔<b>Outage Alerts</b><span>Sign up for outage notifications</span></button><button class="tile" onclick="openLink('https://www.hydroone.com/power-outages-and-safety')">🛡️<b>Power Outage Safety</b><span>Storm preparation & safety information</span></button></div></section><section class="sec"><div class="card"><div class="cardbody"><span class="badge">LIVE DATA</span><h3>Storm Centre updates</h3><p class="muted">Hydro One says its outage map is updated as information comes in from crews.</p><button class="tile" style="width:100%" onclick="openLink('https://www.hydroone.com/power-outages-and-safety/storm-centre')">🌐 View live outage information</button></div></div></section>'''
+              script = 'function openPowerUtilities(){m.innerHTML=`' + page.replace('`','\\`') + '`; window.scrollTo(0,0);}\ndocument.addEventListener("click",function(e){const b=e.target.closest("[data-power-open]");if(b){e.preventDefault();openPowerUtilities();}});\n'
               s = s.replace('</script>', script + '</script>', 1)
 
-          if 'data-p="power"' not in s:
-              raise SystemExit('Power & Utilities tile missing')
-          if 'function __brockvilleHubPowerRouter' not in s:
-              raise SystemExit('Delegated router injection failed')
-          if 'onclick="document.getElementById(\'m\').innerHTML=P.power' in s or 'onclick="show(\'power\')"' in s:
-              raise SystemExit('Broken Power handler still present')
+          if 'data-power-open' not in s:
+              raise SystemExit('Power tile replacement failed')
+          if 'function openPowerUtilities()' not in s:
+              raise SystemExit('Dedicated Power renderer missing')
 
           p.write_text(s, encoding='utf-8')
           PY
@@ -55,5 +58,5 @@ jobs:
             echo "No Power navigation change needed"
             exit 0
           fi
-          git commit -m "Fix Power & Utilities routing [power nav v3]"
+          git commit -m "Fix Power & Utilities dedicated renderer [power nav v4]"
           git push
