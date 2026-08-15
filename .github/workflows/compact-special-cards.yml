@@ -16,10 +16,9 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import re
           p=Path('BrockvilleTestHub/app/src/main/assets/index.html')
           s=p.read_text(encoding='utf-8')
-          # Previous workflow accidentally nested the special <style> inside tile-polish.
-          # Close the existing style before opening the special-card style block.
           needle='<style id="special-card-compact">'
           if needle in s:
               idx=s.index(needle)
@@ -27,9 +26,7 @@ jobs:
               if not before.rstrip().endswith('</style>'):
                   s=s[:idx]+'</style>'+s[idx:]
           s=s.replace('</style></style></head>','</style></head>',1)
-          css='''<style id="special-card-compact">\n.card .tile{min-height:0!important;height:auto!important;padding:11px 14px!important;border-radius:16px}\n.card .tile b{font-size:15px!important;margin-top:3px}\n.card .tile span{font-size:11px!important;margin-top:2px}\n.cardbody>.tile{min-height:0!important;height:62px!important}\n#weather-card .cardbody{padding:11px 12px}\n#weather-card .stats{gap:6px}\n#weather-card .stat{padding:8px}\n#weather-card .stat b{font-size:17px}\n#weather-card .muted{font-size:12px}\n</style>'''
-          # Replace the existing special block, or append a clean one before </head>.
-          import re
+          css='''<style id="special-card-compact">\n.card .tile{min-height:0!important;height:auto!important;padding:11px 14px!important;border-radius:16px}\n.card .tile b{font-size:15px!important;margin-top:3px}\n.card .tile span{font-size:11px!important;margin-top:2px}\n.cardbody>.tile{min-height:0!important;height:62px!important}\n.cardbody>.tile[style*="width:100%"]{height:48px!important;min-height:48px!important;padding:8px 12px!important;font-size:14px!important;border-radius:14px!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:8px!important}\n#weather-card .cardbody{padding:11px 12px}\n#weather-card .stats{gap:6px}\n#weather-card .stat{padding:8px}\n#weather-card .stat b{font-size:17px}\n#weather-card .muted{font-size:12px}\n</style>'''
           s=re.sub(r'<style id="special-card-compact">.*?</style>', '', s, count=1, flags=re.S)
           s=s.replace('</head>',css+'</head>',1)
           p.write_text(s,encoding='utf-8')
@@ -37,5 +34,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add BrockvilleTestHub/app/src/main/assets/index.html
-          git diff --cached --quiet || git commit -m 'Fix special card CSS placement and sizing'
+          git diff --cached --quiet || git commit -m 'Shrink full-width card action buttons'
           git push
