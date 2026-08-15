@@ -1,0 +1,31 @@
+name: Fix weather return state
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  weather-return-fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add weather fallback cache
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('BrockvilleTestHub/app/src/main/assets/index.html')
+          s=p.read_text(encoding='utf-8')
+          marker='/* WEATHER_RETURN_CACHE_V1 */'
+          if marker not in s:
+              snippet=r'''\n<script>\n/* WEATHER_RETURN_CACHE_V1 */\n(function(){\n  const KEY='brockville_weather_card_v1';\n  const MAX_AGE=30*60*1000;\n  function cacheWeather(){\n    const card=document.getElementById('weather-card');\n    if(!card) return;\n    const text=(card.innerText||'');\n    if(/\\d+\\s*°C/.test(text) && /Updated/i.test(text)){\n      try{sessionStorage.setItem(KEY,JSON.stringify({t:Date.now(),html:card.innerHTML}))}catch(e){}\n    }\n  }\n  function restoreWeather(){\n    const card=document.getElementById('weather-card');\n    if(!card) return;\n    const text=(card.innerText||'');\n    if(!/Loading|Unable to load|--°C/i.test(text)) return;\n    try{\n      const saved=JSON.parse(sessionStorage.getItem(KEY)||'null');\n      if(saved && Date.now()-saved.t<MAX_AGE && saved.html){card.innerHTML=saved.html;}\n    }catch(e){}\n  }\n  const observer=new MutationObserver(function(){\n    cacheWeather();\n    restoreWeather();\n  });\n  function start(){\n    observer.observe(document.getElementById('m')||document.body,{subtree:true,childList:true,characterData:true});\n    setTimeout(restoreWeather,150);\n    setTimeout(restoreWeather,600);\n    setTimeout(cacheWeather,1200);\n  }\n  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start); else start();\n})();\n</script>\n'''
+              s=s.replace('</body>',snippet+'</body>',1)
+              p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add BrockvilleTestHub/app/src/main/assets/index.html
+          git diff --cached --quiet || git commit -m 'Fix weather when returning to home'
+          git push
