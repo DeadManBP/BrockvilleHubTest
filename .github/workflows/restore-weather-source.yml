@@ -1,0 +1,39 @@
+name: Restore weather card into source
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  restore-weather:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore weather card and loader
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('BrockvilleTestHub/app/src/main/assets/index.html')
+          s=p.read_text(encoding='utf-8')
+          marker='WEATHER_CARD_SOURCE_V2'
+          if marker in s:
+              raise SystemExit(0)
+          weather='''<section class="sec"><div class="card" id="weather-card"><div class="cardbody"><span class="badge">BROCKVILLE WEATHER</span><h3 id="weather-title">🌤️ Weather</h3><p class="muted" id="weather-main">Loading current conditions…</p><div class="stats"><div class="stat"><b id="weather-temp">--°C</b><small>Temperature</small></div><div class="stat"><b id="weather-wind">--</b><small>Wind</small></div></div><p class="muted" id="weather-forecast">Loading forecast…</p><button class="tile primary" style="width:100%" onclick="openLink('https://weather.gc.ca/en/location/index.html?coords=44.597%2C-75.686')">🇨🇦 Official Environment Canada Forecast</button></div></div></section>'''
+          anchor='<section class="sec"><div class="head"><h2>City at a glance</h2>'
+          if anchor not in s:
+              raise SystemExit('Home weather insertion point not found')
+          s=s.replace(anchor,weather+'\n'+anchor,1)
+          js='''\nasync function loadWeather(){try{const u='https://api.open-meteo.com/v1/forecast?latitude=44.5895&longitude=-75.6843&current=temperature_2m,weather_code,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=celsius&wind_speed_unit=kmh&timezone=America%2FToronto&forecast_days=3';const r=await fetch(u);const d=await r.json();const w={0:'Clear',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Fog',48:'Fog',51:'Light drizzle',53:'Drizzle',55:'Drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',80:'Rain showers',81:'Rain showers',82:'Heavy showers',95:'Thunderstorms',96:'Thunderstorms',99:'Thunderstorms'};document.getElementById('weather-title').textContent='🌤️ '+(w[d.current.weather_code]||'Current weather');document.getElementById('weather-main').textContent='Brockville, Ontario · Updated '+new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});document.getElementById('weather-temp').textContent=Math.round(d.current.temperature_2m)+'°C';document.getElementById('weather-wind').textContent=Math.round(d.current.wind_speed_10m)+' km/h';const days=d.daily.time.map((x,i)=>new Date(x+'T12:00:00').toLocaleDateString([], {weekday:'short'})+': '+Math.round(d.daily.temperature_2m_max[i])+'°/'+Math.round(d.daily.temperature_2m_min[i])+'° · '+d.daily.precipitation_probability_max[i]+'% rain');document.getElementById('weather-forecast').textContent=days.join('  •  ')}catch(e){document.getElementById('weather-main').textContent='Weather unavailable right now. Tap below for the official forecast.';document.getElementById('weather-forecast').textContent=''}}\n'''
+          s=s.replace("const m=document.getElementById('m');",js+"\nconst m=document.getElementById('m');",1)
+          s=s.replace('</script>',"loadWeather();\n</script>",1)
+          s=s.replace('</head>','<!-- WEATHER_CARD_SOURCE_V2 --></head>',1)
+          p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add BrockvilleTestHub/app/src/main/assets/index.html
+          git diff --cached --quiet || git commit -m 'Restore weather card into app source'
+          git push
