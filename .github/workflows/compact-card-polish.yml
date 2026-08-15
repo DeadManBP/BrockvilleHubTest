@@ -1,0 +1,33 @@
+name: Compact card polish
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  compact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compact cards without touching navigation
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('BrockvilleTestHub/app/src/main/assets/index.html')
+          s=p.read_text(encoding='utf-8')
+          old='''<style id="tile-polish">\n.grid{gap:12px}\n.tile{min-height:126px;padding:18px 17px;border-radius:20px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;transition:transform .12s ease,filter .12s ease}\n.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.06),transparent 45%);pointer-events:none}\n.tile:active{transform:scale(.985);filter:brightness(1.08)}\n.tile b{font-size:18px;line-height:1.2;margin-top:6px;position:relative;z-index:1}\n.tile span{font-size:13px;line-height:1.3;margin-top:5px;position:relative;z-index:1}\n.tile:first-child{box-shadow:0 8px 24px rgba(67,183,199,.16)}\n</style>'''
+          new='''<style id="tile-polish">\n.grid{gap:10px}\n.tile{min-height:94px;padding:13px 14px;border-radius:17px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;transition:transform .12s ease,filter .12s ease}\n.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.045),transparent 45%);pointer-events:none}\n.tile:active{transform:scale(.985);filter:brightness(1.08)}\n.tile b{font-size:16px;line-height:1.2;margin-top:5px;position:relative;z-index:1}\n.tile span{font-size:12px;line-height:1.3;margin-top:4px;position:relative;z-index:1}\n.tile:first-child{box-shadow:0 5px 16px rgba(67,183,199,.12)}\n.cardbody{padding:13px}\n.photo{height:82px;font-size:34px}\n</style>'''
+          if old not in s:
+              raise SystemExit('Expected tile polish block not found')
+          s=s.replace(old,new,1)
+          # Keep the navigation code and Power removal untouched; only presentation CSS changes.
+          p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add BrockvilleTestHub/app/src/main/assets/index.html
+          git diff --cached --quiet || git commit -m 'Compact home cards and weather styling'
+          git push
