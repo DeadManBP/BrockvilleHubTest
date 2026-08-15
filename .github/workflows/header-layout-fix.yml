@@ -1,0 +1,48 @@
+name: Apply safe centered header layout
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  header:
+    if: ${{ !contains(github.event.head_commit.message, '[header layout]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Redesign header
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('app/src/main/assets/index.html')
+          s=p.read_text(encoding='utf-8')
+          old='''.hero{padding:22px 17px 20px;background:radial-gradient(circle at 90% 5%,#2d8296,transparent 35%),linear-gradient(145deg,#0d4054,#071b2a)}'''
+          new='''.hero{padding:calc(env(safe-area-inset-top) + 28px) 17px 24px;text-align:center;background:radial-gradient(circle at 50% 5%,#2d8296,transparent 35%),linear-gradient(145deg,#0d4054,#071b2a)}
+          .hero>div:first-child{display:flex;flex-direction:column;align-items:center}
+          .hero .logo{display:grid;margin:0 auto 9px}
+          .hero .brand{display:block;font-size:23px}
+          .hero .sub{display:block;margin-top:6px}
+          .hero h1{margin:30px 0 6px}'''
+          if old not in s:
+              raise SystemExit('Expected header CSS not found; refusing to modify source')
+          s=s.replace(old,new,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Verify centered safe header
+        working-directory: BrockvilleTestHub
+        run: |
+          grep -q 'text-align:center' app/src/main/assets/index.html
+          grep -q 'env(safe-area-inset-top)' app/src/main/assets/index.html
+          grep -q 'flex-direction:column' app/src/main/assets/index.html
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add BrockvilleTestHub/app/src/main/assets/index.html
+          git diff --cached --quiet && exit 0
+          git commit -m '[header layout] Center header and protect status bar'
+          git push
