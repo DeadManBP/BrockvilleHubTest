@@ -35,17 +35,5 @@ function show(p,fromHistory=false){m.innerHTML=P[p]||P.home;document.querySelect
 window.addEventListener('popstate',()=>show(location.hash.slice(1)||'home',true));
 show(location.hash.slice(1)||'home',true);document.getElementById('q').onkeydown=e=>{if(e.key==='Enter'&&e.target.value.trim())show('more')};
 
-function __brockvilleHubPowerRouter(e){
-  const b=e.target.closest('[data-p]');
-  if(!b) return;
-  const p=b.dataset.p;
-  if(!P[p]) return;
-  e.preventDefault();
-  m.innerHTML=P[p];
-  window.scrollTo(0,0);
-  document.querySelectorAll('.bottom button').forEach(x=>x.classList.toggle('active',x.dataset.p===p));
-}
-document.addEventListener('click',window.__brockvilleHubPowerRouter)
-function openPowerUtilities(){m.innerHTML=`<div class="pagehead"><button class="back" data-p="home">←</button><h2>Power & Utilities</h2></div><div class="card"><div class="cardbody"><span class="badge">HYDRO ONE</span><h3>⚡ Power Outages</h3><p class="muted">Check current outages, affected areas, crew status and estimated restoration times for Hydro One customers.</p><button class="tile primary" style="width:100%" onclick="openLink('https://www.hydroone.com/power-outages-and-safety/storm-centre')">⚡ Open Hydro One Storm Centre</button></div></div><section class="sec"><h3>🔌 Outage Tools</h3><div class="grid"><button class="tile" onclick="openLink('https://www.hydroone.com/power-outages-and-safety/storm-centre')">🗺️<b>Outage Map</b><span>View current outages · Hydro One</span></button><button class="tile" onclick="openLink('https://www.hydroone.com/support/contact')">🚨<b>Report an Outage</b><span>Online or call 1-800-434-1235</span></button><button class="tile" onclick="openLink('https://www.hydroone.com/request-a-service/outage-alerts')">🔔<b>Outage Alerts</b><span>Sign up for outage notifications</span></button><button class="tile" onclick="openLink('https://www.hydroone.com/power-outages-and-safety')">🛡️<b>Power Outage Safety</b><span>Storm preparation & safety information</span></button></div></section><section class="sec"><div class="card"><div class="cardbody"><span class="badge">LIVE DATA</span><h3>Storm Centre updates</h3><p class="muted">Hydro One says its outage map is updated as information comes in from crews.</p><button class="tile" style="width:100%" onclick="openLink('https://www.hydroone.com/power-outages-and-safety/storm-centre')">🌐 View live outage information</button></div></div></section>`;}
-document.addEventListener("click",function(e){const b=e.target.closest("[data-power-open]");if(b){e.preventDefault();openPowerUtilities();}});
+
 </script></body></html>
