@@ -3,6 +3,7 @@ name: Remove Power Utilities section
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -21,14 +22,10 @@ jobs:
           import re
           p=Path('app/src/main/assets/index.html')
           s=p.read_text(encoding='utf-8')
-          # Remove any Home tile whose visible label is Power & Utilities, regardless of attributes/order.
           s=re.sub(r'<button\b[^>]*>\s*⚡\s*<b>Power\s*&\s*Utilities</b>.*?</button>', '', s, flags=re.S)
-          # Remove any remaining power route entry from the P object.
           s=re.sub(r'\n?power:`.*?`,\nmore:', '\nmore:', s, flags=re.S)
-          # Remove all legacy Power-specific functions/listeners, even if whitespace differs.
           s=re.sub(r'\nfunction\s+__brockvilleHubPowerRouter\b.*?(?=\nfunction\s+openPowerUtilities\b|\ndocument\.addEventListener)', '', s, flags=re.S)
           s=re.sub(r'\nfunction\s+openPowerUtilities\s*\(\).*?document\.addEventListener\s*\(\s*["\']click["\'].*?\);', '', s, flags=re.S)
-          # Remove any standalone power click listener left behind.
           s=re.sub(r'\ndocument\.addEventListener\s*\(\s*["\']click["\']\s*,\s*function\s*\(e\)\s*\{\s*const\s+b\s*=\s*e\.target\.closest\s*\(\s*["\']\[data-power-open\]["\']\s*\).*?\}\s*\}\s*\);', '', s, flags=re.S)
           p.write_text(s, encoding='utf-8')
           PY
@@ -44,11 +41,9 @@ jobs:
               raise SystemExit('Power remnants still present: '+', '.join(found))
           print('Power Utilities section completely removed')
           PY
-      - name: Commit cleanup
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add BrockvilleTestHub/app/src/main/assets/index.html
-          git diff --cached --quiet && exit 0
-          git commit -m '[remove power] Remove Power Utilities section entirely'
-          git push
+git config user.name 'github-actions[bot]'
+git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+git add BrockvilleTestHub/app/src/main/assets/index.html
+git diff --cached --quiet && exit 0
+git commit -m '[remove power] Remove Power Utilities section entirely'
+git push
