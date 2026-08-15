@@ -12,22 +12,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Reduce weather and City Hall card controls only
+      - name: Fix and compact weather and City Hall cards
         run: |
           python3 - <<'PY'
           from pathlib import Path
           p=Path('BrockvilleTestHub/app/src/main/assets/index.html')
           s=p.read_text(encoding='utf-8')
-          marker='</style></head>'
-          css='''<style id="special-card-compact">\n.card .tile{min-height:0;padding:10px 12px;border-radius:14px}\n.card .tile b{font-size:15px;margin-top:3px}\n.card .tile span{font-size:11px;margin-top:2px}\n#weather-card .cardbody{padding:10px 12px}\n#weather-card .stats{gap:6px}\n#weather-card .stat{padding:9px}\n#weather-card .stat b{font-size:18px}\n#weather-card .muted{font-size:12px}\n</style>'''
-          if 'id="special-card-compact"' not in s:
-              if marker not in s:
-                  raise SystemExit('Style insertion point not found')
-              s=s.replace(marker,css+marker,1)
-              p.write_text(s,encoding='utf-8')
+          # Previous workflow accidentally nested the special <style> inside tile-polish.
+          # Close the existing style before opening the special-card style block.
+          needle='<style id="special-card-compact">'
+          if needle in s:
+              idx=s.index(needle)
+              before=s[:idx]
+              if not before.rstrip().endswith('</style>'):
+                  s=s[:idx]+'</style>'+s[idx:]
+          s=s.replace('</style></style></head>','</style></head>',1)
+          css='''<style id="special-card-compact">\n.card .tile{min-height:0!important;height:auto!important;padding:11px 14px!important;border-radius:16px}\n.card .tile b{font-size:15px!important;margin-top:3px}\n.card .tile span{font-size:11px!important;margin-top:2px}\n.cardbody>.tile{min-height:0!important;height:62px!important}\n#weather-card .cardbody{padding:11px 12px}\n#weather-card .stats{gap:6px}\n#weather-card .stat{padding:8px}\n#weather-card .stat b{font-size:17px}\n#weather-card .muted{font-size:12px}\n</style>'''
+          # Replace the existing special block, or append a clean one before </head>.
+          import re
+          s=re.sub(r'<style id="special-card-compact">.*?</style>', '', s, count=1, flags=re.S)
+          s=s.replace('</head>',css+'</head>',1)
+          p.write_text(s,encoding='utf-8')
           PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add BrockvilleTestHub/app/src/main/assets/index.html
-          git diff --cached --quiet || git commit -m 'Compact weather and city announcement cards'
+          git diff --cached --quiet || git commit -m 'Fix special card CSS placement and sizing'
           git push
