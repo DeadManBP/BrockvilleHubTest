@@ -1,0 +1,52 @@
+name: Remove Power Utilities section
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  remove-power:
+    if: ${{ !contains(github.event.head_commit.message, '[remove power]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove Power tile, page, and legacy handlers
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('app/src/main/assets/index.html')
+          s=p.read_text(encoding='utf-8')
+          # Remove the Home-screen Power & Utilities tile.
+          s=re.sub(r'<button class="tile" data-p="power">⚡<b>Power & Utilities</b><span>Outages & Hydro One</span></button>', '', s)
+          # Remove the Power page from the P object (power: ... ,more: ...).
+          s=re.sub(r'\npower:`.*?`,\nmore:', '\nmore:', s, flags=re.S)
+          # Remove legacy Power-specific click routers/handlers.
+          s=re.sub(r'\nfunction __brockvilleHubPowerRouter\(e\).*?document\.addEventListener\(["\']click["\'],window\.__brockvilleHubPowerRouter\)', '', s, flags=re.S)
+          s=re.sub(r'\nfunction openPowerUtilities\(\).*?document\.addEventListener\(["\']click["\'],function\(e\)\{const b=e\.target\.closest\(["\']\[data-power-open\]["\']\);if\(b\)\{e\.preventDefault\(\);openPowerUtilities\(\);\}\}\);', '', s, flags=re.S)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Verify Power Utilities is completely removed
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('app/src/main/assets/index.html').read_text(encoding='utf-8')
+          checks=['Power & Utilities','data-p="power"','data-power-open','openPowerUtilities','__brockvilleHubPowerRouter']
+          found=[x for x in checks if x in s]
+          if found:
+              raise SystemExit('Power remnants still present: '+', '.join(found))
+          print('Power Utilities section completely removed')
+          PY
+      - name: Commit cleanup
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add BrockvilleTestHub/app/src/main/assets/index.html
+          git diff --cached --quiet && exit 0
+          git commit -m '[remove power] Remove Power Utilities section entirely'
+          git push
