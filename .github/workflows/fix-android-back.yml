@@ -1,0 +1,53 @@
+name: Fix Android Back Navigation
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix-back:
+    if: ${{ !contains(github.event.head_commit.message, '[android back fix]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove competing navigation router
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('app/src/main/assets/index.html')
+          s=p.read_text(encoding='utf-8')
+          old=s
+          s=re.sub(r'function __brockvilleHubPowerRouter\(e\)\{.*?document\.addEventListener\(\'click\',window\.__brockvilleHubPowerRouter\)\n', '', s, flags=re.S)
+          s=re.sub(r'function openPowerUtilities\(\)\{.*?document\.addEventListener\("click",function\(e\)\{const b=e\.target\.closest\("\[data-power-open\]"\);if\(b\)\{e\.preventDefault\(\);openPowerUtilities\(\);\}\}\);', '', s, flags=re.S)
+          if 'window.__brockvilleHubPowerRouter' in s or 'function openPowerUtilities' in s or 'data-power-open' in s:
+              raise SystemExit('Competing Power router still present')
+          if s == old:
+              print('No competing router found; source already clean')
+          else:
+              p.write_text(s,encoding='utf-8')
+          PY
+      - name: Verify Android back navigation source
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('app/src/main/assets/index.html').read_text(encoding='utf-8')
+          for bad in ('window.__brockvilleHubPowerRouter','function openPowerUtilities','data-power-open'):
+              if bad in s: raise SystemExit(f'Found forbidden legacy handler: {bad}')
+          if 'history.pushState({page:p}' not in s: raise SystemExit('Primary history navigation missing')
+          if "addEventListener('popstate'" not in s: raise SystemExit('popstate handler missing')
+          print('Android back navigation: standard history/popstate path verified')
+          PY
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add BrockvilleTestHub/app/src/main/assets/index.html
+          git diff --cached --quiet && exit 0
+          git commit -m '[android back fix] Use one history navigation path'
+          git push
