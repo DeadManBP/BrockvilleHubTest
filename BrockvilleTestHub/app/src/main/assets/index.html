@@ -14,16 +14,17 @@ main{padding:0 15px}.sec{margin-top:18px}.head{display:flex;justify-content:spac
 .tile:first-child{box-shadow:0 5px 16px rgba(67,183,199,.12)}
 .cardbody{padding:13px}
 .photo{height:82px;font-size:34px}
-<style id="special-card-compact">
-.card .tile{min-height:0;padding:10px 12px;border-radius:14px}
-.card .tile b{font-size:15px;margin-top:3px}
-.card .tile span{font-size:11px;margin-top:2px}
-#weather-card .cardbody{padding:10px 12px}
+</style><style id="special-card-compact">
+.card .tile{min-height:0!important;height:auto!important;padding:11px 14px!important;border-radius:16px}
+.card .tile b{font-size:15px!important;margin-top:3px}
+.card .tile span{font-size:11px!important;margin-top:2px}
+.cardbody>.tile{min-height:0!important;height:62px!important}
+#weather-card .cardbody{padding:11px 12px}
 #weather-card .stats{gap:6px}
-#weather-card .stat{padding:9px}
-#weather-card .stat b{font-size:18px}
+#weather-card .stat{padding:8px}
+#weather-card .stat b{font-size:17px}
 #weather-card .muted{font-size:12px}
-</style></style></head><body><div class="app"><header class="hero"><div><span class="logo">B</span><span class="brand">Brockville Hub</span><div class="sub">BROCKVILLE • ONTARIO • 1000 ISLANDS</div></div><h1>Your city.<br>One place.</h1><div class="muted">News, services, events and things to do.</div><input id="q" class="search" placeholder="🔎 Search Brockville Hub"></header><main id="m"></main>
+</style></head><body><div class="app"><header class="hero"><div><span class="logo">B</span><span class="brand">Brockville Hub</span><div class="sub">BROCKVILLE • ONTARIO • 1000 ISLANDS</div></div><h1>Your city.<br>One place.</h1><div class="muted">News, services, events and things to do.</div><input id="q" class="search" placeholder="🔎 Search Brockville Hub"></header><main id="m"></main>
 <nav class="bottom"><button data-p="home">⌂<br>Home</button><button data-p="events">◷<br>Events</button><button data-p="report">⚠<br>Report</button><button data-p="map">⌖<br>Map</button><button data-p="more">☰<br>More</button></nav></div>
 <script>
 const m=document.getElementById('m');
