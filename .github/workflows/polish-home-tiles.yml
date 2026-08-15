@@ -1,0 +1,50 @@
+name: Polish home tiles
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  polish:
+    if: ${{ !contains(github.event.head_commit.message, '[tile polish]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply cosmetic tile styling only
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('app/src/main/assets/index.html')
+          s=p.read_text(encoding='utf-8')
+          marker='<style id="tile-polish">'
+          if marker in s:
+              print('Tile polish already present')
+              raise SystemExit(0)
+          css='''<style id="tile-polish">\n.grid{gap:12px}\n.tile{min-height:126px;padding:18px 17px;border-radius:20px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;transition:transform .12s ease,filter .12s ease}\n.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.06),transparent 45%);pointer-events:none}\n.tile:active{transform:scale(.985);filter:brightness(1.08)}\n.tile b{font-size:18px;line-height:1.2;margin-top:6px;position:relative;z-index:1}\n.tile span{font-size:13px;line-height:1.3;margin-top:5px;position:relative;z-index:1}\n.tile:first-child{box-shadow:0 8px 24px rgba(67,183,199,.16)}\n</style>'''
+          s=s.replace('</head>',css+'</head>',1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Verify cosmetic-only change
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('app/src/main/assets/index.html').read_text(encoding='utf-8')
+          assert '<style id="tile-polish">' in s
+          assert 'history.pushState' in s
+          assert 'popstate' in s
+          assert 'Power & Utilities' not in s
+          print('Tile styling applied; navigation and Power removal checks preserved')
+          PY
+      - name: Commit tile polish
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add BrockvilleTestHub/app/src/main/assets/index.html
+          git diff --cached --quiet && exit 0
+          git commit -m '[tile polish] Refresh home tile appearance'
+          git push
