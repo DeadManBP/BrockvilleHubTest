@@ -30,75 +30,24 @@ jobs:
           from pathlib import Path
           p = Path('patch/assets/index.html')
           s = p.read_text(encoding='utf-8')
-
-          # Fix the Environment Canada link.
           s = s.replace('https://weather.gc.ca/city/pages/on-15_metric_e.html', 'https://weather.gc.ca/en/location/index.html?coords=44.597%2C-75.686')
-
-          # Remove City Taxi from the generic Local Services section and keep it with Executive Taxi.
-          city_taxi = '<button class="tile" onclick="openLink(\'https://www.google.com/maps/search/?api=1&query=City+Taxi%2C+223+King+St+W%2C+Brockville%2C+ON\')">🚕<b>City Taxi</b><span>Local transportation · Maps</span></button>'
-          s = s.replace(city_taxi + '\n', '', 1)
-
-          marker = '<section class="sec"><h3>🛍️ Shopping & Specialty</h3>'
-          if '🚕 Transportation' not in s:
-              extra = '''<section class="sec"><h3>🧥 Thrift & Second Hand</h3><div class="grid">
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Value+Village%2C+Brockville%2C+ON')">🛍️<b>Value Village</b><span>Thrift store · Maps</span></button>
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=The+Score%2C+Brockville%2C+ON')">🛍️<b>The Score</b><span>Thrift & second hand · Maps</span></button>
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Second+Time+Around%2C+Brockville%2C+ON')">🛍️<b>Second Time Around</b><span>Thrift store · Maps</span></button>
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=The+Greater+Good%2C+Brockville%2C+ON')">🛍️<b>The Greater Good</b><span>Thrift & second hand · Maps</span></button>
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=May+Court+Thrift+Shop%2C+Brockville%2C+ON')">🛍️<b>May Court Thrift Shop</b><span>Thrift store · Maps</span></button>
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Salvation+Army+Thrift+Store%2C+Brockville%2C+ON')">🛍️<b>Salvation Army Thrift Store</b><span>Thrift store · Maps</span></button>
-          </div></section>
-          <section class="sec"><h3>🚕 Transportation</h3><div class="grid">
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Executive+Taxi%2C+Brockville%2C+ON')">🚕<b>Executive Taxi</b><span>(613) 342-2000 · Maps</span></button>
-          <button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=City+Taxi%2C+223+King+St+W%2C+Brockville%2C+ON')">🚕<b>City Taxi</b><span>(613) 342-9767 · Maps</span></button>
-          </div></section>'''
-              if marker not in s:
-                  raise SystemExit('Local Directory marker not found')
-              s = s.replace(marker, extra + '\n' + marker, 1)
-
-          # Restore the Home weather card if it is missing.
-          weather_marker = '<section class="sec"><div class="head"><h2>City at a glance</h2>'
-          if 'id="weather-card"' not in s:
-              weather = '''<section class="sec"><div class="card" id="weather-card"><div class="cardbody"><span class="badge">BROCKVILLE WEATHER</span><h3 id="weather-title">🌤️ Weather</h3><p class="muted" id="weather-main">Loading current conditions…</p><div class="grid"><div class="stat"><b id="weather-temp">--°C</b><small>Temperature</small></div><div class="stat"><b id="weather-wind">--</b><small>Wind</small></div></div><p class="muted" id="weather-forecast">Loading forecast…</p><button class="tile" style="width:100%" onclick="openLink('https://weather.gc.ca/en/location/index.html?coords=44.597%2C-75.686')">🇨🇦 Official Environment Canada Forecast</button></div></div></section>'''
-              if weather_marker not in s:
-                  raise SystemExit('Home weather insertion point not found')
-              s = s.replace(weather_marker, weather + '\n' + weather_marker, 1)
-
-          if 'function loadWeather()' not in s:
-              js_marker = "const m=document.getElementById('m');"
-              weather_js = '''\nasync function loadWeather(){try{const u='https://api.open-meteo.com/v1/forecast?latitude=44.5895&longitude=-75.6843&current=temperature_2m,weather_code,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=celsius&wind_speed_unit=kmh&timezone=America%2FToronto&forecast_days=3';const r=await fetch(u);const d=await r.json();const w={0:'Clear',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Fog',48:'Fog',51:'Light drizzle',53:'Drizzle',55:'Drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',80:'Rain showers',81:'Rain showers',82:'Heavy showers',95:'Thunderstorms',96:'Thunderstorms',99:'Thunderstorms'};document.getElementById('weather-title').textContent='🌤️ '+(w[d.current.weather_code]||'Current weather');document.getElementById('weather-main').textContent='Brockville, Ontario · Updated '+new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});document.getElementById('weather-temp').textContent=Math.round(d.current.temperature_2m)+'°C';document.getElementById('weather-wind').textContent=Math.round(d.current.wind_speed_10m)+' km/h';const days=d.daily.time.map((x,i)=>{const p=d.daily.precipitation_probability_max[i];return new Date(x+'T12:00:00').toLocaleDateString([], {weekday:'short'})+': '+Math.round(d.daily.temperature_2m_max[i])+'°/'+Math.round(d.daily.temperature_2m_min[i])+'° · '+p+'% rain'});document.getElementById('weather-forecast').textContent=days.join('  •  ')}catch(e){document.getElementById('weather-main').textContent='Weather unavailable right now. Tap below for the official forecast.';document.getElementById('weather-forecast').textContent='';}}\n'''
-              if js_marker not in s:
-                  raise SystemExit('JavaScript insertion point not found')
-              s = s.replace(js_marker, weather_js + js_marker, 1)
-              s = s.replace('</script>', 'loadWeather();\n</script>', 1)
-
-          # Add the current Poutine Feast to the community events page/home if it is not already present.
-          poutine = '''<div class="event"><div class="date"><b>13</b><small>AUG</small></div><div><span class="badge">FOOD & COMMUNITY</span><b>Poutine Feast</b><div class="muted">Aug 13–16 · Hardy Park / Centennial Park · Free admission</div></div></div>'''
-          if 'Poutine Feast' not in s:
-              event_marker = '<div class="event"><div class="date"><b>22</b><small>AUG</small></div>'
-              if event_marker in s:
-                  s = s.replace(event_marker, poutine + event_marker, 1)
-
-          # Keep the current Poutine Feast visible even if an older hard-coded event list is present.
-          if 'Poutine Feast' not in s:
-              raise SystemExit('Could not add Poutine Feast event')
-
           p.write_text(s, encoding='utf-8')
           PY
           cp patch/assets/index.html clean/assets/index.html
           zip -d BrockvilleHub-patched.apk 'assets/index.html' 'META-INF/*' >/dev/null
           (cd clean && zip -q0 ../BrockvilleHub-patched.apk assets/index.html)
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Align and sign APK
         run: |
-          sdkmanager "build-tools;35.0.0" "platform-tools"
-          $ANDROID_HOME/build-tools/35.0.0/zipalign -f 4 BrockvilleHub-patched.apk BrockvilleHub-aligned.apk
+          set -e
+          SDK=${ANDROID_HOME:-/usr/local/lib/android/sdk}
+          ls -la "$SDK/build-tools" || true
+          BT=$(find "$SDK/build-tools" -maxdepth 1 -mindepth 1 -type d | sort -V | tail -1)
+          test -n "$BT"
+          "$BT/zipalign" -f 4 BrockvilleHub-patched.apk BrockvilleHub-aligned.apk
           keytool -genkeypair -v -keystore debug-final.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
-          $ANDROID_HOME/build-tools/35.0.0/apksigner sign --ks debug-final.keystore --ks-pass pass:android --key-pass pass:android --out BrockvilleHub-final.apk BrockvilleHub-aligned.apk
-          $ANDROID_HOME/build-tools/35.0.0/apksigner verify --verbose BrockvilleHub-final.apk
+          "$BT/apksigner" sign --ks debug-final.keystore --ks-pass pass:android --key-pass pass:android --out BrockvilleHub-final.apk BrockvilleHub-aligned.apk
+          "$BT/apksigner" verify --verbose BrockvilleHub-final.apk
 
       - name: Upload finalized APK
         uses: actions/upload-artifact@v4
