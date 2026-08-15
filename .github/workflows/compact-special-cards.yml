@@ -1,0 +1,33 @@
+name: Compact weather and city cards
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  compact-special:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reduce weather and City Hall card controls only
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('BrockvilleTestHub/app/src/main/assets/index.html')
+          s=p.read_text(encoding='utf-8')
+          marker='</style></head>'
+          css='''<style id="special-card-compact">\n.card .tile{min-height:0;padding:10px 12px;border-radius:14px}\n.card .tile b{font-size:15px;margin-top:3px}\n.card .tile span{font-size:11px;margin-top:2px}\n#weather-card .cardbody{padding:10px 12px}\n#weather-card .stats{gap:6px}\n#weather-card .stat{padding:9px}\n#weather-card .stat b{font-size:18px}\n#weather-card .muted{font-size:12px}\n</style>'''
+          if 'id="special-card-compact"' not in s:
+              if marker not in s:
+                  raise SystemExit('Style insertion point not found')
+              s=s.replace(marker,css+marker,1)
+              p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add BrockvilleTestHub/app/src/main/assets/index.html
+          git diff --cached --quiet || git commit -m 'Compact weather and city announcement cards'
+          git push
