@@ -1,0 +1,67 @@
+name: Redesign Header
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  redesign-header:
+    if: ${{ !contains(github.event.head_commit.message, '[header redesign]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Redesign centered header
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('app/src/main/assets/index.html')
+          s=p.read_text(encoding='utf-8')
+          old='.hero{padding:22px 17px 20px;background:'
+          new='.hero{text-align:center;padding:42px 17px 20px;background:'
+          if old not in s:
+              raise SystemExit('Expected hero CSS was not found')
+          s=s.replace(old,new,1)
+          old='.logo{display:inline-grid;place-items:center;width:45px;height:45px;border-radius:15px;background:#43b7c7;font-size:24px;font-weight:900;margin-right:10px;vertical-align:middle}'
+          new='.logo{display:grid;place-items:center;width:45px;height:45px;border-radius:15px;background:#43b7c7;font-size:24px;font-weight:900;margin:0 auto 8px}'
+          if old not in s:
+              raise SystemExit('Expected logo CSS was not found')
+          s=s.replace(old,new,1)
+          old='.brand{font-weight:800;font-size:20px}'
+          new='.brand{display:block;font-weight:800;font-size:20px}'
+          if old not in s:
+              raise SystemExit('Expected brand CSS was not found')
+          s=s.replace(old,new,1)
+          old='.sub{color:#9bc4cd;font-size:11px;letter-spacing:.12em}'
+          new='.sub{color:#9bc4cd;font-size:11px;letter-spacing:.12em;margin-top:2px}'
+          s=s.replace(old,new,1)
+          old='.hero h1{font-size:30px;line-height:1.05;margin:28px 0 5px}'
+          new='.hero h1{font-size:30px;line-height:1.05;margin:24px 0 5px}'
+          if old not in s:
+              raise SystemExit('Expected hero h1 CSS was not found')
+          s=s.replace(old,new,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Verify header redesign
+        working-directory: BrockvilleTestHub
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('app/src/main/assets/index.html').read_text(encoding='utf-8')
+          checks=['.hero{text-align:center;padding:42px 17px 20px', 'margin:0 auto 8px', '.brand{display:block']
+          missing=[x for x in checks if x not in s]
+          if missing:
+              raise SystemExit('Header redesign verification failed: '+str(missing))
+          print('Header redesign verified')
+          PY
+      - name: Commit header redesign
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add BrockvilleTestHub/app/src/main/assets/index.html
+          git diff --cached --quiet && exit 0
+          git commit -m '[header redesign] Center header and add top clearance'
+          git push
