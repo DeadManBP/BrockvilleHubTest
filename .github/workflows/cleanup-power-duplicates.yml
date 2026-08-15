@@ -37,14 +37,15 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import re
           s=Path('app/src/main/assets/index.html').read_text(encoding='utf-8')
-          if s.count('data-power-open') != 0:
-              raise SystemExit('Broken data-power-open tile still exists')
-          if s.count('data-p="power"') != 1:
-              raise SystemExit('Expected exactly one data-p=power tile')
-          if s.count('Power & Utilities') != 1:
-              raise SystemExit('Expected exactly one Power & Utilities label')
-          print('Power Utilities: exactly one working tile verified')
+          broken=re.findall(r'<button[^>]*data-power-open[^>]*>⚡<b>Power & Utilities</b>',s)
+          working=re.findall(r'<button[^>]*data-p="power"[^>]*>⚡<b>Power & Utilities</b>',s)
+          if broken:
+              raise SystemExit(f'Broken Power tiles still exist: {len(broken)}')
+          if len(working) != 1:
+              raise SystemExit(f'Expected exactly one working Power tile, found {len(working)}')
+          print('Power Utilities: exactly one working data-p=power tile verified')
           PY
       - name: Commit cleanup
         run: |
