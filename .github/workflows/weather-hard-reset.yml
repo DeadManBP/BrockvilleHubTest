@@ -1,0 +1,31 @@
+name: Fix weather Home reset
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  weather-hard-reset:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add clean Home-return reset
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('BrockvilleTestHub/app/src/main/assets/index.html')
+          s=p.read_text(encoding='utf-8')
+          marker='WEATHER_HOME_HARD_RESET_V1'
+          if marker not in s:
+              script='''<script>\n/* WEATHER_HOME_HARD_RESET_V1 */\n(function(){\n  if (window.__weatherHomeResetInstalled) return;\n  window.__weatherHomeResetInstalled = true;\n  var originalShow = window.show;\n  if (typeof originalShow !== 'function') return;\n  var leftHome = false;\n  window.show = function(page, fromHistory){\n    if (page !== 'home') {\n      leftHome = true;\n      return originalShow(page, fromHistory);\n    }\n    if (leftHome) {\n      leftHome = false;\n      try { sessionStorage.setItem('weather_home_reset','1'); } catch(e) {}\n      location.reload();\n      return;\n    }\n    return originalShow(page, fromHistory);\n  };\n})();\n</script>\n'''
+              s=s.replace('</body>',script+'</body>',1)
+              p.write_text(s,encoding='utf-8')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add BrockvilleTestHub/app/src/main/assets/index.html
+          git diff --cached --quiet || git commit -m 'Fix weather by resetting Home view on return'
+          git push
