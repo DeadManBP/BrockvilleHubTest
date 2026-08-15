@@ -1,0 +1,1 @@
+Force a fresh APK build from the current main branch. This marker intentionally changes the repository so GitHub Actions runs the APK workflow against the current source, including the compact home-card CSS.
