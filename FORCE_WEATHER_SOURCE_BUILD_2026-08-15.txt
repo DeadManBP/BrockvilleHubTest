@@ -1,0 +1,1 @@
+Build the APK from the current main source, which now contains the weather card and weather loader directly in index.html. This marker exists only to trigger a fresh build.
