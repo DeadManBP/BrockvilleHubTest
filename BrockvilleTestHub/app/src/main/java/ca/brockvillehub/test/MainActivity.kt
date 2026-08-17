@@ -24,6 +24,18 @@ class MainActivity : AppCompatActivity() {
         webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                 val url = request.url.toString()
+                if (url.startsWith("https://www.facebook.com/") ||
+                    url.startsWith("https://facebook.com/")) {
+                    val uri = Uri.parse(url)
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW, uri).apply {
+                            setPackage("com.facebook.katana")
+                        })
+                    } catch (_: Exception) {
+                        startActivity(Intent(Intent.ACTION_VIEW, uri))
+                    }
+                    return true
+                }
                 if (url.startsWith("https://www.google.com/maps/") ||
                     url.startsWith("https://maps.google.com/") ||
                     url.startsWith("geo:") ||
