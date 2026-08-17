@@ -22,6 +22,28 @@ class MainActivity : AppCompatActivity() {
         webView.settings.javaScriptEnabled = true
         webView.settings.domStorageEnabled = true
         webView.webViewClient = object : WebViewClient() {
+            override fun onPageFinished(view: WebView, url: String) {
+                super.onPageFinished(view, url)
+                view.evaluateJavascript("""
+                    (function(){
+                      if(document.getElementById('brockville-visual-polish')) return;
+                      const s=document.createElement('style');
+                      s.id='brockville-visual-polish';
+                      s.textContent=`
+                        .tile{-webkit-tap-highlight-color:transparent;transition:transform .10s ease,filter .10s ease,box-shadow .10s ease}
+                        .tile:active{transform:scale(.982);filter:brightness(1.08)}
+                        .tile:focus-visible{outline:2px solid #7ce0e9;outline-offset:2px}
+                        .bottom{padding:7px 8px}
+                        .bottom button{border-radius:13px;padding:4px 2px;transition:transform .10s ease,background .10s ease,color .10s ease}
+                        .bottom button:active{transform:scale(.93);background:#102f42}
+                        .bottom .active{background:#0d293a}
+                        .bottom button:first-line{font-size:20px}
+                      `;
+                      document.head.appendChild(s);
+                    })();
+                """.trimIndent(), null)
+            }
+
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                 val url = request.url.toString()
                 if (url.startsWith("https://www.facebook.com/") ||
