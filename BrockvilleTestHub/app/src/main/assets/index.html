@@ -518,7 +518,10 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
   },
   "Finnigan's Tavern": {
     "f": "https://www.facebook.com/FinnigansTavern/"
-  }
+  },
+  "241 Pizza": {},
+  "Manoll's Fish & Chips": {},
+  "Shawarma Garden": {}
 };
   function makeBtn(emoji, label, url, primary){
     var nb = document.createElement('button');
@@ -1109,4 +1112,4 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
 })();
 </script>
 
-\n<script>\n/* WEATHER_HOME_REENTRY_FIX_V2 */\n(function(){\n  const PENDING='weather_home_return_pending_v2';\n  const LAST='weather_home_return_reload_v2';\n  const COOLDOWN=15000;\n  function markNonHome(e){\n    const el=e.target && e.target.closest ? e.target.closest('[data-p]') : null;\n    if(el && el.getAttribute('data-p') && el.getAttribute('data-p')!=='home'){\n      try{sessionStorage.setItem(PENDING,'1')}catch(x){}\n    }\n  }\n  function homeReturned(){\n    let pending=false,last=0;\n    try{pending=sessionStorage.getItem(PENDING)==='1';last=Number(sessionStorage.getItem(LAST)||0)}catch(x){}\n    if(!pending || Date.now()-last<COOLDOWN) return;\n    const card=document.getElementById('weather-card');\n    if(!card) return;\n    const text=(card.innerText||'').toLowerCase();\n    const loading=/loading|--\\s*°c|unable to load/.test(text);\n    if(!loading) { try{sessionStorage.removeItem(PENDING)}catch(x){}; return; }\n    try{sessionStorage.setItem(LAST,String(Date.now()));sessionStorage.removeItem(PENDING)}catch(x){}\n    setTimeout(function(){ location.reload(); },250);\n  }\n  document.addEventListener('click',markNonHome,true);\n  const obs=new MutationObserver(function(){\n    const card=document.getElementById('weather-card');\n    if(card) setTimeout(homeReturned,350);\n  });\n  obs.observe(document.getElementById('m')||document.body,{subtree:true,childList:true,characterData:true});\n  window.addEventListener('pageshow',function(){setTimeout(homeReturned,500)});\n})();\n</script>\n</body></html>
+</body></html>
