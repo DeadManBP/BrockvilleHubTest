@@ -4,8 +4,9 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
+
 permissions:
-contents: write
+  contents: write
 
 jobs:
   build-apk:
@@ -153,12 +154,21 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Publish GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v${{ github.run_number }}
-          name: Brockville Hub Build ${{ github.run_number }}
-          files: BrockvilleTestHub/app/build/outputs/apk/debug/app-debug.apk
+      - name: Restore signing key
+        env:
+          HUB_SIGNING_PASSWORD: ${{ secrets.HUB_SIGNING_PASSWORD }}
+        run: |
+          base64 -d BrockvilleTestHub/signing/hub-release.keystore.enc.b64 | openssl enc -d -aes-256-cbc -pbkdf2 -pass env:HUB_SIGNING_PASSWORD -out "$RUNNER_TEMP/hub.keystore"
+          test -s "$RUNNER_TEMP/hub.keystore"
+
+      - name: Build debug APK
+        working-directory: BrockvilleTestHub
+        env:
+          HUB_KEYSTORE_FILE: ${{ runner.temp }}/hub.keystore
+          HUB_KEYSTORE_PASSWORD: ${{ secrets.HUB_SIGNING_PASSWORD }}
+          HUB_KEY_ALIAS: brockvillehub
+          HUB_KEY_PASSWORD: ${{ secrets.HUB_SIGNING_PASSWORD }}
+        run: gradle :app:assembleDebug --stacktrace -PhubVersionCode=${{ github.run_number }} -PhubVersionName=0.2.${{ github.run_number }}
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
@@ -167,3 +177,10 @@ jobs:
           path: BrockvilleTestHub/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 7
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.run_number }}
+          name: Brockville Hub Build ${{ github.run_number }}
+          files: BrockvilleTestHub/app/build/outputs/apk/debug/app-debug.apk
