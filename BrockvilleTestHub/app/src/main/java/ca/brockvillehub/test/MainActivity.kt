@@ -127,6 +127,16 @@ class MainActivity : AppCompatActivity() {
                     }
                     return true
                 }
+                if (url.startsWith("https://calendar.google.com/")) {
+                    // Event reminders: open Google Calendar in the browser/app where the
+                    // user is signed in, not inside the WebView.
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                    } catch (_: Exception) {
+                        return false
+                    }
+                    return true
+                }
                 if (url.startsWith("tel:") || url.startsWith("sms:") || url.startsWith("mailto:")) {
                     // Phone, text and email links: hand to the dialer, messaging or mail app.
                     try {
