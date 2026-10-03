@@ -625,7 +625,7 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
 })();
 </script>
 <script>
-/* CITY_GLANCE_V1: makes the home "City at a glance" stats real.
+/* CITY_GLANCE_V1.1: makes the home "City at a glance" stats real.
    Events/notices counts come from the shared events.json feed; the
    election stat counts down to the Ontario municipal election,
    Monday October 26, 2026. Stats are tappable to their pages. */
@@ -637,8 +637,9 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
   function setStat(id, num, label){
     var el=document.getElementById(id);
     if(!el) return;
-    var b=el.querySelector('b'); if(b) b.textContent=num;
-    if(label){ var s=el.querySelector('small'); if(s) s.textContent=label; }
+    var b=el.querySelector('b');
+    if(b && b.textContent!==String(num)) b.textContent=num;
+    if(label){ var s=el.querySelector('small'); if(s && s.textContent!==label) s.textContent=label; }
   }
   function applyElection(){
     var target=new Date('2026-10-26T00:00:00');
