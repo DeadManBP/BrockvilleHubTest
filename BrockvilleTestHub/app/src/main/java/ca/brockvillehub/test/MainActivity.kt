@@ -76,6 +76,17 @@ class MainActivity : AppCompatActivity() {
                     }
                     return true
                 }
+                val lowerUrl = url.lowercase()
+                if (lowerUrl.endsWith(".pdf") || lowerUrl.contains(".pdf?") || lowerUrl.contains(".pdf#")) {
+                    // PDFs (transit route map, collection calendars): the WebView cannot
+                    // render them, so hand them to the browser/PDF viewer instead.
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                    } catch (_: Exception) {
+                        return false
+                    }
+                    return true
+                }
                 if (url.startsWith("https://www.facebook.com/") ||
                     url.startsWith("https://facebook.com/") ||
                     url.startsWith("https://m.facebook.com/")) {
