@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-03T01:16:55.773727-04:00",
+ "updated_at": "2026-10-03T07:42:36.931554-04:00",
  "count": 20,
  "events": [
   {
@@ -22,6 +22,13 @@
    "url": "https://brockvilletourism.com/event/canada-classical-by-candlelight/",
    "start": "2026-10-10 17:00:00",
    "end": "2026-10-10 19:00:00",
+   "location": "St. Paul's Anglican Church, 12 Pine Street, Brockville"
+  },
+  {
+   "title": "ABBA vs Queen by Candlelight",
+   "url": "https://brockvilletourism.com/event/abba-vs-queen-by-candlelight/",
+   "start": "2026-10-10 21:00:00",
+   "end": "2026-10-10 22:00:00",
    "location": "St. Paul's Anglican Church, 12 Pine Street, Brockville"
   },
   {
@@ -53,11 +60,25 @@
    "location": "Brockville Memorial Centre"
   },
   {
+   "title": "Giverfest Comedy Festival",
+   "url": "https://brockvilletourism.com/event/giverfest-comedy-festival/",
+   "start": "2026-10-22 17:00:00",
+   "end": "2026-10-24 22:00:00",
+   "location": "Various Locations"
+  },
+  {
    "title": "BMHA U15 Tournament",
    "url": "https://brockvilletourism.com/event/bmha-u15-tournament/",
    "start": "2026-10-23 09:00:00",
    "end": "2026-10-25 17:00:00",
    "location": "Brockville Memorial Centre and Brockville Youth Arena"
+  },
+  {
+   "title": "Brockville Braves Home Game",
+   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-5/",
+   "start": "2026-10-23 19:30:00",
+   "end": "2026-10-23 21:30:00",
+   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
   },
   {
    "title": "Fulford Place Ghost Tours",
@@ -121,27 +142,6 @@
    "start": "2026-11-19 19:30:00",
    "end": "2026-11-19 21:30:00",
    "location": "Brockville Arts Centre, 235 King St W, Brockville"
-  },
-  {
-   "title": "The Coniferous Gallery Showcase feat. summsets & special guests TBA @ Medium Effort !",
-   "url": "https://brockvilletourism.com/event/the-coniferous-gallery-showcase-feat-summsets-special-guests-tba-medium-effort/",
-   "start": "2026-11-21 19:30:00",
-   "end": "2026-11-21 22:30:00",
-   "location": "Medium Effort Fine Art Supplies"
-  },
-  {
-   "title": "Brockville Braves Home Game",
-   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-10/",
-   "start": "2026-11-27 19:30:00",
-   "end": "2026-11-27 21:30:00",
-   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
-  },
-  {
-   "title": "Festival of Small Halls: The Maywoods (John Prine Experience)",
-   "url": "https://brockvilletourism.com/event/festival-of-small-halls-the-maywoods-john-prine-experience/",
-   "start": "2026-11-28 19:30:00",
-   "end": "2026-11-28 21:30:00",
-   "location": "Arts Hub Brockville, 32 Park Street, Brockville"
   }
  ],
  "notices_source": "https://brockville.com/announcements/",
