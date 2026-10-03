@@ -69,8 +69,7 @@ main{padding:0 15px}
 .date b{font-size:18px;display:block;line-height:1}
 .date small{font-weight:800;letter-spacing:.08em}
 .photo{height:105px;background:linear-gradient(140deg,#18506A,#0A2534);display:grid;place-items:center;font-size:42px;border-bottom:3px solid var(--rust)}
-.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(720px,100%);display:grid;grid-template-columns:repeat(5,1fr);background:#041824;border-top:2px solid var(--wave-blue);padding:6px 8px calc(8px + env(safe-area-inset-bottom, 0px));z-index:20;transition:transform .25s ease}
-.bottom.nav-hidden{transform:translate(-50%,115%)}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(720px,100%);display:grid;grid-template-columns:repeat(5,1fr);background:#041824;border-top:2px solid var(--wave-blue);padding:6px 8px calc(8px + env(safe-area-inset-bottom, 0px));z-index:20}
 .bottom button{border:0;background:none;color:#78929C;font-size:10px;cursor:pointer;padding:4px 2px;border-radius:12px;position:relative}
 .bottom button i{display:block;font-size:20px;font-style:normal}
 .bottom .active{color:#AEE8F0;background:#0D2F42}
@@ -675,34 +674,4 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
   else start();
 })();
 </script>
-<script>
-/* BOTTOM_NAV_V1: bottom app menu plays nicer with always-visible Android
-   system buttons: it respects the safe-area inset (extra breathing room
-   above the Android bar) and slides away while scrolling down, then
-   returns on scroll up or back at the top. */
-(function(){
-  var lastY = 0, ticking = false;
-  function nav(){ return document.querySelector('.bottom'); }
-  function onScroll(){
-    var y = window.scrollY || 0;
-    var bar = nav(); if(!bar) return;
-    if(y < 60 || y < lastY - 4) bar.classList.remove('nav-hidden');
-    else if(y > lastY + 4 && y > 140) bar.classList.add('nav-hidden');
-    lastY = y; ticking = false;
-  }
-  window.addEventListener('scroll', function(){
-    if(!ticking){ ticking = true; requestAnimationFrame(onScroll); }
-  }, {passive:true});
-  document.addEventListener('click', function(e){
-    if(e.target && e.target.closest && e.target.closest('[data-p]')){
-      var bar = nav(); if(bar) bar.classList.remove('nav-hidden');
-      lastY = 0;
-    }
-  }, true);
-})();
-</script>
-
-
-
-
 </body></html>
