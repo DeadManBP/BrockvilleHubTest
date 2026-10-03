@@ -420,9 +420,10 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
 })();
 </script>
 <script>
-/* FOOD_LINKS_V1: Eat & Drink tiles are injected by build-apk.yml at build time,
-   so Website/Facebook buttons are added here at runtime, matched by restaurant name.
-   The original tile stays as the Directions (Google Maps) button. */
+/* FOOD_LINKS_V2: Eat & Drink tiles are injected by build-apk.yml at build time,
+   so at runtime each restaurant tile is rebuilt into one card:
+   name + details, then a tidy button row: Directions / Website / Facebook
+   (Website/Facebook only where verified in FOOD_LINKS below). */
 (function(){
   var FOOD_LINKS = {
   "1000 Islands Restaurant & Pizzeria": {
@@ -506,24 +507,51 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
     "w": "https://moosemcguires.ca/brockville/"
   }
 };
+  function makeBtn(emoji, label, url, primary){
+    var nb = document.createElement('button');
+    nb.type = 'button';
+    nb.className = 'tile' + (primary ? ' primary' : '');
+    nb.innerHTML = emoji + '<b>' + label + '</b>';
+    nb.addEventListener('click', function(e){ e.preventDefault(); openLink(url); });
+    return nb;
+  }
   window.augmentEat = function(){
     document.querySelectorAll('.grid .tile').forEach(function(btn){
-      if(btn.getAttribute('data-food-aug')) return;
       var b = btn.querySelector('b'); if(!b) return;
       var name = b.textContent.trim();
-      var info = FOOD_LINKS[name]; if(!info) return;
-      btn.setAttribute('data-food-aug','1');
-      var anchor = btn;
-      function add(emoji,label,url){
-        var nb=document.createElement('button');
-        nb.type='button'; nb.className='tile';
-        nb.innerHTML=emoji+'<b>'+label+'</b><span>'+name+'</span>';
-        nb.addEventListener('click',function(e){e.preventDefault(); openLink(url);});
-        anchor.insertAdjacentElement('afterend', nb);
-        anchor = nb;
+      var span = btn.querySelector('span');
+      var detail = span ? span.textContent.trim().replace(/\s*·\s*Maps\s*$/, '') : '';
+      var emoji = '';
+      if(btn.childNodes.length && btn.childNodes[0].nodeType === 3) emoji = btn.childNodes[0].textContent.trim();
+      var onclick = btn.getAttribute('onclick') || '';
+      var mm = onclick.match(/openLink\('([^']+)'\)/);
+      var mapsUrl = mm ? mm[1] : '';
+      var info = FOOD_LINKS[name] || {};
+      var card = document.createElement('div');
+      card.className = 'card';
+      card.style.gridColumn = '1 / -1';
+      card.style.margin = '0';
+      var body = document.createElement('div');
+      body.className = 'cardbody';
+      var h = document.createElement('h3');
+      h.style.margin = '0 0 4px';
+      h.textContent = (emoji ? emoji + ' ' : '') + name;
+      body.appendChild(h);
+      if(detail){
+        var pgh = document.createElement('p');
+        pgh.className = 'muted';
+        pgh.style.margin = '0 0 10px';
+        pgh.textContent = detail;
+        body.appendChild(pgh);
       }
-      if(info.w) add('\uD83C\uDF10','Website', info.w);
-      if(info.f) add('\uD83D\uDCD8','Facebook', info.f);
+      var row = document.createElement('div');
+      row.className = 'grid';
+      if(mapsUrl) row.appendChild(makeBtn('\uD83D\uDCCD', 'Directions', mapsUrl, true));
+      if(info.w) row.appendChild(makeBtn('\uD83C\uDF10', 'Website', info.w, false));
+      if(info.f) row.appendChild(makeBtn('\uD83D\uDCD8', 'Facebook', info.f, false));
+      body.appendChild(row);
+      card.appendChild(body);
+      btn.replaceWith(card);
     });
   };
   if(location.hash === '#eat'){ setTimeout(function(){ if(window.augmentEat) augmentEat(); }, 60); }
