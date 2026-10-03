@@ -69,6 +69,7 @@ main{padding:0 15px}
 .date b{font-size:18px;display:block;line-height:1}
 .date small{font-weight:800;letter-spacing:.08em}
 .photo img.ph{width:100%;height:100%;object-fit:cover;display:block}
+.photo:has(> img.ph){height:86px}
 .photo{height:105px;background:linear-gradient(140deg,#18506A,#0A2534);display:grid;place-items:center;font-size:42px;border-bottom:3px solid var(--rust)}
 .bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(720px,100%);display:grid;grid-template-columns:repeat(5,1fr);background:#041824;border-top:2px solid var(--wave-blue);padding:6px 8px calc(8px + env(safe-area-inset-bottom, 0px));z-index:20}
 .bottom button{border:0;background:none;color:#78929C;font-size:10px;cursor:pointer;padding:4px 2px;border-radius:12px;position:relative}
