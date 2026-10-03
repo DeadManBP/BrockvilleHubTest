@@ -1,0 +1,45 @@
+name: Update Events Feed
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-events:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout app source
+        uses: actions/checkout@v4
+        with:
+          path: src
+
+      - name: Checkout events data
+        uses: actions/checkout@v4
+        with:
+          ref: events-data
+          path: data
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate events.json
+        run: python src/tools/update_events.py --out data/events.json
+
+      - name: Commit changed feed
+        run: |
+          cd data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add events.json
+          if git diff --cached --quiet; then
+            echo "No event changes"
+          else
+            git commit -m "Update Brockville events feed"
+            git push
+          fi
