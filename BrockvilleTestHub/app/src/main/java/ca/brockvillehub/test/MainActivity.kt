@@ -116,6 +116,15 @@ class MainActivity : AppCompatActivity() {
                     }
                     return true
                 }
+                if (url.startsWith("tel:") || url.startsWith("sms:") || url.startsWith("mailto:")) {
+                    // Phone, text and email links: hand to the dialer, messaging or mail app.
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                    } catch (_: Exception) {
+                        return false
+                    }
+                    return true
+                }
                 return false
             }
         }
