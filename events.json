@@ -1,15 +1,8 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-02T22:17:35.819316-04:00",
+ "updated_at": "2026-10-03T01:16:55.773727-04:00",
  "count": 20,
  "events": [
-  {
-   "title": "Million Dollar Quartet @ The Brockville Arts Centre",
-   "url": "https://brockvilletourism.com/event/million-dollar-quartet-the-brockville-arts-centre/",
-   "start": "2026-10-02 19:00:00",
-   "end": "2026-10-02 21:00:00",
-   "location": "The Brockville Arts Centre, 235 King Street West, Brockville, ON"
-  },
   {
    "title": "Front of Yonge Agricultural Showcase",
    "url": "https://brockvilletourism.com/event/front-of-yonge-agricultural-showcase/",
@@ -32,18 +25,18 @@
    "location": "St. Paul's Anglican Church, 12 Pine Street, Brockville"
   },
   {
-   "title": "ABBA vs Queen by Candlelight",
-   "url": "https://brockvilletourism.com/event/abba-vs-queen-by-candlelight/",
-   "start": "2026-10-10 21:00:00",
-   "end": "2026-10-10 22:00:00",
-   "location": "St. Paul's Anglican Church, 12 Pine Street, Brockville"
-  },
-  {
    "title": "Brockville Braves Home Game",
    "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-4/",
    "start": "2026-10-16 19:30:00",
    "end": "2026-10-16 21:30:00",
    "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
+  },
+  {
+   "title": "Fulford Place Ghost Tours",
+   "url": "https://brockvilletourism.com/event/fulford-place-ghost-tours-5-2/",
+   "start": "2026-10-17 18:30:00",
+   "end": "2026-10-17 21:30:00",
+   "location": "Fulford Place, 287 King St. E, Brockville, ON"
   },
   {
    "title": "MEDTALKS: Every Second Counts. Stroke Prevention, Treatment & Recovery",
@@ -60,25 +53,11 @@
    "location": "Brockville Memorial Centre"
   },
   {
-   "title": "Giverfest Comedy Festival",
-   "url": "https://brockvilletourism.com/event/giverfest-comedy-festival/",
-   "start": "2026-10-22 17:00:00",
-   "end": "2026-10-24 22:00:00",
-   "location": "Various Locations"
-  },
-  {
    "title": "BMHA U15 Tournament",
    "url": "https://brockvilletourism.com/event/bmha-u15-tournament/",
    "start": "2026-10-23 09:00:00",
    "end": "2026-10-25 17:00:00",
    "location": "Brockville Memorial Centre and Brockville Youth Arena"
-  },
-  {
-   "title": "Brockville Braves Home Game",
-   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-5/",
-   "start": "2026-10-23 19:30:00",
-   "end": "2026-10-23 21:30:00",
-   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
   },
   {
    "title": "Fulford Place Ghost Tours",
@@ -142,6 +121,103 @@
    "start": "2026-11-19 19:30:00",
    "end": "2026-11-19 21:30:00",
    "location": "Brockville Arts Centre, 235 King St W, Brockville"
+  },
+  {
+   "title": "The Coniferous Gallery Showcase feat. summsets & special guests TBA @ Medium Effort !",
+   "url": "https://brockvilletourism.com/event/the-coniferous-gallery-showcase-feat-summsets-special-guests-tba-medium-effort/",
+   "start": "2026-11-21 19:30:00",
+   "end": "2026-11-21 22:30:00",
+   "location": "Medium Effort Fine Art Supplies"
+  },
+  {
+   "title": "Brockville Braves Home Game",
+   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-10/",
+   "start": "2026-11-27 19:30:00",
+   "end": "2026-11-27 21:30:00",
+   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
+  },
+  {
+   "title": "Festival of Small Halls: The Maywoods (John Prine Experience)",
+   "url": "https://brockvilletourism.com/event/festival-of-small-halls-the-maywoods-john-prine-experience/",
+   "start": "2026-11-28 19:30:00",
+   "end": "2026-11-28 21:30:00",
+   "location": "Arts Hub Brockville, 32 Park Street, Brockville"
+  }
+ ],
+ "notices_source": "https://brockville.com/announcements/",
+ "notices_count": 12,
+ "notices": [
+  {
+   "title": "Indoor Public Skating 2026/2027",
+   "date": "2026-10-01",
+   "url": "https://brockville.com/announcement/indoor-public-skating-2026-2027/",
+   "excerpt": "Get ready to lace up your skates! Our indoor public and adult skating schedule is here, and it’s the perfect way to stay active and have fun all season long! Whether you’re glid..."
+  },
+  {
+   "title": "Indoor Public Skating Schedule 2026/2027",
+   "date": "2026-10-01",
+   "url": "https://brockville.com/announcement/indoor-public-skating-schedule-2025-2026/",
+   "excerpt": "Get ready to lace up your skates! Our indoor public and adult skating schedule is here, and it’s the perfect way to stay active and have fun all season long! Whether you’re glid..."
+  },
+  {
+   "title": "Current Job Opportunities with the City of Brockville",
+   "date": "2026-09-25",
+   "url": "https://brockville.com/announcement/now-hiring-supervisor-of-customer-service-tax-collector/",
+   "excerpt": "The City of Brockville invites applications from qualified and interested candidates for the positions of: City Manager Communications Coordinator – Maternity Leave Contract (Up..."
+  },
+  {
+   "title": "City Manager Sandra MacDonald Announces Retirement After 32 Years",
+   "date": "2026-09-21",
+   "url": "https://brockville.com/announcement/city-manager-sandra-macdonald-announces-retirement-after-32-years/",
+   "excerpt": "Brockville, ON – Monday, September 21, 2026 – The City of Brockville announces the upcoming retirement of City Manager Sandra MacDonald, effective March 31, 2027, following more..."
+  },
+  {
+   "title": "New Specialized (Para) Transit Booking Platform Improves Rider Experience",
+   "date": "2026-09-10",
+   "url": "https://brockville.com/announcement/new-specialized-para-transit-booking-platform-improves-rider-experience/",
+   "excerpt": "Brockville, ON – September 10, 2026 – The City of Brockville is continuing to invest in accessible public transit services through the implementation of a new Specialized (Para)..."
+  },
+  {
+   "title": "Brockville Residents Invited to Design Official “I Voted” Sticker",
+   "date": "2026-08-28",
+   "url": "https://brockville.com/announcement/brockville-residents-invited-to-design-official-i-voted-sticker/",
+   "excerpt": "Brockville, ON – August 28, 2026 – The City of Brockville is inviting residents to play a creative role in the 2026 Municipal and School Board Election through the launch of Bro..."
+  },
+  {
+   "title": "Construction to Begin on John Taylor Park Development Project August 10",
+   "date": "2026-08-07",
+   "url": "https://brockville.com/announcement/construction-to-begin-on-john-taylor-park-development-project-august-10/",
+   "excerpt": "The City of Brockville is pleased to announce that construction on the John Taylor Park Development Project is set to begin on August 10, 2026. Kehoe Construction has been award..."
+  },
+  {
+   "title": "Construction Notice: Reconstruction of Bartholomew Street",
+   "date": "2026-07-31",
+   "url": "https://brockville.com/announcement/construction-notice-reconstruction-of-bartholomew-street/",
+   "excerpt": "The City of Brockville, Engineering Division, along with their contractor Len Corcoran Excavating, will begin the reconstruction of Bartholomew Street from King Street to James..."
+  },
+  {
+   "title": "Public Washroom Now Open in the North End of Brockville",
+   "date": "2026-06-17",
+   "url": "https://brockville.com/announcement/public-washroom-now-open-in-the-north-end-of-brockville/",
+   "excerpt": "Parks staff, in partnership with Brockville Soccer, are pleased to provide additional public access to a washroom facility in the north end of Brockville. Located on the west si..."
+  },
+  {
+   "title": "Spring Deck Construction Reminder",
+   "date": "2026-06-09",
+   "url": "https://brockville.com/announcement/spring-deck-construction-reminder/",
+   "excerpt": "What Brockville Homeowners Need to Know Before They Build Spring is a popular time for outdoor projects, and deck construction is one of the most common projects requiring City..."
+  },
+  {
+   "title": "Statement from the City of Brockville: Brockville Public Library Investigation",
+   "date": "2026-03-31",
+   "url": "https://brockville.com/announcement/statement-from-the-city-of-brockville-brockville-public-library-investigation/",
+   "excerpt": "On March 30, 2026, Brockville Police Service charged a former Brockville Public Library CEO for matters dating back to 2023 and 2024. The City of Brockville initiated an interna..."
+  },
+  {
+   "title": "MTO Construction Notice: Highway 401 and Local Road Impacts Beginning March 23",
+   "date": "2026-03-23",
+   "url": "https://brockville.com/announcement/mto-construction-notice-highway-401-and-local-road-impacts-beginning-march-23/",
+   "excerpt": "The City of Brockville is sharing the following notice for information purposes regarding upcoming construction work led by the Ontario Ministry of Transportation (MTO) that may..."
   }
  ]
 }
