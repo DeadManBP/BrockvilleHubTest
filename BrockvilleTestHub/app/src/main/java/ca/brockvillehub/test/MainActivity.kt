@@ -67,14 +67,23 @@ class MainActivity : AppCompatActivity() {
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                 val url = request.url.toString()
                 if (url.startsWith("https://www.facebook.com/") ||
-                    url.startsWith("https://facebook.com/")) {
-                    val uri = Uri.parse(url)
+                    url.startsWith("https://facebook.com/") ||
+                    url.startsWith("https://m.facebook.com/")) {
+                    // Open the specific Facebook Page/profile (e.g. BrockvilleON), not the app's main feed.
+                    // Handing the plain https URL to the Facebook app drops the path and lands on News Feed,
+                    // so route it through facewebmodal first, with the full https URL as fallback.
+                    val fbUri = Uri.parse("fb://facewebmodal/f?href=" + Uri.encode(url))
                     try {
-                        startActivity(Intent(Intent.ACTION_VIEW, uri).apply {
+                        startActivity(Intent(Intent.ACTION_VIEW, fbUri).apply {
                             setPackage("com.facebook.katana")
                         })
                     } catch (_: Exception) {
-                        startActivity(Intent(Intent.ACTION_VIEW, uri))
+                        try {
+                            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                        } catch (_: Exception) {
+                            // No browser/app can handle it; let the WebView keep the link.
+                            return false
+                        }
                     }
                     return true
                 }
