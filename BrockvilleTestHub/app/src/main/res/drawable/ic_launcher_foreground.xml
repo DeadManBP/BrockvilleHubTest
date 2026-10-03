@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- back river wave -->
+    <path android:fillColor="#16607F"
+        android:pathData="M0,84 C16,76 30,92 48,84 C66,76 78,92 96,84 C101,82 105,80 108,80 L108,108 L0,108 Z"/>
+    <!-- tunnel arch ring -->
+    <path android:fillColor="#EBDFC6" android:fillType="evenOdd"
+        android:pathData="M29,90 L29,50 A25,25 0 0 1 79,50 L79,90 Z M37,90 L37,52 A17,17 0 0 1 71,52 L71,90 Z"/>
+    <!-- inner light-show arcs -->
+    <path android:strokeColor="#43C0CE" android:strokeWidth="3" android:fillColor="#00000000"
+        android:pathData="M41,90 L41,54 A13,13 0 0 1 67,54 L67,90"/>
+    <path android:strokeColor="#2A9DB8" android:strokeWidth="3" android:fillColor="#00000000"
+        android:pathData="M46,90 L46,57 A8,8 0 0 1 62,57 L62,90"/>
+    <!-- tunnel lamp -->
+    <path android:fillColor="#F2B33D"
+        android:pathData="M54,38 m-3.5,0 a3.5,3.5 0 1 0 7,0 a3.5,3.5 0 1 0 -7,0"/>
+    <!-- front river wave -->
+    <path android:fillColor="#2A9DB8"
+        android:pathData="M0,95 C16,88 28,102 46,95 C64,88 76,102 94,95 C100,93 105,92 108,92 L108,108 L0,108 Z"/>
+</vector>
