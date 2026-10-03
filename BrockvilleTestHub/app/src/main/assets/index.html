@@ -789,4 +789,27 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
 /* HEADER_V1: live date + time-of-day greeting in the hero header. */
 (function(){try{var el=document.getElementById('hero-date');if(!el)return;var d=new Date();var h=d.getHours();var g=h<5?'Up late':h<12?'Good morning':h<17?'Good afternoon':h<21?'Good evening':'Good evening';var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];var months=['January','February','March','April','May','June','July','August','September','October','November','December'];el.textContent=g+' • '+days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();}catch(e){}})();
 </script>
-\n\n\n\n</body></html>
+\n\n\n\n<script>
+/* WEATHER_HOME_HARD_RESET_V1 */
+(function(){
+  if (window.__weatherHomeResetInstalled) return;
+  window.__weatherHomeResetInstalled = true;
+  var originalShow = window.show;
+  if (typeof originalShow !== 'function') return;
+  var leftHome = false;
+  window.show = function(page, fromHistory){
+    if (page !== 'home') {
+      leftHome = true;
+      return originalShow(page, fromHistory);
+    }
+    if (leftHome) {
+      leftHome = false;
+      try { sessionStorage.setItem('weather_home_reset','1'); } catch(e) {}
+      location.reload();
+      return;
+    }
+    return originalShow(page, fromHistory);
+  };
+})();
+</script>
+</body></html>
