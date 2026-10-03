@@ -1,9 +1,143 @@
 <!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Brockville Hub</title><style>
-*{box-sizing:border-box}body{margin:0;background:#071b2a;color:#f7fbfc;font:15px system-ui;line-height:1.4}.app{max-width:720px;margin:auto;padding-bottom:75px}
-.hero{text-align:center;padding:42px 17px 20px;background:radial-gradient(circle at 90% 5%,#2d8296,transparent 35%),linear-gradient(145deg,#0d4054,#071b2a)}
-.logo{display:grid;place-items:center;width:45px;height:45px;border-radius:15px;background:#43b7c7;font-size:24px;font-weight:900;margin:0 auto 8px}.brand{display:block;font-weight:800;font-size:20px}.sub{color:#9bc4cd;font-size:11px;letter-spacing:.12em;margin-top:2px}.hero h1{font-size:30px;line-height:1.05;margin:24px 0 5px}.muted{color:#a9c1ca;font-size:13px}.search{width:100%;padding:13px;border-radius:15px;border:1px solid #315263;background:#071b2a;color:white;margin-top:15px}
-main{padding:0 15px}.sec{margin-top:18px}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.tile,.card{background:linear-gradient(145deg,#12384d,#0d293a);border:1px solid #234556;border-radius:18px}.tile{padding:15px;text-align:left;color:white;cursor:pointer}.tile b{display:block;margin-top:7px}.tile span{display:block;color:#a9c1ca;font-size:12px;margin-top:3px}.primary{background:linear-gradient(135deg,#43b7c7,#287b91);border:0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{padding:12px;background:#0d293a;border:1px solid #234556;border-radius:15px}.stat b{display:block;font-size:21px}.badge{display:inline-block;padding:4px 8px;border-radius:99px;background:#123f4c;color:#79d9e2;font-size:10px;font-weight:800}.cardbody{padding:15px}.event{display:flex;gap:12px;padding:12px 15px;border-bottom:1px solid #234556}.date{width:48px;min-width:48px;text-align:center;background:#0a2231;border-radius:12px;padding:5px}.date b{font-size:18px;display:block}.photo{height:105px;background:linear-gradient(135deg,#18506a,#0a2534);display:grid;place-items:center;font-size:42px}.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(720px,100%);display:grid;grid-template-columns:repeat(5,1fr);background:#06141f;border-top:1px solid #234556;padding:8px}.bottom button{border:0;background:none;color:#78929c;font-size:10px}.bottom .active{color:#7ce0e9}.bottom i{display:block;font-size:20px;font-style:normal}.back{padding:9px 12px;border-radius:12px;background:#102f42;color:white;border:1px solid #234556}.pagehead{display:flex;gap:10px;align-items:center;margin:18px 0}.map{height:230px;border-radius:20px;background:#12384d;position:relative;overflow:hidden;border:1px solid #234556}.river{position:absolute;right:-15%;top:-20%;width:65%;height:150%;background:#2d829633;border-radius:50%;transform:rotate(-18deg)}.pin{position:absolute;font-size:25px}.p1{left:25%;top:35%}.p2{left:55%;top:63%}.p3{left:70%;top:28%}
+
+:root{
+  --river-deep:#051E2C;
+  --river:#0A3448;
+  --river-mid:#0F4C66;
+  --wave-blue:#166B8F;
+  --wave-light:#2A9DB8;
+  --current:#43C0CE;
+  --rust:#C25E33;
+  --rust-dark:#9A4526;
+  --limestone:#EBDFC6;
+  --limestone-dim:#CBB98F;
+  --line:#1E4A5E;
+  --muted:#9AB8C2;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--river-deep);color:#F7FBFC;font:15px system-ui;line-height:1.4}
+.app{max-width:720px;margin:auto;padding-bottom:78px;background:var(--river-deep)}
+/* Brockville wayfinding hero: blue wave, islands, tunnel arch */
+.hero{position:relative;text-align:center;padding:34px 17px 26px;overflow:hidden;background:
+  radial-gradient(ellipse 55% 38% at 88% 8%, rgba(42,157,184,.38), transparent 60%),
+  radial-gradient(ellipse 40% 30% at 8% 22%, rgba(194,94,51,.14), transparent 55%),
+  linear-gradient(165deg,#0F4C66 0%,#0A3448 46%,#051E2C 100%)}
+.hero::before{content:"";position:absolute;left:0;right:0;top:0;height:54px;opacity:.9;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 720 54' preserveAspectRatio='none'%3E%3Cpath d='M0 0h720v14c-70 16-130 22-210 12C430 16 360 6 270 14 190 21 110 30 0 22V0z' fill='%23166B8F'/%3E%3Cpath d='M0 0h720v8c-80 10-150 14-230 8C410 10 340 4 250 10 170 15 90 20 0 14V0z' fill='%232A9DB8' opacity='.55'/%3E%3C/svg%3E") top/100% 54px no-repeat;pointer-events:none}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:26px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 720 26' preserveAspectRatio='none'%3E%3Cpath d='M0 26V14c60-8 110-12 180-6 80 7 140 10 220 4 90-7 160-8 220-2 40 4 70 8 100 10v6H0z' fill='%23051E2C'/%3E%3Cellipse cx='118' cy='15' rx='26' ry='5' fill='%230A3448'/%3E%3Cellipse cx='228' cy='18' rx='18' ry='4' fill='%230A3448'/%3E%3Cellipse cx='612' cy='14' rx='30' ry='5' fill='%230A3448'/%3E%3C/svg%3E") bottom/100% 26px no-repeat;pointer-events:none}
+.hero>*{position:relative;z-index:1}
+.logo{display:grid;place-items:center;width:50px;height:58px;margin:10px auto 8px;border-radius:26px 26px 10px 10px;
+  background:linear-gradient(180deg,#F2E8D0,var(--limestone) 58%,var(--limestone-dim));
+  color:#0A3448;font-size:25px;font-weight:900;border:2px solid rgba(255,255,255,.38);
+  box-shadow:0 8px 20px rgba(0,0,0,.28), inset 0 -8px 0 rgba(154,69,38,.18)}
+.brand{display:block;font-weight:900;font-size:22px;letter-spacing:.14em;text-transform:uppercase}
+.sub{color:#BFE6EC;font-size:10.5px;font-weight:700;letter-spacing:.22em;margin-top:4px;text-transform:uppercase}
+.sub::after{content:"";display:block;width:52px;height:3px;border-radius:99px;background:var(--rust);margin:8px auto 0}
+.hero h1{font-size:31px;line-height:1.04;margin:18px 0 6px;font-weight:900}
+.hero h1 br{content:""}
+.muted{color:var(--muted);font-size:13px}
+.search{width:100%;padding:13px 14px;border-radius:14px;border:1.5px solid #2A6B84;background:rgba(5,30,44,.72);color:white;margin-top:16px;outline:none}
+.search:focus{border-color:var(--current);box-shadow:0 0 0 3px rgba(67,192,206,.18)}
+.search::placeholder{color:#7FA3B0}
+main{padding:0 15px}
+.sec{margin-top:20px}
+.sec h2,.head h2{font-size:19px;margin:0}
+.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px}
+.head a{color:var(--current);font-size:13px;font-weight:700;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.tile,.card{background:linear-gradient(150deg,#123D52,#0A2E42);border:1px solid var(--line);border-radius:18px}
+.tile{padding:14px;text-align:left;color:white;cursor:pointer;position:relative}
+.tile b{display:block;margin-top:7px}
+.tile span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.tile.primary{background:linear-gradient(140deg,var(--wave-blue),var(--wave-light));border-color:rgba(255,255,255,.14)}
+.tile.primary span{color:#D8F2F5}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{padding:12px;background:#0A2E42;border:1px solid var(--line);border-radius:15px}
+.stat b{display:block;font-size:21px}
+.stat small{color:var(--muted)}
+.badge{display:inline-block;padding:4px 8px;border-radius:99px;background:rgba(194,94,51,.18);color:#F0A37E;border:1px solid rgba(194,94,51,.42);font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.card .badge{background:#123F4C;color:#79D9E2;border-color:rgba(121,217,226,.22)}
+#weather-card{border-top:4px solid var(--wave-light)}
+#weather-card .badge{background:rgba(22,107,143,.28);color:#AEE8F0;border-color:rgba(42,157,184,.4)}
+.cardbody{padding:15px}
+.cardbody h3{margin:8px 0 6px}
+.event{display:flex;gap:12px;padding:12px 15px;border-bottom:1px solid var(--line)}
+.event:last-child{border-bottom:0}
+.date{width:48px;min-width:48px;text-align:center;background:linear-gradient(180deg,var(--limestone),#D9C7A5);color:#263645;border-radius:12px 12px 8px 8px;padding:6px 4px;border-top:4px solid var(--rust)}
+.date b{font-size:18px;display:block;line-height:1}
+.date small{font-weight:800;letter-spacing:.08em}
+.photo{height:105px;background:linear-gradient(140deg,#18506A,#0A2534);display:grid;place-items:center;font-size:42px;border-bottom:3px solid var(--rust)}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(720px,100%);display:grid;grid-template-columns:repeat(5,1fr);background:#041824;border-top:2px solid var(--wave-blue);padding:8px 8px 10px;z-index:20}
+.bottom button{border:0;background:none;color:#78929C;font-size:10px;cursor:pointer;padding:4px 2px;border-radius:12px;position:relative}
+.bottom button i{display:block;font-size:20px;font-style:normal}
+.bottom .active{color:#AEE8F0;background:#0D2F42}
+.bottom .active::before{content:"";position:absolute;top:-2px;left:50%;transform:translateX(-50%);width:22px;height:3px;border-radius:99px;background:var(--rust)}
+.back{padding:9px 12px;border-radius:12px;background:#102F42;color:white;border:1px solid var(--line);cursor:pointer}
+.pagehead{display:flex;gap:10px;align-items:center;margin:18px 0}
+.pagehead h2{margin:0}
+.map{height:230px;border-radius:20px;background:#0F354B;position:relative;overflow:hidden;border:1px solid var(--line)}
+.map::before{content:"ST. LAWRENCE RIVER";position:absolute;right:12px;top:12px;color:rgba(174,232,240,.75);font-size:10px;font-weight:800;letter-spacing:.14em}
+.river{position:absolute;right:-18%;top:-22%;width:68%;height:155%;background:linear-gradient(160deg,rgba(42,157,184,.34),rgba(22,107,143,.18));border-radius:50%;transform:rotate(-18deg)}
+.river::after{content:"";position:absolute;left:18%;top:32%;width:44px;height:14px;border-radius:50%;background:rgba(235,223,198,.22)}
+.pin{position:absolute;font-size:25px;filter:drop-shadow(0 3px 4px rgba(0,0,0,.35))}
+.p1{left:25%;top:35%}.p2{left:55%;top:63%}.p3{left:70%;top:28%}
+
+</style><style>
+
+/* === V2: Brockville background + distinct icons === */
+body{
+  background:
+    radial-gradient(ellipse 70% 42% at 110% -5%, rgba(22,107,143,.28), transparent 60%),
+    radial-gradient(ellipse 55% 36% at -12% 38%, rgba(194,94,51,.07), transparent 55%),
+    linear-gradient(180deg,#062639 0%,#051E2C 340px,#051E2C 100%);
+}
+.app{position:relative;isolation:isolate}
+.app::before{
+  content:"";position:fixed;inset:0;max-width:720px;margin:0 auto;z-index:-1;pointer-events:none;opacity:.55;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='720' height='900' viewBox='0 0 720 900'%3E%3Cg fill='none' stroke='%232A9DB8' stroke-opacity='.09' stroke-width='1.4'%3E%3Cpath d='M-20 120c120-28 210-34 330-14 120 20 210 24 330-6'/%3E%3Cpath d='M-20 168c120-28 210-34 330-14 120 20 210 24 330-6'/%3E%3Cpath d='M-20 520c120-28 210-34 330-14 120 20 210 24 330-6'/%3E%3Cpath d='M-20 568c120-28 210-34 330-14 120 20 210 24 330-6'/%3E%3C/g%3E%3Cg fill='%23EBDFC6' fill-opacity='.045'%3E%3Cellipse cx='590' cy='212' rx='52' ry='13'/%3E%3Cellipse cx='636' cy='232' rx='30' ry='8'/%3E%3Cellipse cx='88' cy='642' rx='58' ry='14'/%3E%3Cellipse cx='142' cy='664' rx='32' ry='8'/%3E%3Cellipse cx='560' cy='742' rx='44' ry='11'/%3E%3C/g%3E%3Cg fill='none' stroke='%23EBDFC6' stroke-opacity='.05' stroke-width='1'%3E%3Cpath d='M40 820h640M40 836h640M40 852h640'/%3E%3C/g%3E%3C/svg%3E");
+  background-position:top center;background-size:720px 900px;background-repeat:repeat-y;
+}
+main{position:relative}
+.sec{position:relative}
+.card{box-shadow:0 10px 24px rgba(0,0,0,.16)}
+/* Tunnel-arch icon badges */
+.hub-icon{
+  display:inline-grid!important;place-items:center;
+  width:42px;height:48px;margin:0 0 7px;
+  border-radius:22px 22px 9px 9px;
+  background:linear-gradient(180deg,#143E55,#0B2C40);
+  border:1px solid #285366;
+  border-bottom:3px solid var(--wave-blue);
+  font-size:21px;line-height:1;
+  box-shadow:0 4px 10px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.08);
+}
+.tile.primary .hub-icon{background:rgba(6,32,46,.28);border-color:rgba(255,255,255,.22);border-bottom-color:rgba(255,255,255,.55)}
+/* Colour families assigned by JS (data-kind on tile) */
+.tile[data-kind="river"] .hub-icon{background:linear-gradient(180deg,#166B8F,#0F4C66);border-bottom-color:var(--current)}
+.tile[data-kind="heritage"] .hub-icon{background:linear-gradient(180deg,#F2E8D0,#D9C7A5);border-color:#E8DCC3;border-bottom-color:var(--rust)}
+.tile[data-kind="alert"] .hub-icon{background:linear-gradient(180deg,#C25E33,#9A4526);border-color:rgba(255,255,255,.18);border-bottom-color:#5E2A18}
+.tile[data-kind="city"] .hub-icon{background:linear-gradient(180deg,#1A3F56,#0E2F44);border-bottom-color:var(--limestone-dim)}
+.tile[data-kind="nature"] .hub-icon{background:linear-gradient(180deg,#175E4C,#0E4034);border-bottom-color:#3FA37C}
+/* Icon-only tiles fallback: first tiles in grids get varied arch colours when JS hasn't run */
+.grid .tile:nth-child(4n+2) .hub-icon{border-bottom-color:var(--rust)}
+.grid .tile:nth-child(4n+3) .hub-icon{border-bottom-color:var(--current)}
+/* Bottom nav: icons in arch pills */
+.bottom button{line-height:1.15}
+.bottom button .nav-ico,
+.bottom button::first-line{font-size:20px}
+.bottom .active{box-shadow:inset 0 0 0 1px rgba(42,157,184,.28)}
+/* Photo headers: river scene instead of flat gradient */
+.photo{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse 46% 60% at 82% 18%, rgba(67,192,206,.34), transparent 62%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 105' preserveAspectRatio='none'%3E%3Cpath d='M0 78c52-10 92-12 148-6 62 7 108 8 166 2 34-4 60-4 86 0v27H0V78z' fill='%230A3448'/%3E%3Cellipse cx='306' cy='66' rx='34' ry='7' fill='%23EBDFC6' fill-opacity='.16'/%3E%3Cellipse cx='72' cy='70' rx='26' ry='6' fill='%23EBDFC6' fill-opacity='.12'/%3E%3C/svg%3E") bottom/100% 105px no-repeat,
+    linear-gradient(140deg,#18506A,#0A2534);
+  border-bottom:3px solid var(--rust);
+}
+
 </style><style id="tile-polish">
 .grid{gap:10px}
 .tile{min-height:94px;padding:13px 14px;border-radius:17px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;transition:transform .12s ease,filter .12s ease}
@@ -25,7 +159,7 @@ main{padding:0 15px}.sec{margin-top:18px}.head{display:flex;justify-content:spac
 #weather-card .stat{padding:8px}
 #weather-card .stat b{font-size:17px}
 #weather-card .muted{font-size:12px}
-</style></head><body><div class="app"><header class="hero"><div><span class="logo">B</span><span class="brand">Brockville Hub</span><div class="sub">BROCKVILLE • ONTARIO • 1000 ISLANDS</div></div><h1>Your city.<br>One place.</h1><div class="muted">News, services, events and things to do.</div><input id="q" class="search" placeholder="🔎 Search Brockville Hub"></header><main id="m"></main>
+</style></head><body><div class="app"><header class="hero"><div><span class="logo">B</span><span class="brand">Brockville Hub</span><div class="sub">City of the 1000 Islands • Ontario</div></div><h1>Your city.<br>One place.</h1><div class="muted">News, services, events and things to do.</div><input id="q" class="search" placeholder="🔎 Search Brockville Hub"></header><main id="m"></main>
 <nav class="bottom"><button data-p="home">⌂<br>Home</button><button data-p="events">◷<br>Events</button><button data-p="report">⚠<br>Report</button><button data-p="map">⌖<br>Map</button><button data-p="more">☰<br>More</button></nav></div>
 <script>
 
@@ -76,4 +210,96 @@ loadWeather();
   };
 })();
 </script>
-</body></html>
+
+<script>
+/* V2 icon wrapper: arch badges + Brockville colour families (preview + WebView safe) */
+(function(){
+  var KIND = [
+    [/🌊|🚣|⛵|🎣|🏖|💧|🌧/, 'river'],
+    [/🚂|🏛|📜|🏰|📸|🎭|🎨/, 'heritage'],
+    [/🚨|⚠|🚧|🕳|💡|❄/, 'alert'],
+    [/🌳|🌲|🏞|🦆/, 'nature'],
+    [/🗑|🚌|🏢|🗳|📢|📰|📺|📻/, 'city']
+  ];
+  function kindFor(text){
+    for (var i=0;i<KIND.length;i++) if (KIND[i][0].test(text)) return KIND[i][1];
+    return '';
+  }
+  function wrap(){
+    document.querySelectorAll('.tile').forEach(function(tile){
+      if (tile.querySelector('.hub-icon')) return;
+      var node = tile.firstChild;
+      if (!node || node.nodeType !== 3) return;
+      var text = node.nodeValue || '';
+      var m = text.match(/^(\p{Extended_Pictographic}(?:\uFE0F|\u200D\p{Extended_Pictographic})*)/u);
+      if (!m) return;
+      var k = kindFor(text + ' ' + tile.textContent);
+      if (k) tile.setAttribute('data-kind', k);
+      var s = document.createElement('span');
+      s.className = 'hub-icon';
+      s.textContent = m[1];
+      node.nodeValue = text.slice(m[1].length);
+      tile.insertBefore(s, node);
+    });
+  }
+  wrap();
+  new MutationObserver(wrap).observe(document.getElementById('m') || document.body, {subtree:true, childList:true});
+})();
+</script>
+<style>
+
+/* === V3 tweak: stronger Brockville background + bolder tunnel icons === */
+.app::before{opacity:.95}
+body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
+/* Stronger river: add a right-edge St Lawrence channel + more visible islands */
+.app::after{
+  content:"";position:fixed;top:0;bottom:0;left:50%;transform:translateX(222px);
+  width:150px;z-index:-1;pointer-events:none;opacity:.5;
+  background:linear-gradient(172deg,transparent 0%,rgba(42,157,184,.14) 18%,rgba(22,107,143,.20) 52%,rgba(42,157,184,.10) 88%,transparent 100%);
+  border-radius:48% 52% 52% 48%/38% 42% 58% 62%;
+  filter:blur(.2px);
+}
+@media(max-width:720px){.app::after{transform:translateX(28vw);width:34vw}}
+/* Section cards get a faint tunnel-arch watermark on the right */
+.card{position:relative;overflow:hidden}
+.card::before{
+  content:"";position:absolute;right:-18px;top:10px;width:86px;height:96px;opacity:.07;pointer-events:none;
+  border:10px solid #EBDFC6;border-bottom-width:0;border-radius:48px 48px 0 0;
+}
+/* Icons: bigger, stone-block tunnel arch, not a plain pill */
+.hub-icon{
+  width:52px!important;height:58px!important;margin-bottom:8px!important;
+  font-size:24px!important;border-radius:26px 26px 10px 10px!important;
+  border-width:1.5px!important;
+  background-image:
+    linear-gradient(180deg,rgba(255,255,255,.09),transparent 42%),
+    repeating-linear-gradient(0deg,transparent 0 11px,rgba(255,255,255,.045) 11px 12px),
+    repeating-linear-gradient(90deg,transparent 0 14px,rgba(255,255,255,.035) 14px 15px)!important;
+  box-shadow:0 6px 14px rgba(0,0,0,.28), inset 0 -10px 0 rgba(0,0,0,.14)!important;
+}
+.tile{padding-top:12px}
+.tile:active .hub-icon{transform:translateY(1px) scale(.97)}
+.tile b{font-size:15.5px}
+/* Heritage icons get real limestone texture */
+.tile[data-kind="heritage"] .hub-icon{
+  background-image:
+    repeating-linear-gradient(0deg,transparent 0 10px,rgba(90,70,40,.12) 10px 11px),
+    repeating-linear-gradient(90deg,transparent 0 13px,rgba(90,70,40,.10) 13px 14px),
+    linear-gradient(180deg,#F4EAD2,#D9C7A5)!important;
+  color:#263645;
+}
+/* Photo headers taller + Brockville label chip */
+.photo{height:116px;font-size:46px}
+.photo::after{
+  content:"BROCKVILLE • 1000 ISLANDS";position:absolute;left:10px;bottom:8px;
+  font-size:8.5px;font-weight:900;letter-spacing:.18em;color:rgba(255,255,255,.88);
+  background:rgba(5,30,44,.55);border:1px solid rgba(255,255,255,.16);
+  padding:4px 7px;border-radius:99px;backdrop-filter:blur(3px);
+}
+/* Bottom nav icons: arch pill behind glyph */
+.bottom button{padding-top:6px}
+.bottom button.active{background:linear-gradient(180deg,rgba(42,157,184,.20),rgba(13,47,66,.85))}
+/* Search + hero separation: limestone keyline under hero */
+.hero{box-shadow:inset 0 -1px 0 rgba(235,223,198,.14)}
+
+</style></body></html>
