@@ -1077,4 +1077,27 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
   kick();
 })();
 </script>
+<script>
+/* WEATHER_HOME_HARD_RESET_V1 */
+(function(){
+  if (window.__weatherHomeResetInstalled) return;
+  window.__weatherHomeResetInstalled = true;
+  var originalShow = window.show;
+  if (typeof originalShow !== 'function') return;
+  var leftHome = false;
+  window.show = function(page, fromHistory){
+    if (page !== 'home') {
+      leftHome = true;
+      return originalShow(page, fromHistory);
+    }
+    if (leftHome) {
+      leftHome = false;
+      try { sessionStorage.setItem('weather_home_reset','1'); } catch(e) {}
+      location.reload();
+      return;
+    }
+    return originalShow(page, fromHistory);
+  };
+})();
+</script>
 </body></html>
