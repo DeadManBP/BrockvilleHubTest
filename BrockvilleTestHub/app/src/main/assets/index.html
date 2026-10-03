@@ -181,7 +181,7 @@ map:`<div class="pagehead"><button class="back" data-p="home">←</button><h2>Br
 eat:`<div class="pagehead"><button class="back" data-p="more">←</button><h2>Eat & Drink</h2></div><div class="card"><div class="cardbody"><span class="badge">BROCKVILLE</span><h3>Local food & drink</h3><p class="muted">Browse local restaurants, cafés, pubs and fish & chips. Every listing has a Google Maps search, and selected businesses also have a direct website.</p><button class="tile primary" style="width:100%" onclick="openLink('https://brockvilletourism.com/eat-and-drink/restaurants/')">🍴 Brockville Tourism restaurant directory</button></div></div><section class="sec"><h3>Popular local spots</h3><div class="grid"><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Don%27s+Fish+%26+Chips%2C+Brockville%2C+ON')">🍟<b>Don's Fish & Chips</b><span>40 Water St W · Maps</span></button><button class="tile" onclick="openLink('https://donsfishandchips.com/')">🌐<b>Don's website</b><span>Menu & information</span></button><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=1000+Islands+Restaurant+%26+Pizzeria%2C+Brockville%2C+ON')">🍕<b>1000 Islands Restaurant & Pizzeria</b><span>226 King St W · Maps</span></button><button class="tile" onclick="openLink('https://1000islandspizza.com/')">🌐<b>1000 Islands Pizza</b><span>Official website</span></button><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Barley+Mow%2C+Brockville%2C+ON')">🍺<b>Barley Mow</b><span>Pub & grill · Maps</span></button><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Buell+Street+Bistro%2C+Brockville%2C+ON')">🍽️<b>Buell Street Bistro</b><span>Fine dining · Maps</span></button><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Nakhon+Thai%2C+Brockville%2C+ON')">🍜<b>Nakhon Thai</b><span>Thai cuisine · Maps</span></button><button class="tile" onclick="openLink('https://nakhonthai.ca/')">🌐<b>Nakhon Thai</b><span>Official website</span></button><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=The+Mill+Restaurant%2C+Brockville%2C+ON')">🍝<b>The Mill Restaurant</b><span>123 Water St W · Maps</span></button><button class="tile" onclick="openLink('https://themillrestaurant.ca/')">🌐<b>The Mill Restaurant</b><span>Official website</span></button><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Keystorm+Pub%2C+Brockville%2C+ON')">🍻<b>Keystorm Pub</b><span>2 Court House Ave · Maps</span></button><button class="tile" onclick="openLink('https://keystormpub.ca/')">🌐<b>Keystorm Pub</b><span>Official website</span></button><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Richard%27s+Coffeehouse%2C+Brockville%2C+ON')">☕<b>Richard's Coffeehouse</b><span>Café · Maps</span></button><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Manoll%27s+Fish+%26+Chips%2C+Brockville%2C+ON')">🍟<b>Manoll's Fish & Chips</b><span>11 Buell St · Maps</span></button><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Sam%27s+Grill%2C+Brockville%2C+ON')">🍔<b>Sam's Grill</b><span>Burgers & poutine · Maps</span></button><button class="tile" onclick="openLink('https://www.google.com/maps/search/?api=1&query=One+Love+Jamaican+Cuisine%2C+Brockville%2C+ON')">🌴<b>One Love Jamaican Cuisine</b><span>Jamaican · Maps</span></button></div></section><section class="sec"><div class="card"><div class="cardbody"><span class="badge">MORE</span><h3>Find every local option</h3><p class="muted">Brockville Tourism maintains the broader local dining directory, including cafés, pubs, international food and seasonal spots.</p><button class="tile" style="width:100%" onclick="openLink('https://brockvilletourism.com/eat-and-drink/restaurants/')">📋 Full restaurant directory</button></div></div></section>`,
 more:`<div class="pagehead"><button class="back" data-p="home">←</button><h2>More Brockville</h2></div><div class="grid">${cards(['🍴 Eat & Drink','📢 City Notices','📰 Local News','📜 Bylaws','🏛️ Council & Government','📹 River Webcams','💧 Water & Sewer','🚌 Transit','🏗️ Building & Development','💼 City Careers','📞 City Contacts','📝 Forms','🚨 Emergency Information','📣 Community Feedback','⭐ Favorites'])}</div><section class="sec"><div class="card"><div class="cardbody"><span class="badge">APP UPDATES</span><h3>Brockville Hub updates</h3><p class="muted" id="update-status">Check GitHub for the latest signed build. New builds install over this one, no uninstall needed.</p><button class="tile primary" style="width:100%" id="update-check-btn">⬆️ Check for updates</button><button class="tile" style="width:100%;margin-top:8px;display:none" id="update-download-btn">⬇️ Download update</button></div></div></section>`
 };
-function show(p,fromHistory=false){m.innerHTML=P[p]||P.home;document.querySelectorAll('.bottom button').forEach(b=>b.classList.toggle('active',b.dataset.p===p));document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>show(b.dataset.p));scrollTo(0,0);if(!fromHistory){history.pushState({page:p},'', '#'+p)}}
+function show(p,fromHistory=false){m.innerHTML=P[p]||P.home;document.querySelectorAll('.bottom button').forEach(b=>b.classList.toggle('active',b.dataset.p===p));document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>show(b.dataset.p));scrollTo(0,0);if(p==='eat'&&window.augmentEat)augmentEat();if(!fromHistory){history.pushState({page:p},'', '#'+p)}}
 window.addEventListener('popstate',()=>show(location.hash.slice(1)||'home',true));
 show(location.hash.slice(1)||'home',true);document.getElementById('q').onkeydown=e=>{if(e.key==='Enter'&&e.target.value.trim())show('more')};
 
@@ -419,4 +419,115 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start); else start();
 })();
 </script>
+<script>
+/* FOOD_LINKS_V1: Eat & Drink tiles are injected by build-apk.yml at build time,
+   so Website/Facebook buttons are added here at runtime, matched by restaurant name.
+   The original tile stays as the Directions (Google Maps) button. */
+(function(){
+  var FOOD_LINKS = {
+  "1000 Islands Restaurant & Pizzeria": {
+    "w": "http://www.1000islandspizza.com/",
+    "f": "https://www.facebook.com/1000IslandsPizzeria"
+  },
+  "Luna Pizzeria & Restaurant": {
+    "w": "http://www.lunapizza.com/"
+  },
+  "Papa's Pizzaland": {
+    "w": "https://papasbrockville.meemup.com/"
+  },
+  "The Mill - A Taste of Italy": {
+    "w": "http://themillrestaurant.ca/",
+    "f": "https://www.facebook.com/themillatasteofitaly/"
+  },
+  "Boboli": {
+    "f": "https://facebook.com/pages/Boboli/134961719896212"
+  },
+  "Cosies": {
+    "w": "http://www.cosiestearoom.com/"
+  },
+  "Richard's Coffeehouse": {
+    "w": "https://richardscoffeehouse.ca/"
+  },
+  "Jon's Restaurant": {
+    "w": "https://jonsrestaurant.ca/",
+    "f": "https://www.facebook.com/JonsRestaurant/"
+  },
+  "Sweet Ofelia Cafe & Market": {
+    "w": "http://sweetofeliacafe.com/"
+  },
+  "Don's Fish & Chips": {
+    "w": "http://donsfishandchips.com"
+  },
+  "Fat Les": {
+    "w": "https://fatles.ca",
+    "f": "https://www.facebook.com/30blockhouseisland/"
+  },
+  "Sam's Grill": {
+    "w": "https://samsgrill.ca/"
+  },
+  "Lee's Kitchen": {
+    "w": "http://www.leeskitchenbrockville.ca/"
+  },
+  "Golden Gate Restaurant": {
+    "w": "https://www.goldengaterestaurant.ca/"
+  },
+  "Island Delight": {
+    "w": "http://www.islanddelight.ca/"
+  },
+  "Nakhon Thai": {
+    "w": "http://nakhonthai.ca/",
+    "f": "https://www.facebook.com/Nakhon-Thai-Brockville-596563667094297/"
+  },
+  "Indian Cuisine Hub": {
+    "w": "https://www.indiancuisinehub.ca/"
+  },
+  "Pho Hut": {
+    "w": "https://sites.google.com/view/phohut/home"
+  },
+  "One Love Jamaican Cuisine": {
+    "w": "https://onelovejamaicancuisine.godaddysites.com/"
+  },
+  "Barley Mow": {
+    "w": "https://barleymow.com/",
+    "f": "https://www.facebook.com/barleymowbrockville/"
+  },
+  "Keystorm Pub": {
+    "w": "http://www.keystormpub.ca",
+    "f": "https://www.facebook.com/p/The-Keystorm-Pub-100063785541650/"
+  },
+  "1000 Islands Brewing": {
+    "w": "https://1000islandsbrewery.ca/",
+    "f": "https://www.facebook.com/1000IslandsBrewery"
+  },
+  "Finnigan's Tavern": {
+    "f": "https://www.facebook.com/FinnigansTavern/"
+  },
+  "Moose McGuire's": {
+    "w": "https://moosemcguires.ca/brockville/"
+  }
+};
+  window.augmentEat = function(){
+    document.querySelectorAll('.grid .tile').forEach(function(btn){
+      if(btn.getAttribute('data-food-aug')) return;
+      var b = btn.querySelector('b'); if(!b) return;
+      var name = b.textContent.trim();
+      var info = FOOD_LINKS[name]; if(!info) return;
+      btn.setAttribute('data-food-aug','1');
+      var anchor = btn;
+      function add(emoji,label,url){
+        var nb=document.createElement('button');
+        nb.type='button'; nb.className='tile';
+        nb.innerHTML=emoji+'<b>'+label+'</b><span>'+name+'</span>';
+        nb.addEventListener('click',function(e){e.preventDefault(); openLink(url);});
+        anchor.insertAdjacentElement('afterend', nb);
+        anchor = nb;
+      }
+      if(info.w) add('\uD83C\uDF10','Website', info.w);
+      if(info.f) add('\uD83D\uDCD8','Facebook', info.f);
+    });
+  };
+  if(location.hash === '#eat'){ setTimeout(function(){ if(window.augmentEat) augmentEat(); }, 60); }
+})();
+</script>
+
 </body></html>
