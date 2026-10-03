@@ -998,7 +998,8 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
 (function(){
   var KEY='hub_favs_v1';
   var STORES=['Real Canadian Superstore','Walmart Supercentre','Metro','Food Basics','Canadian Tire','Giant Tiger','Winners','Dollarama','Shoppers Drug Mart','LCBO','Downtown Brockville','Brockville Farmers Market'];
-  var SECTION={eat:'Eat & Drink',directory:'Local Directory',shopping:'Shopping Directory'};
+  var EXTRAS=[{k:'news|steo',name:'STEO — Bus Delays & Cancellations',page:'news',w:'https://www.steo.ca/delays/',nodir:1}];
+  var SECTION={eat:'Eat & Drink',directory:'Local Directory',shopping:'Shopping Directory',news:'Local News'};
   var style=document.createElement('style');
   style.textContent='.fav-star{float:right;background:rgba(255,211,77,.12);border:1px solid rgba(255,211,77,.45);color:#FFD34D;border-radius:99px;width:34px;height:34px;font-size:16px;line-height:1;cursor:pointer;margin-left:8px}.fav-star.on{background:#FFD34D;color:#20303C}';
   document.head.appendChild(style);
@@ -1010,6 +1011,7 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
     if(window.FOOD_LINKS)Object.keys(window.FOOD_LINKS).forEach(function(n){m['eat|'+n]={k:'eat|'+n,name:n,page:'eat',w:window.FOOD_LINKS[n].w,f:window.FOOD_LINKS[n].f};});
     if(window.DIRECTORY_LINKS)Object.keys(window.DIRECTORY_LINKS).forEach(function(n){m['directory|'+n]={k:'directory|'+n,name:n,page:'directory',w:window.DIRECTORY_LINKS[n].w,f:window.DIRECTORY_LINKS[n].f};});
     STORES.forEach(function(n){m['shopping|'+n]={k:'shopping|'+n,name:n,page:'shopping'};});
+    EXTRAS.forEach(function(e){m[e.k]=e;});
     return m;
   }
   function esc(x){return String(x).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
@@ -1019,7 +1021,8 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
     return '<button type="button" class="fav-star'+(on?' on':'')+'" data-fav-toggle="'+esc(key)+'" aria-label="Save to favourites">'+(on?'★':'☆')+'</button>';
   }
   function cardHtml(entry){
-    var btns='<button class="tile primary" data-favurl="'+esc(mapsUrl(entry.name))+'">📍<b>Directions</b></button>';
+    var btns='';
+    if(!entry.nodir)btns+='<button class="tile primary" data-favurl="'+esc(mapsUrl(entry.name))+'">📍<b>Directions</b></button>';
     if(entry.w)btns+='<button class="tile" data-favurl="'+esc(entry.w)+'">🌐<b>Website</b></button>';
     if(entry.f)btns+='<button class="tile" data-favurl="'+esc(entry.f)+'">👍<b>Facebook</b></button>';
     return '<div class="card" style="grid-column:1/-1;margin:0 0 10px"><div class="cardbody"><h3 style="margin:0 0 4px">'+starBtn(entry.k)+esc(entry.name)+'</h3><p class="muted" style="margin:0 0 10px">'+(SECTION[entry.page]||'')+'</p><div class="grid">'+btns+'</div></div></div>';
@@ -1096,10 +1099,10 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
     if(!list||!picker)return;
     list.innerHTML=listHtml();
     var m=master();
-    var groups={eat:[],directory:[],shopping:[]};
+    var groups={eat:[],directory:[],shopping:[],news:[]};
     Object.keys(m).forEach(function(k){groups[m[k].page].push(k);});
     var h='';
-    [['eat','🍴 Eat & Drink'],['directory','🏪 Local Directory'],['shopping','🛒 Shopping Directory']].forEach(function(g){
+    [['eat','🍴 Eat & Drink'],['directory','🏪 Local Directory'],['shopping','🛒 Shopping Directory'],['news','📰 Local News']].forEach(function(g){
       h+='<section class="sec"><h3>'+g[1]+'</h3>'+groups[g[0]].sort().map(function(k){return cardHtml(m[k]);}).join('')+'</section>';
     });
     picker.innerHTML=h;
