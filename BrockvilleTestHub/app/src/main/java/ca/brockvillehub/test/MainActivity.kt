@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView, url: String) {
                 super.onPageFinished(view, url)
+                view.evaluateJavascript("window.HUB_VERSION_CODE=" + BuildConfig.VERSION_CODE + ";window.HUB_VERSION_NAME='" + BuildConfig.VERSION_NAME + "';", null)
                 view.evaluateJavascript("""
                     (function(){
                       if(document.getElementById('brockville-visual-polish')) return;
@@ -66,6 +67,15 @@ class MainActivity : AppCompatActivity() {
 
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                 val url = request.url.toString()
+                if (url.contains("/releases/download/") || url.endsWith(".apk")) {
+                    // App update download: hand to the browser so Android can download and install it.
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                    } catch (_: Exception) {
+                        return false
+                    }
+                    return true
+                }
                 if (url.startsWith("https://www.facebook.com/") ||
                     url.startsWith("https://facebook.com/") ||
                     url.startsWith("https://m.facebook.com/")) {

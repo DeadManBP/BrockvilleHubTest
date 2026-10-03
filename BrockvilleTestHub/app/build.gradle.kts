@@ -2,18 +2,46 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
-android {compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
+android {
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
     namespace="ca.brockvillehub.test"
     compileSdk=35
+    buildFeatures {
+        buildConfig=true
+    }
     defaultConfig {
         applicationId="ca.brockvillehub.test"
         minSdk=23
         targetSdk=35
-        versionCode=2
-        versionName="0.1.1"
+        versionCode=(project.findProperty("hubVersionCode")?.toString()?.toIntOrNull() ?: 3)
+        versionName=(project.findProperty("hubVersionName")?.toString() ?: "0.2.0")
+    }
+    signingConfigs {
+        create("hub") {
+            val ksPath = System.getenv("HUB_KEYSTORE_FILE")
+            if (!ksPath.isNullOrBlank()) {
+                storeFile = file(ksPath)
+                storeType = "PKCS12"
+                storePassword = System.getenv("HUB_KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("HUB_KEY_ALIAS") ?: "brockvillehub"
+                keyPassword = System.getenv("HUB_KEY_PASSWORD") ?: System.getenv("HUB_KEYSTORE_PASSWORD")
+            }
+        }
+    }
+    buildTypes {
+        debug {
+            if (!System.getenv("HUB_KEYSTORE_FILE").isNullOrBlank()) {
+                signingConfig = signingConfigs.getByName("hub")
+            }
+        }
+        release {
+            if (!System.getenv("HUB_KEYSTORE_FILE").isNullOrBlank()) {
+                signingConfig = signingConfigs.getByName("hub")
+            }
+        }
     }
 }
 dependencies {
