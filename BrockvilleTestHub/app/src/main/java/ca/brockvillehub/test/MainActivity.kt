@@ -69,21 +69,29 @@ class MainActivity : AppCompatActivity() {
                 if (url.startsWith("https://www.facebook.com/") ||
                     url.startsWith("https://facebook.com/") ||
                     url.startsWith("https://m.facebook.com/")) {
-                    // Open the specific Facebook Page/profile (e.g. BrockvilleON), not the app's main feed.
-                    // Handing the plain https URL to the Facebook app drops the path and lands on News Feed,
-                    // so route it through facewebmodal first, with the full https URL as fallback.
-                    val fbUri = Uri.parse("fb://facewebmodal/f?href=" + Uri.encode(url))
+                    // Open the specific Facebook Page (e.g. BrockvilleON), not the main feed.
+                    // The Facebook app ignores the Page path on both https and facewebmodal links
+                    // and lands on News Feed, so open the full Page URL in a real browser instead.
+                    // Find a browser package (anything that handles https but is not Facebook / this app).
                     try {
-                        startActivity(Intent(Intent.ACTION_VIEW, fbUri).apply {
-                            setPackage("com.facebook.katana")
-                        })
-                    } catch (_: Exception) {
-                        try {
-                            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-                        } catch (_: Exception) {
-                            // No browser/app can handle it; let the WebView keep the link.
-                            return false
+                        val probe = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.example.com/"))
+                        val handlers = view.context.packageManager.queryIntentActivities(probe, android.content.pm.PackageManager.MATCH_ALL)
+                        var browserPkg: String? = null
+                        for (info in handlers) {
+                            val pkg = info.activityInfo.packageName
+                            if (pkg != "com.facebook.katana" && pkg != "com.facebook.lite" && pkg != view.context.packageName) {
+                                browserPkg = pkg
+                                break
+                            }
                         }
+                        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        if (browserPkg != null) {
+                            browserIntent.setPackage(browserPkg)
+                        }
+                        startActivity(browserIntent)
+                    } catch (_: Exception) {
+                        // No browser found; let the WebView load the Page itself rather than the app feed.
+                        return false
                     }
                     return true
                 }
