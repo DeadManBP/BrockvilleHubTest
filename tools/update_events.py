@@ -33,6 +33,44 @@ def parse_event_page(page_html):
             return {"name": (d.get("name") or "").strip(), "start": d.get("startDate", ""), "end": d.get("endDate", ""), "location": location}
     return None
 
+CITY_ANNOUNCEMENTS = "https://brockville.com/announcements/"
+
+def clean_text(x):
+    x = re.sub(r"<[^>]+>", " ", x or "")
+    x = htmlmod.unescape(x)
+    return re.sub(r"\s+", " ", x).strip()
+
+def fetch_notices(pages=2, limit=12):
+    """Scrape the City of Brockville announcements listing pages."""
+    out, seen = [], set()
+    for pg in range(1, pages + 1):
+        url = CITY_ANNOUNCEMENTS if pg == 1 else CITY_ANNOUNCEMENTS + f"page/{pg}/"
+        page = get(url)
+        for m in re.finditer(r'<a href="(https://brockville\.com/announcement/[^"]+/)"><div class="announcements">(.*?)</a>', page, re.S):
+            link, block = m.group(1), m.group(2)
+            if link in seen:
+                continue
+            seen.add(link)
+            tm = re.search(r'<h2 class="announcementstitle">(.*?)</h2>', block, re.S)
+            dm = re.search(r'([A-Za-z]+ \d{1,2}, \d{4})', block)
+            em = re.search(r'<div class="announcementsexcerpt"><p>(.*?)</p>', block, re.S)
+            title = clean_text(tm.group(1)) if tm else ""
+            if not title:
+                continue
+            date_iso = ""
+            if dm:
+                try:
+                    date_iso = datetime.datetime.strptime(dm.group(1), "%B %d, %Y").date().isoformat()
+                except Exception:
+                    date_iso = ""
+            excerpt = clean_text(em.group(1)) if em else ""
+            if len(excerpt) > 180:
+                excerpt = excerpt[:177].rstrip() + "..."
+            out.append({"title": title, "date": date_iso, "url": link, "excerpt": excerpt})
+    out.sort(key=lambda x: x["date"], reverse=True)
+    return out[:limit]
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="events.json")
@@ -64,7 +102,13 @@ def main():
         events.append({"title": title, "url": url, "start": ev["start"], "end": ev["end"], "location": ev["location"]})
     events.sort(key=lambda x: x["start"])
     events = events[:20]
-    feed = {"source": "https://brockvilletourism.com/shows-and-events/", "updated_at": now.isoformat(), "count": len(events), "events": events}
+    try:
+        notices = fetch_notices()
+        print(f"fetched {len(notices)} city notices")
+    except Exception as e:
+        print(f"notices fetch failed: {e}", file=sys.stderr)
+        notices = []
+    feed = {"source": "https://brockvilletourism.com/shows-and-events/", "updated_at": now.isoformat(), "count": len(events), "events": events, "notices_source": CITY_ANNOUNCEMENTS, "notices_count": len(notices), "notices": notices}
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(feed, f, ensure_ascii=False, indent=1)
     print(f"wrote {args.out}: {len(events)} upcoming events")
