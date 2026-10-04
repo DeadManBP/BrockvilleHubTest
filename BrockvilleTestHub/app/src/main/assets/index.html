@@ -1,4 +1,5 @@
-<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Brockville Hub</title><style>
 
 :root{
@@ -86,6 +87,16 @@ main{padding:0 15px}
 .pin{position:absolute;font-size:25px;filter:drop-shadow(0 3px 4px rgba(0,0,0,.35))}
 .p1{left:25%;top:35%}.p2{left:55%;top:63%}.p3{left:70%;top:28%}
 
+
+/* ICON POLISH: calendar-chip dates, tunnel-arch logo, brighter nav */
+.tile span{color:#A9C6D1}
+.date{display:flex;flex-direction:column;padding:0;overflow:hidden;background:linear-gradient(180deg,#16455E,#0A2E42);border:1px solid var(--line);border-top:1px solid var(--line);color:#F7FBFC}
+.date small{order:-1;display:block;background:var(--rust);color:#fff;padding:3px 0 2px;font-size:10px}
+.date b{font-size:20px;padding:4px 0 5px}
+.logo{background:linear-gradient(180deg,#18506A 0%,#0A2534 55%,#051623 100%);color:var(--limestone);border:2px solid #D9C7A5;box-shadow:0 8px 20px rgba(0,0,0,.35), inset 0 -10px 14px rgba(0,0,0,.45);position:relative;padding-top:6px}
+.logo::after{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:#FFD34D;box-shadow:0 0 9px 3px rgba(255,211,77,.75)}
+.bottom button{color:#A9C6D1}
+.bottom button i{font-size:22px}
 </style><style>
 
 /* === V2: Brockville background + distinct icons === */
@@ -117,11 +128,11 @@ main{position:relative}
 }
 .tile.primary .hub-icon{background:rgba(6,32,46,.28);border-color:rgba(255,255,255,.22);border-bottom-color:rgba(255,255,255,.55)}
 /* Colour families assigned by JS (data-kind on tile) */
-.tile[data-kind="river"] .hub-icon{background:linear-gradient(180deg,#166B8F,#0F4C66);border-bottom-color:var(--current)}
-.tile[data-kind="heritage"] .hub-icon{background:linear-gradient(180deg,#F2E8D0,#D9C7A5);border-color:#E8DCC3;border-bottom-color:var(--rust)}
-.tile[data-kind="alert"] .hub-icon{background:linear-gradient(180deg,#C25E33,#9A4526);border-color:rgba(255,255,255,.18);border-bottom-color:#5E2A18}
-.tile[data-kind="city"] .hub-icon{background:linear-gradient(180deg,#1A3F56,#0E2F44);border-bottom-color:var(--limestone-dim)}
-.tile[data-kind="nature"] .hub-icon{background:linear-gradient(180deg,#175E4C,#0E4034);border-bottom-color:#3FA37C}
+.tile[data-kind="river"] .hub-icon{background:linear-gradient(180deg,#2A86AC,#166B8F);border-bottom-color:var(--current)}
+.tile[data-kind="heritage"] .hub-icon{background:linear-gradient(180deg,#F6EDD6,#E0CDA3);border-color:#E8DCC3;border-bottom-color:var(--rust)}
+.tile[data-kind="alert"] .hub-icon{background:linear-gradient(180deg,#D26F3F,#B2542F);border-color:rgba(255,255,255,.18);border-bottom-color:#5E2A18}
+.tile[data-kind="city"] .hub-icon{background:linear-gradient(180deg,#2A5A78,#17394F);border-bottom-color:var(--limestone-dim)}
+.tile[data-kind="nature"] .hub-icon{background:linear-gradient(180deg,#1F7359,#12503E);border-bottom-color:#3FA37C}
 /* Icon-only tiles fallback: first tiles in grids get varied arch colours when JS hasn't run */
 .grid .tile:nth-child(4n+2) .hub-icon{border-bottom-color:var(--rust)}
 .grid .tile:nth-child(4n+3) .hub-icon{border-bottom-color:var(--current)}
@@ -283,27 +294,12 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
   border:10px solid #EBDFC6;border-bottom-width:0;border-radius:48px 48px 0 0;
 }
 /* Icons: bigger, stone-block tunnel arch, not a plain pill */
-.hub-icon{
-  width:52px!important;height:58px!important;margin-bottom:8px!important;
-  font-size:24px!important;border-radius:26px 26px 10px 10px!important;
-  border-width:1.5px!important;
-  background-image:
-    linear-gradient(180deg,rgba(255,255,255,.09),transparent 42%),
-    repeating-linear-gradient(0deg,transparent 0 11px,rgba(255,255,255,.045) 11px 12px),
-    repeating-linear-gradient(90deg,transparent 0 14px,rgba(255,255,255,.035) 14px 15px)!important;
-  box-shadow:0 6px 14px rgba(0,0,0,.28), inset 0 -10px 0 rgba(0,0,0,.14)!important;
-}
+.hub-icon{ width:54px!important;height:54px!important;margin-bottom:9px!important; font-size:28px!important;border-radius:17px!important; border-width:1.5px!important; background-image: linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,0) 46%)!important; box-shadow:0 6px 14px rgba(0,0,0,.30), inset 0 1px 0 rgba(255,255,255,.22)!important; }
 .tile{padding-top:12px}
 .tile:active .hub-icon{transform:translateY(1px) scale(.97)}
 .tile b{font-size:15.5px}
 /* Heritage icons get real limestone texture */
-.tile[data-kind="heritage"] .hub-icon{
-  background-image:
-    repeating-linear-gradient(0deg,transparent 0 10px,rgba(90,70,40,.12) 10px 11px),
-    repeating-linear-gradient(90deg,transparent 0 13px,rgba(90,70,40,.10) 13px 14px),
-    linear-gradient(180deg,#F4EAD2,#D9C7A5)!important;
-  color:#263645;
-}
+
 /* Photo headers taller + Brockville label chip */
 .photo{height:116px;font-size:46px}
 .photo::after{
