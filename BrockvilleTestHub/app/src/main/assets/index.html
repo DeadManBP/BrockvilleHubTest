@@ -828,8 +828,14 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
 <script src="photos-a.js"></script>
 <script src="photos-b.js"></script>
 <script>
-/* PHOTOS_V1: assign bundled photos to card headers; emoji fallback stays if a photo is missing. */
-(function(){try{var P=window.HUB_PHOTOS||{};document.querySelectorAll('img.ph[data-ph]').forEach(function(im){var s=P[im.getAttribute('data-ph')];if(s){im.src=s;}else{im.remove();}});}catch(e){}})();
+/* PHOTOS_V2: assign bundled photos to card headers on EVERY render (V1 ran once at load, so photos broke after navigating away and back). Missing/failed photos drop out cleanly — no broken-image alt text. */
+(function(){
+  var st=document.createElement('style');st.textContent='img.ph{color:transparent;font-size:0}';document.head.appendChild(st);
+  function assign(){try{var P=window.HUB_PHOTOS||{};document.querySelectorAll('img.ph[data-ph]').forEach(function(im){if(im.getAttribute('data-ph-done'))return;var s=P[im.getAttribute('data-ph')];if(s){im.setAttribute('data-ph-done','1');im.onerror=function(){im.remove();};im.src=s;}else{im.remove();}});}catch(e){}}
+  assign();
+  var pending=false;function kick(){if(pending)return;pending=true;setTimeout(function(){pending=false;assign();},120);}
+  var main=document.getElementById('m');if(main)new MutationObserver(kick).observe(main,{childList:true,subtree:true});
+})();
 </script>
 
 <script>
