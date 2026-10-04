@@ -531,6 +531,15 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
   },
   "Finnigan's Tavern": {
     "f": "https://www.facebook.com/FinnigansTavern/"
+  },
+  "Dough Daddy Pizza": {
+    "w": "https://www.dough-daddy.ca/"
+  },
+  "The Shady Coyote Fries & Grill": {
+    "f": "https://www.facebook.com/pages/The-Shady-Coyote-Fries-Grill/704872369632204"
+  },
+  "Sam & Harry's Place Chipwagon": {
+    "f": "https://www.facebook.com/SamandHarrysPlace/"
   }
 };
   function makeBtn(emoji, label, url, primary){
@@ -543,6 +552,17 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
   }
   window.FOOD_LINKS=FOOD_LINKS;
   window.augmentEat = function(){
+    if(!document.getElementById('hub-trucks')){
+      var TRUCKS=[
+        {n:'Dough Daddy Pizza',d:'Wood-fired pizza · 3041 County Rd 29',q:'Dough+Daddy+Pizza%2C+Brockville%2C+ON'},
+        {n:'The Shady Coyote Fries & Grill',d:'Fries, poutine & wraps · 2360 Parkedale Ave',q:'The+Shady+Coyote+Fries+%26+Grill%2C+Brockville%2C+ON'},
+        {n:"Sam & Harry's Place Chipwagon",d:'Burgers & hand-cut fries · 1846 Highway 2 E',q:'Sam+%26+Harry%27s+Place+Chipwagon%2C+Brockville%2C+ON'}
+      ];
+      var sec=document.createElement('section');
+      sec.className='sec'; sec.id='hub-trucks';
+      sec.innerHTML='<h3>🚚 Food Trucks</h3><p class="muted" style="margin:0 0 10px">Brockville staples on wheels. Hours and spots move around — check their website or Facebook page before you head out.</p><div class="grid">'+TRUCKS.map(function(t){return '<button class="tile" onclick="openLink(\'https://www.google.com/maps/search/?api=1&query='+t.q+'\')">🚚<b>'+t.n+'</b><span>'+t.d+' · Maps</span></button>';}).join('')+'</div>';
+      var m=document.getElementById('m'); if(m) m.appendChild(sec);
+    }
     document.querySelectorAll('.grid .tile').forEach(function(btn){
       var b = btn.querySelector('b'); if(!b) return;
       var name = b.textContent.trim();
@@ -1132,4 +1152,4 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
 })();
 </script>
 
-\n<script>\n/* WEATHER_HOME_REENTRY_FIX_V2 */\n(function(){\n  const PENDING='weather_home_return_pending_v2';\n  const LAST='weather_home_return_reload_v2';\n  const COOLDOWN=15000;\n  function markNonHome(e){\n    const el=e.target && e.target.closest ? e.target.closest('[data-p]') : null;\n    if(el && el.getAttribute('data-p') && el.getAttribute('data-p')!=='home'){\n      try{sessionStorage.setItem(PENDING,'1')}catch(x){}\n    }\n  }\n  function homeReturned(){\n    let pending=false,last=0;\n    try{pending=sessionStorage.getItem(PENDING)==='1';last=Number(sessionStorage.getItem(LAST)||0)}catch(x){}\n    if(!pending || Date.now()-last<COOLDOWN) return;\n    const card=document.getElementById('weather-card');\n    if(!card) return;\n    const text=(card.innerText||'').toLowerCase();\n    const loading=/loading|--\\s*°c|unable to load/.test(text);\n    if(!loading) { try{sessionStorage.removeItem(PENDING)}catch(x){}; return; }\n    try{sessionStorage.setItem(LAST,String(Date.now()));sessionStorage.removeItem(PENDING)}catch(x){}\n    setTimeout(function(){ location.reload(); },250);\n  }\n  document.addEventListener('click',markNonHome,true);\n  const obs=new MutationObserver(function(){\n    const card=document.getElementById('weather-card');\n    if(card) setTimeout(homeReturned,350);\n  });\n  obs.observe(document.getElementById('m')||document.body,{subtree:true,childList:true,characterData:true});\n  window.addEventListener('pageshow',function(){setTimeout(homeReturned,500)});\n})();\n</script>\n\n<script>\n/* WEATHER_RETURN_CACHE_V1 */\n(function(){\n  const KEY='brockville_weather_card_v1';\n  const MAX_AGE=30*60*1000;\n  function cacheWeather(){\n    const card=document.getElementById('weather-card');\n    if(!card) return;\n    const text=(card.innerText||'');\n    if(/\\d+\\s*°C/.test(text) && /Updated/i.test(text)){\n      try{sessionStorage.setItem(KEY,JSON.stringify({t:Date.now(),html:card.innerHTML}))}catch(e){}\n    }\n  }\n  function restoreWeather(){\n    const card=document.getElementById('weather-card');\n    if(!card) return;\n    const text=(card.innerText||'');\n    if(!/Loading|Unable to load|--°C/i.test(text)) return;\n    try{\n      const saved=JSON.parse(sessionStorage.getItem(KEY)||'null');\n      if(saved && Date.now()-saved.t<MAX_AGE && saved.html){card.innerHTML=saved.html;}\n    }catch(e){}\n  }\n  const observer=new MutationObserver(function(){\n    cacheWeather();\n    restoreWeather();\n  });\n  function start(){\n    observer.observe(document.getElementById('m')||document.body,{subtree:true,childList:true,characterData:true});\n    setTimeout(restoreWeather,150);\n    setTimeout(restoreWeather,600);\n    setTimeout(cacheWeather,1200);\n  }\n  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start); else start();\n})();\n</script>\n</body></html>
+\n</body></html>
