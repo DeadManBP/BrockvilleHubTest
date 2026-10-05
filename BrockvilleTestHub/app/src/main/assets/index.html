@@ -612,6 +612,21 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
 })();
 </script>
 <script>
+/* MOOSE_CLOSED: Moose McGuire's (6 Broad St) is permanently closed — remove its tile/card */
+(function(){
+  var orig = window.augmentEat;
+  window.augmentEat = function(){
+    try{ if(orig) orig.apply(this, arguments); }catch(e){}
+    try{
+      document.querySelectorAll('#m .tile, #m .card').forEach(function(el){
+        var t = el.textContent || '';
+        if(t.indexOf('Moose McGuire') !== -1) el.remove();
+      });
+    }catch(e){}
+  };
+})();
+</script>
+<script>
 /* DIRECTORY_LINKS_V1.1 (2026-10-03 rebuild): Local Directory tiles are injected by build-apk.yml at
    build time, so at runtime each directory tile is rebuilt into one card:
    name + details, then a tidy button row: Directions / Website / Facebook
