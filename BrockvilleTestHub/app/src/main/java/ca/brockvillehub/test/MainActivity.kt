@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                         .tile{-webkit-tap-highlight-color:transparent;transition:transform .10s ease,filter .10s ease,box-shadow .10s ease}
                         .tile:active{transform:scale(.982);filter:brightness(1.08)}
                         .tile:focus-visible{outline:2px solid #7ce0e9;outline-offset:2px}
-                        .tile .hub-icon{display:inline-grid;place-items:center;width:52px;height:58px;margin:0 0 8px;border-radius:26px 26px 10px 10px;background:linear-gradient(180deg,#143E55,#0B2C40);border:1px solid #285366;border-bottom:3px solid #166B8F;font-size:24px;line-height:1;box-shadow:0 6px 14px rgba(0,0,0,.28)} .tile[data-kind="river"] .hub-icon{background:linear-gradient(180deg,#166B8F,#0F4C66)} .tile[data-kind="heritage"] .hub-icon{background:linear-gradient(180deg,#F2E8D0,#D9C7A5)} .tile[data-kind="alert"] .hub-icon{background:linear-gradient(180deg,#C25E33,#9A4526)}
+                        .tile .hub-icon{display:inline-grid;place-items:center;width:54px;height:54px;margin:0 0 9px;border-radius:17px;background:linear-gradient(180deg,#143E55,#0B2C40);border:1px solid #285366;border-bottom:3px solid #166B8F;font-size:28px;line-height:1;box-shadow:0 6px 14px rgba(0,0,0,.28)} .tile[data-kind="river"] .hub-icon{background:linear-gradient(180deg,#166B8F,#0F4C66)} .tile[data-kind="heritage"] .hub-icon{background:linear-gradient(180deg,#F2E8D0,#D9C7A5)} .tile[data-kind="alert"] .hub-icon{background:linear-gradient(180deg,#C25E33,#9A4526)}
                         .tile.primary .hub-icon{background:rgba(7,27,42,.22);border-color:rgba(255,255,255,.18)}
                         .tile b{position:relative;z-index:1}
                         .bottom{padding:7px 8px}
@@ -130,6 +130,16 @@ class MainActivity : AppCompatActivity() {
                 if (url.startsWith("https://calendar.google.com/")) {
                     // Event reminders: open Google Calendar in the browser/app where the
                     // user is signed in, not inside the WebView.
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                    } catch (_: Exception) {
+                        return false
+                    }
+                    return true
+                }
+                if (url.startsWith("http://")) {
+                    // Cleartext HTTP sites (blocked inside the WebView on modern Android,
+                    // so those buttons look dead): open them in a real browser instead.
                     try {
                         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
                     } catch (_: Exception) {
