@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-05T10:45:35.608029-04:00",
+ "updated_at": "2026-10-05T20:05:26.725516-04:00",
  "count": 20,
  "events": [
   {
@@ -148,6 +148,12 @@
  "notices_count": 12,
  "notices": [
   {
+   "title": "Reynolds Park Pavilion Construction Begins This Week",
+   "date": "2026-10-05",
+   "url": "https://brockville.com/announcement/reynolds-park-pavilion-construction-begins-this-week/",
+   "excerpt": "Construction is set to begin this week on the Reynolds Park Pavilion project. As work gets underway, the Reynolds Park parking lot will be closed to the public and used by Kehoe..."
+  },
+  {
    "title": "Indoor Public Skating 2026/2027",
    "date": "2026-10-01",
    "url": "https://brockville.com/announcement/indoor-public-skating-2026-2027/",
@@ -212,12 +218,6 @@
    "date": "2026-03-31",
    "url": "https://brockville.com/announcement/statement-from-the-city-of-brockville-brockville-public-library-investigation/",
    "excerpt": "On March 30, 2026, Brockville Police Service charged a former Brockville Public Library CEO for matters dating back to 2023 and 2024. The City of Brockville initiated an interna..."
-  },
-  {
-   "title": "MTO Construction Notice: Highway 401 and Local Road Impacts Beginning March 23",
-   "date": "2026-03-23",
-   "url": "https://brockville.com/announcement/mto-construction-notice-highway-401-and-local-road-impacts-beginning-march-23/",
-   "excerpt": "The City of Brockville is sharing the following notice for information purposes regarding upcoming construction work led by the Ontario Ministry of Transportation (MTO) that may..."
   }
  ]
 }
