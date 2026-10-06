@@ -540,6 +540,9 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
   "Crazy Eights Street Eats": {
     "f": "https://www.facebook.com/p/Crazy-Eights-Street-Eats-61563579210282/"
   },
+  "The Noshery": {
+    "f": "https://www.facebook.com/stefandkaren/"
+  },
   "Shawarma Garden": {
     "w": "https://shawarmagarden.ca/", "f": "https://www.facebook.com/p/Shawarma-garden-BBQ-100062965283404/"
   },
@@ -569,6 +572,14 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
       sec.className='sec'; sec.id='hub-trucks';
       sec.innerHTML='<h3>🚚 Food Trucks</h3><p class="muted" style="margin:0 0 10px">Brockville staples on wheels. Hours and spots move around — check their website or Facebook page before you head out.</p><div class="grid">'+TRUCKS.map(function(t){return '<button class="tile" onclick="openLink(\'https://www.google.com/maps/search/?api=1&query='+t.q+'\')">🚚<b>'+t.n+'</b><span>'+t.d+' · Maps</span></button>';}).join('')+'</div>';
       var m=document.getElementById('m'); if(m) m.appendChild(sec);
+    }
+    if(!document.getElementById('hub-steakhouse')){
+      var secN=document.createElement('section');
+      secN.className='sec'; secN.id='hub-steakhouse';
+      secN.innerHTML='<h3>\uD83E\uDD69 Steakhouse</h3><div class="grid">'
+        +'<button class="tile" onclick="openLink(\'https://www.google.com/maps/search/?api=1&query=The+Noshery%2C+209+King+St+W%2C+Brockville%2C+ON\')">\uD83E\uDD69<b>The Noshery</b><span>209 King St W \u00B7 Maps</span></button>'
+        +'</div>';
+      var mN=document.getElementById('m'); if(mN) mN.appendChild(secN);
     }
     document.querySelectorAll('.grid .tile').forEach(function(btn){
       var b = btn.querySelector('b'); if(!b) return;
