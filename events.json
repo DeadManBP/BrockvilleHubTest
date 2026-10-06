@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-06T02:24:54.700508-04:00",
+ "updated_at": "2026-10-06T14:24:33.858838-04:00",
  "count": 20,
  "events": [
   {
@@ -18,13 +18,6 @@
    "location": "St. Paul's Anglican Church, 12 Pine Street, Brockville"
   },
   {
-   "title": "Fulford Place Ghost Tours",
-   "url": "https://brockvilletourism.com/event/fulford-place-ghost-tours-5/",
-   "start": "2026-10-10 18:30:00",
-   "end": "2026-10-10 21:30:00",
-   "location": "Fulford Place, 287 King St. E, Brockville, ON"
-  },
-  {
    "title": "ABBA vs Queen by Candlelight",
    "url": "https://brockvilletourism.com/event/abba-vs-queen-by-candlelight/",
    "start": "2026-10-10 21:00:00",
@@ -39,11 +32,11 @@
    "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
   },
   {
-   "title": "Fulford Place Ghost Tours",
-   "url": "https://brockvilletourism.com/event/fulford-place-ghost-tours-5-2/",
-   "start": "2026-10-17 18:30:00",
-   "end": "2026-10-17 21:30:00",
-   "location": "Fulford Place, 287 King St. E, Brockville, ON"
+   "title": "Fall Festival Happening October 17th at Mac Johnson Wildlife Area",
+   "url": "https://brockvilletourism.com/event/fall-festival-happening-october-17th-at-mac-johnson-wildlife-area/",
+   "start": "2026-10-17 10:00:00",
+   "end": "2026-10-17 14:00:00",
+   "location": "4649 Debruge Road, Tincap"
   },
   {
    "title": "MEDTALKS: Every Second Counts. Stroke Prevention, Treatment & Recovery",
@@ -74,18 +67,18 @@
    "location": "Brockville Memorial Centre and Brockville Youth Arena"
   },
   {
+   "title": "Halloween at the Ranch",
+   "url": "https://brockvilletourism.com/event/halloween-at-the-ranch/",
+   "start": "2026-10-23 18:00:00",
+   "end": "2026-10-24 21:00:00",
+   "location": "C&M Ranch"
+  },
+  {
    "title": "Brockville Braves Home Game",
    "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-5/",
    "start": "2026-10-23 19:30:00",
    "end": "2026-10-23 21:30:00",
    "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
-  },
-  {
-   "title": "Fulford Place Ghost Tours",
-   "url": "https://brockvilletourism.com/event/fulford-place-ghost-tours-5-3/",
-   "start": "2026-10-24 18:30:00",
-   "end": "2026-10-24 21:30:00",
-   "location": "Fulford Place, 287 King St. E, Brockville, ON"
   },
   {
    "title": "The Harvest Gallery Showcase feat. Claude Munson, James King, & Sammy Hayes @ Medium Effort Fine Art Supplies",
@@ -142,6 +135,13 @@
    "start": "2026-11-19 19:30:00",
    "end": "2026-11-19 21:30:00",
    "location": "Brockville Arts Centre, 235 King St W, Brockville"
+  },
+  {
+   "title": "Brockville Braves Home Game",
+   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-9/",
+   "start": "2026-11-20 19:30:00",
+   "end": "2026-11-20 21:30:00",
+   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
   }
  ],
  "notices_source": "https://brockville.com/announcements/",
