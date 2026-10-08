@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-08T09:34:36.603938-04:00",
+ "updated_at": "2026-10-08T19:23:06.745778-04:00",
  "count": 20,
  "events": [
   {
@@ -148,6 +148,12 @@
  "notices_count": 12,
  "notices": [
   {
+   "title": "2026 Thanksgiving Holiday Schedule",
+   "date": "2026-10-08",
+   "url": "https://brockville.com/announcement/thanksgiving-municipal-closures-and-service-changes/",
+   "excerpt": "Please note the following holiday closures and service impacts for Thanksgiving. Municipal administrative offices will be closed on Thanksgiving Day, Monday, October 12, includi..."
+  },
+  {
    "title": "Reynolds Park Pavilion Construction Begins This Week",
    "date": "2026-10-05",
    "url": "https://brockville.com/announcement/reynolds-park-pavilion-construction-begins-this-week/",
@@ -212,12 +218,6 @@
    "date": "2026-06-09",
    "url": "https://brockville.com/announcement/spring-deck-construction-reminder/",
    "excerpt": "What Brockville Homeowners Need to Know Before They Build Spring is a popular time for outdoor projects, and deck construction is one of the most common projects requiring City..."
-  },
-  {
-   "title": "Statement from the City of Brockville: Brockville Public Library Investigation",
-   "date": "2026-03-31",
-   "url": "https://brockville.com/announcement/statement-from-the-city-of-brockville-brockville-public-library-investigation/",
-   "excerpt": "On March 30, 2026, Brockville Police Service charged a former Brockville Public Library CEO for matters dating back to 2023 and 2024. The City of Brockville initiated an interna..."
   }
  ]
 }
