@@ -2,8 +2,11 @@ package ca.brockvillehub.test
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.webkit.JavascriptInterface
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -13,6 +16,55 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var webView: WebView
+    private val notifPermissionCode = 1001
+
+    /** JS bridge for native event reminders: window.Android.scheduleReminder(...) etc. */
+    inner class ReminderBridge {
+        @JavascriptInterface
+        fun hasNotificationPermission(): String {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return "yes"
+            return if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) "yes" else "no"
+        }
+
+        @JavascriptInterface
+        fun requestNotificationPermission() {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                onReminderPermissionResult(true)
+                return
+            }
+            runOnUiThread {
+                requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), notifPermissionCode)
+            }
+        }
+
+        @JavascriptInterface
+        fun scheduleReminder(id: String, title: String, triggerAtMillis: Long, location: String, whenText: String): String {
+            if (triggerAtMillis <= System.currentTimeMillis()) return "past"
+            if (hasNotificationPermission() != "yes") return "no-permission"
+            val ok = ReminderAlarm.schedule(this@MainActivity, Reminder(id, title, triggerAtMillis, location, whenText))
+            return if (ok) "ok" else "past"
+        }
+
+        @JavascriptInterface
+        fun cancelReminder(id: String): String {
+            ReminderAlarm.cancel(this@MainActivity, id)
+            return "ok"
+        }
+    }
+
+    private fun onReminderPermissionResult(granted: Boolean) {
+        if (::webView.isInitialized) {
+            webView.evaluateJavascript("window.onReminderPermissionResult && window.onReminderPermissionResult($granted)", null)
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == notifPermissionCode) {
+            val granted = grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED
+            onReminderPermissionResult(granted)
+        }
+    }
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -160,6 +212,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
         webView.webChromeClient = WebChromeClient()
+        webView.addJavascriptInterface(ReminderBridge(), "Android")
+        // Re-arm any event reminders after an app update (alarms survive updates,
+        // but this keeps everything in sync if the schedule was ever cleared).
+        ReminderStore.rescheduleAll(this)
         setContentView(webView)
         webView.loadUrl("file:///android_asset/index.html")
 
