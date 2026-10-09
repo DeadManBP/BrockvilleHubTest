@@ -25,7 +25,7 @@ object ReminderStore {
 
     fun save(ctx: Context, r: Reminder) {
         ctx.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit()
-            .putString("rem_" + r.id, r.triggerAt + "\n" + r.title + "\n" + r.location + "\n" + r.whenText)
+            .putString("rem_" + r.id, r.triggerAt.toString() + "\n" + r.title + "\n" + r.location + "\n" + r.whenText)
             .apply()
     }
 
