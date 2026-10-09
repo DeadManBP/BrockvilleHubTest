@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-09T09:23:14.329134-04:00",
+ "updated_at": "2026-10-09T18:40:58.486000-04:00",
  "count": 20,
  "events": [
   {
@@ -148,6 +148,12 @@
  "notices_count": 12,
  "notices": [
   {
+   "title": "Reynolds Park Pavilion Breaks Ground, Honouring Former Mayor",
+   "date": "2026-10-09",
+   "url": "https://brockville.com/announcement/reynolds-park-pavilion-breaks-ground-honouring-former-mayor/",
+   "excerpt": "Brockville, ON – October 9, 2026 – The City of Brockville officially marked the beginning of construction on the Reynolds Park Pavilion and Boardwalk Project today, announcing t..."
+  },
+  {
    "title": "2026 Thanksgiving Holiday Schedule",
    "date": "2026-10-08",
    "url": "https://brockville.com/announcement/thanksgiving-municipal-closures-and-service-changes/",
@@ -212,12 +218,6 @@
    "date": "2026-06-17",
    "url": "https://brockville.com/announcement/public-washroom-now-open-in-the-north-end-of-brockville/",
    "excerpt": "Parks staff, in partnership with Brockville Soccer, are pleased to provide additional public access to a washroom facility in the north end of Brockville. Located on the west si..."
-  },
-  {
-   "title": "Spring Deck Construction Reminder",
-   "date": "2026-06-09",
-   "url": "https://brockville.com/announcement/spring-deck-construction-reminder/",
-   "excerpt": "What Brockville Homeowners Need to Know Before They Build Spring is a popular time for outdoor projects, and deck construction is one of the most common projects requiring City..."
   }
  ]
 }
