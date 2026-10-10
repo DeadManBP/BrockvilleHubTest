@@ -529,6 +529,10 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
     "w": "https://themillrestaurant.ca/",
     "f": "https://www.facebook.com/themillatasteofitaly/"
   },
+  "Tata's House of Pizza and Pasta": {
+    "w": "https://www.tatasbrockville.ca/",
+    "f": "https://www.facebook.com/tatasbrockville"
+  },
   "Boboli": {
   },
   "Cosies": {
@@ -645,6 +649,28 @@ body{background:linear-gradient(180deg,#07293E 0%,#051E2C 300px,#041824 100%)}
         +'</div>';
       var mN=document.getElementById('m'); if(mN) mN.appendChild(secN);
     }
+    (function(){ /* TATAS: append tile to the Pizza & Italian section grid */
+      var exists=false;
+      document.querySelectorAll('#m .tile b, #m .card h3').forEach(function(el){
+        if(el.textContent.indexOf("Tata's House of Pizza")!==-1) exists=true;
+      });
+      if(exists) return;
+      var secs=document.querySelectorAll('#m section.sec');
+      for(var si=0;si<secs.length;si++){
+        var h3=secs[si].querySelector('h3');
+        if(h3 && h3.textContent.indexOf('Pizza')!==-1){
+          var grid=secs[si].querySelector('.grid');
+          if(grid){
+            var tb=document.createElement('button');
+            tb.className='tile';
+            tb.setAttribute('onclick',"openLink('https://www.google.com/maps/search/?api=1&query=Tata%27s+House+of+Pizza+and+Pasta%2C+11+Windsor+Dr%2C+Brockville%2C+ON')");
+            tb.innerHTML='🍕<b>Tata\'s House of Pizza and Pasta</b><span>11 Windsor Dr · Maps</span>';
+            grid.appendChild(tb);
+          }
+          break;
+        }
+      }
+    })();
     document.querySelectorAll('.grid .tile').forEach(function(btn){
       var b = btn.querySelector('b'); if(!b) return;
       var name = b.textContent.trim();
