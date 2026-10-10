@@ -58,6 +58,32 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Open a URL in a real browser app (not the Facebook app, not this app's WebView).
+    // Returns true if the URL was handed off, false to let the WebView load it instead.
+    private fun openInRealBrowser(url: String): Boolean {
+        // Find a browser package (anything that handles https but is not Facebook / this app).
+        return try {
+            val probe = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.example.com/"))
+            val handlers = packageManager.queryIntentActivities(probe, android.content.pm.PackageManager.MATCH_ALL)
+            var browserPkg: String? = null
+            for (info in handlers) {
+                val pkg = info.activityInfo.packageName
+                if (pkg != "com.facebook.katana" && pkg != "com.facebook.lite" && pkg != packageName) {
+                    browserPkg = pkg
+                    break
+                }
+            }
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            if (browserPkg != null) {
+                browserIntent.setPackage(browserPkg)
+            }
+            startActivity(browserIntent)
+            true
+        } catch (_: Exception) {
+            false
+        }
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == notifPermissionCode) {
@@ -145,28 +171,12 @@ class MainActivity : AppCompatActivity() {
                     // Open the specific Facebook Page (e.g. BrockvilleON), not the main feed.
                     // The Facebook app ignores the Page path on both https and facewebmodal links
                     // and lands on News Feed, so open the full Page URL in a real browser instead.
-                    // Find a browser package (anything that handles https but is not Facebook / this app).
-                    try {
-                        val probe = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.example.com/"))
-                        val handlers = view.context.packageManager.queryIntentActivities(probe, android.content.pm.PackageManager.MATCH_ALL)
-                        var browserPkg: String? = null
-                        for (info in handlers) {
-                            val pkg = info.activityInfo.packageName
-                            if (pkg != "com.facebook.katana" && pkg != "com.facebook.lite" && pkg != view.context.packageName) {
-                                browserPkg = pkg
-                                break
-                            }
-                        }
-                        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                        if (browserPkg != null) {
-                            browserIntent.setPackage(browserPkg)
-                        }
-                        startActivity(browserIntent)
-                    } catch (_: Exception) {
-                        // No browser found; let the WebView load the Page itself rather than the app feed.
-                        return false
-                    }
-                    return true
+                    return openInRealBrowser(url)
+                }
+                if (url.contains("tatasbrockville.ca")) {
+                    // Tata's ordering site challenges embedded WebViews (bot check);
+                    // open it in a real browser instead.
+                    return openInRealBrowser(url)
                 }
                 if (url.startsWith("https://www.google.com/maps/") ||
                     url.startsWith("https://maps.google.com/") ||
