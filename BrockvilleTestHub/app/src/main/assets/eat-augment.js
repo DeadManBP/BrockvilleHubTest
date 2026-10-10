@@ -257,6 +257,55 @@
       card.appendChild(body);
       btn.replaceWith(card);
     });
+    /* TABS-2026-10-10: tabbed navigation for the Eat & Drink sections */
+    (function(){
+      var secs = Array.prototype.slice.call(document.querySelectorAll('#m section.sec'));
+      if(!secs.length || document.getElementById('hub-foodtabs')) return;
+      if(!document.getElementById('hub-foodtabs-css')){
+        var st = document.createElement('style');
+        st.id = 'hub-foodtabs-css';
+        st.textContent = '.hub-tabs{display:flex;gap:8px;overflow-x:auto;padding:10px 2px;margin:2px 0 6px;scrollbar-width:none;}'
+          + '.hub-tabs::-webkit-scrollbar{display:none;}'
+          + '.hub-tab{flex:0 0 auto;padding:8px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:inherit;font-size:14px;cursor:pointer;white-space:nowrap;}'
+          + '.hub-tab.on{background:#FFD34D;border-color:#FFD34D;color:#20303C;font-weight:700;}';
+        document.head.appendChild(st);
+      }
+      var LABELS = {'Pizza & Italian':'Pizza','Cafés & Breakfast':'Cafés','Fish & Chips / Casual':'Casual','Pubs & Bars':'Pubs','International':'International','Chinese & Chinese-Thai':'Chinese','Food Trucks':'Trucks','Steakhouse':'Steakhouse','Ice Cream & Sweets':'Sweets','Bakery':'Bakery'};
+      function tabName(sec){
+        var h3 = sec.querySelector('h3');
+        var t = h3 ? h3.textContent.trim() : '';
+        t = t.replace(/^(\p{Extended_Pictographic}(?:\uFE0F|\u200D\p{Extended_Pictographic})*)\s*/u, '');
+        return LABELS[t] || t;
+      }
+      var bar = document.createElement('div');
+      bar.id = 'hub-foodtabs';
+      bar.className = 'hub-tabs';
+      function selectTab(name){
+        Array.prototype.forEach.call(bar.children, function(b){
+          b.classList.toggle('on', b.getAttribute('data-tab') === name);
+        });
+        secs.forEach(function(sec){
+          sec.style.display = (name === 'all' || tabName(sec) === name) ? '' : 'none';
+        });
+      }
+      function mkTab(name, label){
+        var b = document.createElement('button');
+        b.className = 'hub-tab';
+        b.setAttribute('data-tab', name);
+        b.textContent = label;
+        b.onclick = function(){ selectTab(name); };
+        return b;
+      }
+      bar.appendChild(mkTab('all', 'All'));
+      secs.forEach(function(sec){ bar.appendChild(mkTab(tabName(sec), tabName(sec))); });
+      var m = document.getElementById('m');
+      if(m){
+        var head = m.querySelector('.pagehead');
+        if(head && head.nextSibling) m.insertBefore(bar, head.nextSibling);
+        else m.insertBefore(bar, m.firstChild);
+      }
+      if(secs.length) selectTab(tabName(secs[0]));
+    })();
   };
   if(location.hash === '#eat'){ setTimeout(function(){ if(window.augmentEat) augmentEat(); }, 60); }
 })();
