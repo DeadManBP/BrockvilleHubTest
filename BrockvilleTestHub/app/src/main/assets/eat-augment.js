@@ -38,6 +38,9 @@
   "Sam's Brass Rack": {},
   "Broad Street Bar and Billiards": {},
   "Grammas Cupboard": {},
+  "Tait's Bakery": {
+    "f": "https://www.facebook.com/p/Taits-Brockville-61594360932319/"
+  },
   "Boboli": {
   },
   "Cosies": {
@@ -188,6 +191,7 @@
       secB.className='sec'; secB.id='hub-bakery';
       secB.innerHTML='<h3>🧁 Bakery</h3><div class="grid">'
         +'<button class="tile" onclick="openLink(\'https://www.google.com/maps/search/?api=1&query=Grammas+Cupboard%2C+28+Kincaid+St%2C+Brockville%2C+ON\')">🧁<b>Grammas Cupboard</b><span>Bakery · 28 Kincaid St · Maps</span></button>'
+        +'<button class="tile" onclick="openLink(\'https://www.google.com/maps/search/?api=1&query=Tait%27s+Bakery%2C+31+King+St+W%2C+Brockville%2C+ON\')">🧁<b>Tait\'s Bakery</b><span>Bakery · 31 King St W · Maps</span></button>'
         +'</div>';
       var mB=document.getElementById('m'); if(mB) mB.appendChild(secB);
     }
