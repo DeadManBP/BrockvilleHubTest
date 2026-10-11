@@ -1,22 +1,8 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-10T17:47:15.566859-04:00",
+ "updated_at": "2026-10-11T01:51:14.537174-04:00",
  "count": 20,
  "events": [
-  {
-   "title": "Canada Classical by Candlelight",
-   "url": "https://brockvilletourism.com/event/canada-classical-by-candlelight/",
-   "start": "2026-10-10 17:00:00",
-   "end": "2026-10-10 19:00:00",
-   "location": "St. Paul's Anglican Church, 12 Pine Street, Brockville"
-  },
-  {
-   "title": "ABBA vs Queen by Candlelight",
-   "url": "https://brockvilletourism.com/event/abba-vs-queen-by-candlelight/",
-   "start": "2026-10-10 21:00:00",
-   "end": "2026-10-10 22:00:00",
-   "location": "St. Paul's Anglican Church, 12 Pine Street, Brockville"
-  },
   {
    "title": "Brockville Braves Home Game",
    "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-4/",
@@ -30,6 +16,13 @@
    "start": "2026-10-17 10:00:00",
    "end": "2026-10-17 14:00:00",
    "location": "4649 Debruge Road, Tincap"
+  },
+  {
+   "title": "Fulford Place Ghost Tours",
+   "url": "https://brockvilletourism.com/event/fulford-place-ghost-tours-5-2/",
+   "start": "2026-10-17 18:30:00",
+   "end": "2026-10-17 21:30:00",
+   "location": "Fulford Place, 287 King St. E, Brockville, ON"
   },
   {
    "title": "MEDTALKS: Every Second Counts. Stroke Prevention, Treatment & Recovery",
@@ -93,6 +86,13 @@
    "start": "2026-10-25 10:00:00",
    "end": "2026-10-25 15:00:00",
    "location": "Brockville Memorial Civic Centre, 100 Magedoma Blvd, Brockville"
+  },
+  {
+   "title": "Fulford Place Ghost Tours",
+   "url": "https://brockvilletourism.com/event/fulford-place-ghost-tours-4/",
+   "start": "2026-10-28 18:30:00",
+   "end": "2026-10-28 21:30:00",
+   "location": "Fulford Place, 287 King St. E, Brockville, ON"
   },
   {
    "title": "Fulford Place Ghost Tours",
