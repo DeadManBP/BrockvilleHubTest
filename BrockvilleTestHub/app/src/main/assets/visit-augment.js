@@ -4,33 +4,62 @@ P.visit = `<div class="pagehead"><button class="back" data-p="home">←</button>
 <section class="sec"><h3>🗺️ Suggested itineraries</h3>
 
 <div class="card"><div class="cardbody"><span class="badge">FULL DAY</span><h3>☀️ Perfect Saturday in Brockville</h3><p class="muted">The greatest-hits day: tunnel, river, downtown and a show.</p>
-<div class="event"><div class="date"><b>9a</b></div><div><b>Brockville Railway Tunnel</b><div class="muted">Free light-and-sound walk under downtown. Seasonal — check before you go.</div></div></div>
-<div class="event"><div class="date"><b>10:30</b></div><div><b>Coffee downtown</b><div class="muted">Pau Hana Coffee or Richard's Coffeehouse on King St.</div></div></div>
-<div class="event"><div class="date"><b>11:30</b></div><div><b>Aquatarium</b><div class="muted">River discovery centre on the harbour — otters, shipwrecks, 1000 Islands exhibits.</div></div></div>
-<div class="event"><div class="date"><b>1p</b></div><div><b>Lunch on King Street</b><div class="muted">Pick a spot in Eat & Drink — Barley Mow, Buell Street Bistro and more.</div></div></div>
-<div class="event"><div class="date"><b>2:30</b></div><div><b>1000 Islands Cruise</b><div class="muted">Boats leave from Blockhouse Island — book ahead in summer.</div></div></div>
-<div class="event"><div class="date"><b>4:30</b></div><div><b>Waterfront stroll</b><div class="muted">Blockhouse Island, Hardy Park and the St. Lawrence shoreline.</div></div></div>
-<div class="event"><div class="date"><b>6:30</b></div><div><b>Dinner downtown</b><div class="muted">The Noshery, 1000 Islands Restaurant and King St options.</div></div></div>
-<div class="event"><div class="date"><b>8p</b></div><div><b>Evening show or pub</b><div class="muted">Check the Arts Centre calendar or the Events page.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Brockville%20Railway%20Tunnel%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>9a</b></div><div><b>Brockville Railway Tunnel</b><div class="muted">Free light-and-sound walk under downtown. Seasonal — check before you go.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Pau%20Hana%20Coffee%2C%2062%20King%20St%20W%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>10:30</b></div><div><b>Coffee downtown</b><div class="muted">Pau Hana Coffee or Richard's Coffeehouse on King St.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Aquatarium%2C%206%20Broad%20St%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>11:30</b></div><div><b>Aquatarium</b><div class="muted">River discovery centre on the harbour — otters, shipwrecks, 1000 Islands exhibits.</div></div></div>
+<div class="event" data-p="eat" style="cursor:pointer"><div class="date"><b>1p</b></div><div><b>Lunch on King Street</b><div class="muted">Pick a spot in Eat & Drink — Barley Mow, Buell Street Bistro and more.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Blockhouse%20Island%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>2:30</b></div><div><b>1000 Islands Cruise</b><div class="muted">Boats leave from Blockhouse Island — book ahead in summer.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Blockhouse%20Island%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>4:30</b></div><div><b>Waterfront stroll</b><div class="muted">Blockhouse Island, Hardy Park and the St. Lawrence shoreline.</div></div></div>
+<div class="event" data-p="eat" style="cursor:pointer"><div class="date"><b>6:30</b></div><div><b>Dinner downtown</b><div class="muted">The Noshery, 1000 Islands Restaurant and King St options.</div></div></div>
+<div class="event" data-p="events" style="cursor:pointer"><div class="date"><b>8p</b></div><div><b>Evening show or pub</b><div class="muted">Check the Arts Centre calendar or the Events page.</div></div></div>
 <div class="grid" style="margin-top:10px"><button class="tile" data-p="explore">🧭<b>Things To Do</b></button><button class="tile" data-p="eat">🍴<b>Eat & Drink</b></button></div>
 </div></div>
 
 <div class="card"><div class="cardbody"><span class="badge">BAD WEATHER</span><h3>🌧️ Rainy-Day Plan</h3><p class="muted">Brockville indoors: river life, history and baked goods.</p>
-<div class="event"><div class="date"><b>10a</b></div><div><b>Aquatarium</b><div class="muted">Fully indoors — give it 2–3 hours.</div></div></div>
-<div class="event"><div class="date"><b>1p</b></div><div><b>Brockville Museum</b><div class="muted">Local history at 5 Henry St.</div></div></div>
-<div class="event"><div class="date"><b>2:30</b></div><div><b>Lunch + bakery stop</b><div class="muted">Tait's Bakery (31 King St W) for the full downtown bakery experience.</div></div></div>
-<div class="event"><div class="date"><b>4p</b></div><div><b>Fulford Place</b><div class="muted">Edwardian mansion museum — tours run afternoons.</div></div></div>
-<div class="event"><div class="date"><b>7p</b></div><div><b>Show at the Arts Centre</b><div class="muted">Concerts, musicals and community theatre year-round.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Aquatarium%2C%206%20Broad%20St%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>10a</b></div><div><b>Aquatarium</b><div class="muted">Fully indoors — give it 2–3 hours.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Brockville%20Museum%2C%205%20Henry%20St%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>1p</b></div><div><b>Brockville Museum</b><div class="muted">Local history at 5 Henry St.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=31%20King%20St%20W%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>2:30</b></div><div><b>Lunch + bakery stop</b><div class="muted">Tait's Bakery (31 King St W) for the full downtown bakery experience.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Fulford%20Place%2C%20287%20King%20St%20E%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>4p</b></div><div><b>Fulford Place</b><div class="muted">Edwardian mansion museum — tours run afternoons.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Brockville%20Arts%20Centre%2C%20235%20King%20St%20W%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>7p</b></div><div><b>Show at the Arts Centre</b><div class="muted">Concerts, musicals and community theatre year-round.</div></div></div>
 <div class="grid" style="margin-top:10px"><button class="tile" data-p="explore">🧭<b>Things To Do</b></button><button class="tile" data-p="events">📅<b>Events</b></button></div>
 </div></div>
 
 <div class="card"><div class="cardbody"><span class="badge">WEEKEND</span><h3>🗓️ 48-Hour Weekend</h3><p class="muted">Arrive Friday, leave Sunday with the highlights covered.</p>
-<div class="event"><div class="date"><b>Fri eve</b></div><div><b>Arrive & settle in</b><div class="muted">Check in, dinner downtown, sunset walk at Blockhouse Island.</div></div></div>
-<div class="event"><div class="date"><b>Sat 9a</b></div><div><b>Railway Tunnel + downtown</b><div class="muted">Tunnel first (fewer crowds), then King Street shops and the Farmers Market.</div></div></div>
-<div class="event"><div class="date"><b>Sat 1p</b></div><div><b>Aquatarium + cruise</b><div class="muted">Harbour discovery centre, then an afternoon 1000 Islands cruise.</div></div></div>
-<div class="event"><div class="date"><b>Sat eve</b></div><div><b>Dinner + show</b><div class="muted">Downtown dinner, Arts Centre or pub night.</div></div></div>
-<div class="event"><div class="date"><b>Sun 10a</b></div><div><b>Parks & trail</b><div class="muted">St. Lawrence Park beach or a Brock Trail walk before heading out.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Blockhouse%20Island%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>Fri eve</b></div><div><b>Arrive & settle in</b><div class="muted">Check in, dinner downtown, sunset walk at Blockhouse Island.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Brockville%20Railway%20Tunnel%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>Sat 9a</b></div><div><b>Railway Tunnel + downtown</b><div class="muted">Tunnel first (fewer crowds), then King Street shops and the Farmers Market.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Aquatarium%2C%206%20Broad%20St%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>Sat 1p</b></div><div><b>Aquatarium + cruise</b><div class="muted">Harbour discovery centre, then an afternoon 1000 Islands cruise.</div></div></div>
+<div class="event" data-p="eat" style="cursor:pointer"><div class="date"><b>Sat eve</b></div><div><b>Dinner + show</b><div class="muted">Downtown dinner, Arts Centre or pub night.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=St.%20Lawrence%20Park%2C%20525%20King%20St%20W%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>Sun 10a</b></div><div><b>Parks & trail</b><div class="muted">St. Lawrence Park beach or a Brock Trail walk before heading out.</div></div></div>
 <div class="grid" style="margin-top:10px"><button class="tile" data-p="explore">🧭<b>Things To Do</b></button><button class="tile" data-p="eat">🍴<b>Eat & Drink</b></button></div>
+</div></div>
+
+
+
+<div class="card"><div class="cardbody"><span class="badge">FAMILY</span><h3>👨‍👩‍👧 Family Day</h3><p class="muted">Keep the kids happy: otters, beaches, ice cream and a tunnel.</p>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Aquatarium%2C%206%20Broad%20St%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>10a</b></div><div><b>Aquatarium</b><div class="muted">Otters, hands-on exhibits and river life. Give it 2-3 hours.</div></div></div>
+<div class="event" data-p="eat" style="cursor:pointer"><div class="date"><b>1p</b></div><div><b>Lunch downtown</b><div class="muted">Kid-friendly spots all over King Street.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=St.%20Lawrence%20Park%2C%20525%20King%20St%20W%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>2:30p</b></div><div><b>St. Lawrence Park</b><div class="muted">Beach, playground and room to run.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=241%20Park%20St%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>4p</b></div><div><b>Ice cream stop</b><div class="muted">Cowan’s Dairy Bar on Park St.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Brockville%20Railway%20Tunnel%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>5:30p</b></div><div><b>Railway Tunnel</b><div class="muted">Seasonal light walk — a hit with kids.</div></div></div>
+<div class="event" data-p="eat" style="cursor:pointer"><div class="date"><b>7p</b></div><div><b>Dinner</b><div class="muted">Refuel downtown.</div></div></div>
+<div class="grid" style="margin-top:10px"><button class="tile abtn" data-p="explore">🧭<b>Things To Do</b></button><button class="tile abtn" data-p="eat">🍴<b>Eat & Drink</b></button></div>
+</div></div>
+
+<div class="card"><div class="cardbody"><span class="badge">EVENING</span><h3>🌙 Date Night</h3><p class="muted">Sunset, steak and a show.</p>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Blockhouse%20Island%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>6p</b></div><div><b>Sunset at Blockhouse Island</b><div class="muted">Golden hour over the St. Lawrence.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=209%20King%20St%20W%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>7:30p</b></div><div><b>Dinner at the Noshery</b><div class="muted">Brockville’s steakhouse on King St W.</div></div></div>
+<div class="event" data-p="events" style="cursor:pointer"><div class="date"><b>9p</b></div><div><b>Show at the Arts Centre</b><div class="muted">Concerts and theatre year-round.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Brockville%20Railway%20Tunnel%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>Late</b></div><div><b>Tunnel night walk</b><div class="muted">Seasonal evening stroll under downtown.</div></div></div>
+<div class="grid" style="margin-top:10px"><button class="tile abtn" data-p="explore">🧭<b>Things To Do</b></button><button class="tile abtn" data-p="eat">🍴<b>Eat & Drink</b></button></div>
+</div></div>
+
+<div class="card"><div class="cardbody"><span class="badge">BUDGET</span><h3>💰 Budget Day</h3><p class="muted">The best of Brockville for next to nothing.</p>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Brockville%20Railway%20Tunnel%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>9a</b></div><div><b>Railway Tunnel</b><div class="muted">Free.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Brock%20Trail%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>11a</b></div><div><b>Brock Trail walk</b><div class="muted">Free.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Brockville%20Farmers%20Market%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>1p</b></div><div><b>Farmers Market</b><div class="muted">Market St W — grab lunch from vendors.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Hardy%20Park%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>3p</b></div><div><b>Hardy Park</b><div class="muted">Free waterfront hangout.</div></div></div>
+<div class="event" onclick="openLink('https://www.google.com/maps/search/?api=1&query=Blockhouse%20Island%2C%20Brockville%2C%20ON')" style="cursor:pointer"><div class="date"><b>5:30p</b></div><div><b>Blockhouse Island sunset</b><div class="muted">Free.</div></div></div>
+<div class="grid" style="margin-top:10px"><button class="tile abtn" data-p="explore">🧭<b>Things To Do</b></button><button class="tile abtn" data-p="eat">🍴<b>Eat & Drink</b></button></div>
 </div></div>
 
 </section>
