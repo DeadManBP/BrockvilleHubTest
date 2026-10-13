@@ -64,3 +64,45 @@ P.visit = `<div class="pagehead"><button class="back" data-p="home">←</button>
 
 </section>
 `;
+
+window.augmentVisit = function(){
+  if(document.getElementById('hub-visittabs')) return;
+  var m = document.getElementById('m');
+  if(!document.getElementById('hub-visittabs-css')){
+    var st = document.createElement('style');
+    st.id = 'hub-visittabs-css';
+    st.textContent = '.hub-vtabs{display:flex;gap:8px;overflow-x:auto;padding:10px 2px;margin:2px 0 6px;scrollbar-width:none;}'
+      + '.hub-vtabs::-webkit-scrollbar{display:none;}'
+      + '.hub-vtab{flex:0 0 auto;padding:8px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:inherit;font-size:14px;cursor:pointer;white-space:nowrap;}'
+      + '.hub-vtab.on{background:#FFD34D;border-color:#FFD34D;color:#20303C;font-weight:700;}';
+    document.head.appendChild(st);
+  }
+  var secs = m.querySelectorAll('section.sec');
+  var stay = null, itin = null, firstSec = null;
+  for(var i=0;i<secs.length;i++){
+    if(!firstSec) firstSec = secs[i];
+    if(secs[i].innerHTML.indexOf('Where to Stay')>0) stay = secs[i];
+    if(secs[i].innerHTML.indexOf('Suggested itineraries')>0) itin = secs[i];
+  }
+  if(!stay || !itin || !firstSec) return;
+  var bar = document.createElement('div');
+  bar.className = 'hub-vtabs';
+  bar.id = 'hub-visittabs';
+  function select(btn, showStay, showItin){
+    var tabs = bar.querySelectorAll('.hub-vtab');
+    for(var k=0;k<tabs.length;k++) tabs[k].classList.remove('on');
+    btn.classList.add('on');
+    stay.style.display = showStay ? '' : 'none';
+    itin.style.display = showItin ? '' : 'none';
+    window.scrollTo(0,0);
+  }
+  var defs = [['All',1,1],['\U0001F3E8 Stay',1,0],['\U0001F5FA\uFE0F Itineraries',0,1]];
+  for(var j=0;j<defs.length;j++)(function(d, idx){
+    var b = document.createElement('button');
+    b.className = 'hub-vtab' + (idx===0 ? ' on' : '');
+    b.textContent = d[0];
+    b.onclick = function(){ select(b, d[1], d[2]); };
+    bar.appendChild(b);
+  })(defs[j], j);
+  firstSec.parentNode.insertBefore(bar, firstSec);
+};
