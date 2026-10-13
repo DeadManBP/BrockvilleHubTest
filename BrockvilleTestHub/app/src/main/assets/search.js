@@ -3,6 +3,7 @@
 (function(){
   var PAGES=[
     {t:'Things To Do',p:'explore',k:'railway tunnel aquatarium museum fulford place parks trails attractions waterfront cruises theatre arts'},
+    {t:'Plan Your Visit',p:'visit',k:'hotels lodging motel bed breakfast campground camping stay itineraries visitors tourists weekend trip where to stay'},
     {t:'Events',p:'events',k:'concerts shows what is on calendar festival live music'},
     {t:'City Notices',p:'notices',k:'announcements news alerts city hall updates'},
     {t:'Eat & Drink',p:'eat',k:'restaurants pubs cafes food pizza dining takeout breakfast lunch dinner'},
