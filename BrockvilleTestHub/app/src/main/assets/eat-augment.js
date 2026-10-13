@@ -127,7 +127,7 @@
   function makeBtn(emoji, label, url, primary){
     var nb = document.createElement('button');
     nb.type = 'button';
-    nb.className = 'tile' + (primary ? ' primary' : '');
+    nb.className = 'tile abtn' + (primary ? ' primary' : '');
     nb.innerHTML = emoji + '<b>' + label + '</b>';
     nb.addEventListener('click', function(e){ e.preventDefault(); openLink(url); });
     return nb;
