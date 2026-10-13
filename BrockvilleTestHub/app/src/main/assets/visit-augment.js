@@ -96,7 +96,7 @@ window.augmentVisit = function(){
     itin.style.display = showItin ? '' : 'none';
     window.scrollTo(0,0);
   }
-  var defs = [['All',1,1],['\U0001F3E8 Stay',1,0],['\U0001F5FA\uFE0F Itineraries',0,1]];
+  var defs = [['All',1,1],['🏨 Stay',1,0],['🗺️ Itineraries',0,1]];
   for(var j=0;j<defs.length;j++)(function(d, idx){
     var b = document.createElement('button');
     b.className = 'hub-vtab' + (idx===0 ? ' on' : '');
