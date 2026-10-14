@@ -122,7 +122,25 @@
   "241 Pizza": {
     "w": "https://www.241pizza.com/",
     "f": "https://www.facebook.com/241Pizzabrockville/"
-  }
+  },
+  "Mirage Cove": {},
+  "Tincap Family Restaurant & Pizzeria": {},
+  "Meringue Pâtisserie": {
+    "w": "https://meringuepastry.com/"
+  },
+  "Press'd Sandwich Shop": {
+    "w": "https://pressdsandwiches.ca/"
+  },
+  "Kochi Sushi": {
+    "w": "http://kochisushi.ca/"
+  },
+  "Shawarma Depot": {},
+  "Red Swan Pizza": {},
+  "Fat Les on King": {
+    "w": "https://fatles.ca"
+  },
+  "Dixon's General Store & Cafe": {},
+  "Chez Marty": {}
 };
   function makeBtn(emoji, label, url, primary){
     var nb = document.createElement('button');
@@ -221,6 +239,17 @@
       hubAddTile('Cafés', '☕', "Pau Hana Coffee", 'Specialty coffee · 62 King St W', 'Pau+Hana+Coffee%2C+62+King+St+W%2C+Brockville%2C+ON');
       hubAddTile('Fish & Chips', '🍖', "Brockberry", 'BBQ & smoked meats · 64 King St E', 'Brockberry%2C+64+King+St+E%2C+Brockville%2C+ON');
       hubAddTile('Pubs & Bars', '🍺', "The Bar", 'Bar & live music · 214 King St W', 'The+Bar%2C+214+King+St+W%2C+Brockville%2C+ON');
+      /* SWEEP-2026-10-14: venues from the Facebook groups scan. */
+      hubAddTile('Cafés', '☕', "Mirage Cove", 'Café · 6 Broad St', 'Mirage+Cove%2C+6+Broad+St%2C+Brockville%2C+ON');
+      hubAddTile('Cafés', '☕', "Dixon's General Store & Cafe", 'General store & café · 5202 County Rd 15, Algonquin', 'Dixon%27s+General+Store+%26+Cafe%2C+5202+County+Rd+15%2C+Algonquin%2C+ON');
+      hubAddTile('Cafés', '☕', "Chez Marty", 'Breakfast spot · 185 George St', 'Chez+Marty%2C+185+George+St%2C+Brockville%2C+ON');
+      hubAddTile('Casual', '🍽', "Tincap Family Restaurant & Pizzeria", 'Family restaurant · 3105 County Rd 29', 'Tincap+Family+Restaurant+%26+Pizzeria%2C+3105+County+Rd+29%2C+Brockville%2C+ON');
+      hubAddTile('Casual', '🥪', "Press'd Sandwich Shop", 'Sandwiches · 2539 Parkedale Ave', 'Press%27d+Sandwich+Shop%2C+2539+Parkedale+Ave%2C+Brockville%2C+ON');
+      hubAddTile('Casual', '🍔', "Fat Les on King", 'Comfort food · 59 King St W', 'Fat+Les+on+King%2C+59+King+St+W%2C+Brockville%2C+ON');
+      hubAddTile('International', '🍣', "Kochi Sushi", 'Sushi · 160 Stewart Blvd', 'Kochi+Sushi%2C+160+Stewart+Blvd%2C+Brockville%2C+ON');
+      hubAddTile('International', '🌯', "Shawarma Depot", 'Shawarma · 1275 Kensington Pkwy', 'Shawarma+Depot%2C+1275+Kensington+Pkwy%2C+Brockville%2C+ON');
+      hubAddTile('Pizza', '🍕', "Red Swan Pizza", 'Pizza · 7713 Kent Blvd', 'Red+Swan+Pizza%2C+7713+Kent+Blvd%2C+Brockville%2C+ON');
+      hubAddTile('Bakery', '🧁', "Meringue Pâtisserie", 'Patisserie · 130 N Augusta Rd', 'Meringue+Patisserie%2C+130+N+Augusta+Rd%2C+Brockville%2C+ON');
       hubAddTile('Pubs & Bars', '🎱', "Sam's Brass Rack", 'Pool hall & bar · 24 Perth St', 'Sam%27s+Brass+Rack%2C+24+Perth+St%2C+Brockville%2C+ON');
       hubAddTile('Pubs & Bars', '🎱', "Broad Street Bar and Billiards", 'Pool hall & bar · 51 King St W', 'Broad+Street+Bar+and+Billiards%2C+51+King+St+W%2C+Brockville%2C+ON');
     })();
