@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-16T07:28:47.920493-04:00",
+ "updated_at": "2026-10-16T12:42:05.760330-04:00",
  "count": 20,
  "events": [
   {
@@ -18,11 +18,11 @@
    "location": "4649 Debruge Road, Tincap"
   },
   {
-   "title": "Fulford Place Ghost Tours",
-   "url": "https://brockvilletourism.com/event/fulford-place-ghost-tours-5-2/",
-   "start": "2026-10-17 18:30:00",
-   "end": "2026-10-17 21:30:00",
-   "location": "Fulford Place, 287 King St. E, Brockville, ON"
+   "title": "Epilepsy Education Sessions",
+   "url": "https://brockvilletourism.com/event/epilepsy-education-sessions/",
+   "start": "2026-10-19 09:00:00",
+   "end": "2026-10-19 15:30:00",
+   "location": "Wall Street United Church, Brockville, Ontario"
   },
   {
    "title": "MEDTALKS: Every Second Counts. Stroke Prevention, Treatment & Recovery",
@@ -67,13 +67,6 @@
    "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
   },
   {
-   "title": "Fulford Place Ghost Tours",
-   "url": "https://brockvilletourism.com/event/fulford-place-ghost-tours-5-3/",
-   "start": "2026-10-24 18:30:00",
-   "end": "2026-10-24 21:30:00",
-   "location": "Fulford Place, 287 King St. E, Brockville, ON"
-  },
-  {
    "title": "The Harvest Gallery Showcase feat. Claude Munson, James King, & Sammy Hayes @ Medium Effort Fine Art Supplies",
    "url": "https://brockvilletourism.com/event/the-harvest-gallery-showcase-feat-claude-munson-james-king-sammy-hayes-medium-effort-fine-art-supplies/",
    "start": "2026-10-24 19:30:00",
@@ -88,25 +81,18 @@
    "location": "Brockville Memorial Civic Centre, 100 Magedoma Blvd, Brockville"
   },
   {
-   "title": "Fulford Place Ghost Tours",
-   "url": "https://brockvilletourism.com/event/fulford-place-ghost-tours-4/",
-   "start": "2026-10-28 18:30:00",
-   "end": "2026-10-28 21:30:00",
-   "location": "Fulford Place, 287 King St. E, Brockville, ON"
-  },
-  {
-   "title": "Fulford Place Ghost Tours",
-   "url": "https://brockvilletourism.com/event/fulford-place-ghost-tours-6/",
-   "start": "2026-10-30 18:30:00",
-   "end": "2026-10-30 21:30:00",
-   "location": "Fulford Place, 287 King St. E, Brockville, ON"
-  },
-  {
    "title": "Brockville Braves Home Game",
    "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-6/",
    "start": "2026-10-30 19:30:00",
    "end": "2026-10-30 21:30:00",
    "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
+  },
+  {
+   "title": "Holiday Dotting Workshop",
+   "url": "https://brockvilletourism.com/event/holiday-dotting-workshop/",
+   "start": "2026-11-01 13:00:00",
+   "end": "2026-11-01 15:00:00",
+   "location": "2000 Parkdale Ave, Brockville, ON"
   },
   {
    "title": "Brockville Braves Home Game",
@@ -135,6 +121,20 @@
    "start": "2026-11-19 19:30:00",
    "end": "2026-11-19 21:30:00",
    "location": "Brockville Arts Centre, 235 King St W, Brockville"
+  },
+  {
+   "title": "2026 Yuletide Fare: Wall Street United Church, Brockville",
+   "url": "https://brockvilletourism.com/event/2026-yuletide-fare-wall-street-united-church-brockville-2/",
+   "start": "2026-11-20 10:00:00",
+   "end": "2026-11-21 14:00:00",
+   "location": "Wall Street United Church, 5 Wall Street, Brockville"
+  },
+  {
+   "title": "2026 Yuletide Fare: Wall Street United Church, Brockville",
+   "url": "https://brockvilletourism.com/event/2026-yuletide-fare-wall-street-united-church-brockville/",
+   "start": "2026-11-20 10:00:00",
+   "end": "2026-11-21 14:00:00",
+   "location": "Wall Street United Church, 5 Wall Street, Brockville"
   },
   {
    "title": "Brockville Braves Home Game",
