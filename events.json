@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-18T00:38:24.831715-04:00",
+ "updated_at": "2026-10-18T07:10:55.117094-04:00",
  "count": 20,
  "events": [
   {
@@ -51,6 +51,13 @@
    "start": "2026-10-23 19:30:00",
    "end": "2026-10-23 21:30:00",
    "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
+  },
+  {
+   "title": "Fulford Place Ghost Tours",
+   "url": "https://brockvilletourism.com/event/fulford-place-ghost-tours-5-3/",
+   "start": "2026-10-24 18:30:00",
+   "end": "2026-10-24 21:30:00",
+   "location": "Fulford Place, 287 King St. E, Brockville, ON"
   },
   {
    "title": "The Harvest Gallery Showcase feat. Claude Munson, James King, & Sammy Hayes @ Medium Effort Fine Art Supplies",
@@ -135,13 +142,6 @@
    "start": "2026-11-20 19:30:00",
    "end": "2026-11-20 21:30:00",
    "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
-  },
-  {
-   "title": "The Coniferous Gallery Showcase feat. summsets & special guests TBA @ Medium Effort !",
-   "url": "https://brockvilletourism.com/event/the-coniferous-gallery-showcase-feat-summsets-special-guests-tba-medium-effort/",
-   "start": "2026-11-21 19:30:00",
-   "end": "2026-11-21 22:30:00",
-   "location": "Medium Effort Fine Art Supplies"
   }
  ],
  "notices_source": "https://brockville.com/announcements/",
