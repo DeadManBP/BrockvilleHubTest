@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-20T07:42:32.339522-04:00",
+ "updated_at": "2026-10-20T13:11:37.087913-04:00",
  "count": 20,
  "events": [
   {
@@ -148,6 +148,12 @@
  "notices_count": 12,
  "notices": [
   {
+   "title": "2026 Election Voter Turnout Update – October 20, 2026",
+   "date": "2026-10-20",
+   "url": "https://brockville.com/announcement/2026-election-voter-turnout-update-october-20-2026/",
+   "excerpt": "As of 9:00 a.m. on October 20, 1,343 residents have cast their ballots in the 2026 Municipal and School Board Election, representing 6.7% of eligible voters. The voter turnout u..."
+  },
+  {
    "title": "Reynolds Park Pavilion Breaks Ground, Honouring Former Mayor",
    "date": "2026-10-09",
    "url": "https://brockville.com/announcement/reynolds-park-pavilion-breaks-ground-honouring-former-mayor/",
@@ -212,12 +218,6 @@
    "date": "2026-06-17",
    "url": "https://brockville.com/announcement/public-washroom-now-open-in-the-north-end-of-brockville/",
    "excerpt": "Parks staff, in partnership with Brockville Soccer, are pleased to provide additional public access to a washroom facility in the north end of Brockville. Located on the west si..."
-  },
-  {
-   "title": "Spring Deck Construction Reminder",
-   "date": "2026-06-09",
-   "url": "https://brockville.com/announcement/spring-deck-construction-reminder/",
-   "excerpt": "What Brockville Homeowners Need to Know Before They Build Spring is a popular time for outdoor projects, and deck construction is one of the most common projects requiring City..."
   }
  ]
 }
