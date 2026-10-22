@@ -1,15 +1,8 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-21T17:45:15.847745-04:00",
+ "updated_at": "2026-10-22T00:52:53.540721-04:00",
  "count": 20,
  "events": [
-  {
-   "title": "MEDTALKS: Every Second Counts. Stroke Prevention, Treatment & Recovery",
-   "url": "https://brockvilletourism.com/event/medtalks-every-second-counts-stroke-prevention-treatment-recovery/",
-   "start": "2026-10-21 18:00:00",
-   "end": "2026-10-21 19:30:00",
-   "location": "The Aquatarium at Tall Ships Landing"
-  },
   {
    "title": "Small Business Success Forum",
    "url": "https://brockvilletourism.com/event/small-business-success-forum/",
@@ -44,6 +37,13 @@
    "start": "2026-10-23 19:30:00",
    "end": "2026-10-23 21:30:00",
    "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
+  },
+  {
+   "title": "Spook the Street in Downtown Brockville",
+   "url": "https://brockvilletourism.com/event/spook-the-street-in-downtown-brockville/",
+   "start": "2026-10-24 10:00:00",
+   "end": "2026-10-24 12:00:00",
+   "location": "Downtown Brockville"
   },
   {
    "title": "Fulford Place Ghost Tours",
