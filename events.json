@@ -1,28 +1,14 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-25T00:45:57.259684-04:00",
+ "updated_at": "2026-10-25T07:35:52.685473-04:00",
  "count": 20,
  "events": [
-  {
-   "title": "Giverfest Comedy Festival",
-   "url": "https://brockvilletourism.com/event/giverfest-comedy-festival/",
-   "start": "2026-10-22 17:00:00",
-   "end": "2026-10-24 22:00:00",
-   "location": "Various Locations"
-  },
   {
    "title": "BMHA U15 Tournament",
    "url": "https://brockvilletourism.com/event/bmha-u15-tournament/",
    "start": "2026-10-23 09:00:00",
    "end": "2026-10-25 17:00:00",
    "location": "Brockville Memorial Centre and Brockville Youth Arena"
-  },
-  {
-   "title": "The Harvest Gallery Showcase feat. Claude Munson, James King, & Sammy Hayes @ Medium Effort Fine Art Supplies",
-   "url": "https://brockvilletourism.com/event/the-harvest-gallery-showcase-feat-claude-munson-james-king-sammy-hayes-medium-effort-fine-art-supplies/",
-   "start": "2026-10-24 19:30:00",
-   "end": "2026-10-24 22:30:00",
-   "location": "Medium Effort Fine Art Supplies"
   },
   {
    "title": "BROCKVILLE COMICON",
@@ -46,6 +32,13 @@
    "location": "Fulford Place, 287 King St. E, Brockville, ON"
   },
   {
+   "title": "Witches Broom workshop",
+   "url": "https://brockvilletourism.com/event/witches-broom-workshop/",
+   "start": "2026-10-30 18:30:00",
+   "end": "2026-10-30 20:00:00",
+   "location": "232 king st west brockville"
+  },
+  {
    "title": "Brockville Braves Home Game",
    "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-6/",
    "start": "2026-10-30 19:30:00",
@@ -60,11 +53,25 @@
    "location": "2000 Parkdale Ave, Brockville, ON"
   },
   {
+   "title": "Evergreen Wreath Workshop",
+   "url": "https://brockvilletourism.com/event/evergreen-wreath-workshop-2/",
+   "start": "2026-11-05 18:30:00",
+   "end": "2026-11-05 20:30:00",
+   "location": "232 King Street West, Brockville, ON"
+  },
+  {
    "title": "Brockville Braves Home Game",
    "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-7/",
    "start": "2026-11-06 19:30:00",
    "end": "2026-11-06 21:30:00",
    "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
+  },
+  {
+   "title": "History Talks",
+   "url": "https://brockvilletourism.com/event/history-talks-5/",
+   "start": "2026-11-12 14:00:00",
+   "end": "2026-11-12 15:00:00",
+   "location": "Brockville Museum, 5 Henry St, Brockville ON"
   },
   {
    "title": "Women’s Wellness Art Escape",
@@ -86,6 +93,13 @@
    "start": "2026-11-13 19:30:00",
    "end": "2026-11-13 21:30:00",
    "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
+  },
+  {
+   "title": "Miracle on King Street",
+   "url": "https://brockvilletourism.com/event/miracle-on-king-street/",
+   "start": "2026-11-14 09:00:00",
+   "end": "2026-11-14 17:00:00",
+   "location": "Downtown Brockville"
   },
   {
    "title": "Christmas Eucalyptus Centrepiece Workshop",
@@ -128,20 +142,6 @@
    "start": "2026-11-21 19:30:00",
    "end": "2026-11-21 22:30:00",
    "location": "Medium Effort Fine Art Supplies"
-  },
-  {
-   "title": "Brockville Braves Home Game",
-   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-10/",
-   "start": "2026-11-22 19:30:00",
-   "end": "2026-11-22 21:30:00",
-   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
-  },
-  {
-   "title": "Brockville Braves Home Game",
-   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-10/",
-   "start": "2026-11-27 19:30:00",
-   "end": "2026-11-27 21:30:00",
-   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
   }
  ],
  "notices_source": "https://brockville.com/announcements/",
