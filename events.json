@@ -1,22 +1,8 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-25T16:53:56.961991-04:00",
+ "updated_at": "2026-10-26T00:51:23.943483-04:00",
  "count": 20,
  "events": [
-  {
-   "title": "BMHA U15 Tournament",
-   "url": "https://brockvilletourism.com/event/bmha-u15-tournament/",
-   "start": "2026-10-23 09:00:00",
-   "end": "2026-10-25 17:00:00",
-   "location": "Brockville Memorial Centre and Brockville Youth Arena"
-  },
-  {
-   "title": "BROCKVILLE COMICON",
-   "url": "https://brockvilletourism.com/event/brockville-comicon/",
-   "start": "2026-10-25 10:00:00",
-   "end": "2026-10-25 15:00:00",
-   "location": "Brockville Memorial Civic Centre, 100 Magedoma Blvd, Brockville"
-  },
   {
    "title": "Fulford Place Ghost Tours",
    "url": "https://brockvilletourism.com/event/fulford-place-ghost-tours-4/",
@@ -142,6 +128,20 @@
    "start": "2026-11-21 19:30:00",
    "end": "2026-11-21 22:30:00",
    "location": "Medium Effort Fine Art Supplies"
+  },
+  {
+   "title": "Brockville Braves Home Game",
+   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-10/",
+   "start": "2026-11-22 19:30:00",
+   "end": "2026-11-22 21:30:00",
+   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
+  },
+  {
+   "title": "Brockville Braves Home Game",
+   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-10/",
+   "start": "2026-11-27 19:30:00",
+   "end": "2026-11-27 21:30:00",
+   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
   }
  ],
  "notices_source": "https://brockville.com/announcements/",
