@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-26T18:42:10.503815-04:00",
+ "updated_at": "2026-10-27T01:10:11.785837-04:00",
  "count": 20,
  "events": [
   {
@@ -148,6 +148,12 @@
  "notices_count": 12,
  "notices": [
   {
+   "title": "Unofficial Results: 2026 Municipal and School Board Election",
+   "date": "2026-10-26",
+   "url": "https://brockville.com/announcement/unofficial-results-2026-municipal-and-school-board-election/",
+   "excerpt": "Voting has officially closed for the City of Brockville’s 2026 Municipal and School Board Election, and unofficial election results are now available. A total of 7,460 residents..."
+  },
+  {
    "title": "2026 Election Voter Turnout Update – October 26, 2026",
    "date": "2026-10-26",
    "url": "https://brockville.com/announcement/2026-election-voter-turnout-update-october-20-2026/",
@@ -212,12 +218,6 @@
    "date": "2026-07-31",
    "url": "https://brockville.com/announcement/construction-notice-reconstruction-of-bartholomew-street/",
    "excerpt": "The City of Brockville, Engineering Division, along with their contractor Len Corcoran Excavating, will begin the reconstruction of Bartholomew Street from King Street to James..."
-  },
-  {
-   "title": "Public Washroom Now Open in the North End of Brockville",
-   "date": "2026-06-17",
-   "url": "https://brockville.com/announcement/public-washroom-now-open-in-the-north-end-of-brockville/",
-   "excerpt": "Parks staff, in partnership with Brockville Soccer, are pleased to provide additional public access to a washroom facility in the north end of Brockville. Located on the west si..."
   }
  ]
 }
