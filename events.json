@@ -1,8 +1,15 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-28T08:59:56.201081-04:00",
+ "updated_at": "2026-10-28T18:37:58.627045-04:00",
  "count": 20,
  "events": [
+  {
+   "title": "Tunnel of Terror",
+   "url": "https://brockvilletourism.com/event/tunnel-of-terror/",
+   "start": "2026-10-28 18:00:00",
+   "end": "2026-11-01 16:00:00",
+   "location": "Brockville Railway"
+  },
   {
    "title": "Fulford Place Ghost Tours",
    "url": "https://brockvilletourism.com/event/fulford-place-ghost-tours-4/",
@@ -74,6 +81,13 @@
    "location": "Brockville Memorial Centre and Brockville Youth Arena"
   },
   {
+   "title": "Glow Dance- grades 4-8",
+   "url": "https://brockvilletourism.com/event/glow-dance-grades-4-8/",
+   "start": "2026-11-13 19:00:00",
+   "end": "2026-11-13 21:00:00",
+   "location": "Brockville Memorial Community Center"
+  },
+  {
    "title": "Brockville Braves Home Game",
    "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-8/",
    "start": "2026-11-13 19:30:00",
@@ -128,25 +142,17 @@
    "start": "2026-11-21 19:30:00",
    "end": "2026-11-21 22:30:00",
    "location": "Medium Effort Fine Art Supplies"
-  },
-  {
-   "title": "Brockville Braves Home Game",
-   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-10/",
-   "start": "2026-11-22 19:30:00",
-   "end": "2026-11-22 21:30:00",
-   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
-  },
-  {
-   "title": "Brockville Braves Home Game",
-   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-10/",
-   "start": "2026-11-27 19:30:00",
-   "end": "2026-11-27 21:30:00",
-   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
   }
  ],
  "notices_source": "https://brockville.com/announcements/",
  "notices_count": 12,
  "notices": [
+  {
+   "title": "Fall Leaf Collection Update",
+   "date": "2026-10-28",
+   "url": "https://brockville.com/announcement/fall-leaf-collection-update/",
+   "excerpt": "Please be advised that leaf collection is currently behind schedule. Crews are working to complete collection routes, and all leaf bags will be collected by Friday, October 30...."
+  },
   {
    "title": "Certified Election Results – 2026 Municipal Council",
    "date": "2026-10-27",
@@ -212,12 +218,6 @@
    "date": "2026-07-31",
    "url": "https://brockville.com/announcement/construction-notice-reconstruction-of-bartholomew-street/",
    "excerpt": "The City of Brockville, Engineering Division, along with their contractor Len Corcoran Excavating, will begin the reconstruction of Bartholomew Street from King Street to James..."
-  },
-  {
-   "title": "Public Washroom Now Open in the North End of Brockville",
-   "date": "2026-06-17",
-   "url": "https://brockville.com/announcement/public-washroom-now-open-in-the-north-end-of-brockville/",
-   "excerpt": "Parks staff, in partnership with Brockville Soccer, are pleased to provide additional public access to a washroom facility in the north end of Brockville. Located on the west si..."
   }
  ]
 }
