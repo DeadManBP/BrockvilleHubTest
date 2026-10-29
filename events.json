@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-29T09:06:51.196352-04:00",
+ "updated_at": "2026-10-29T18:47:04.812402-04:00",
  "count": 20,
  "events": [
   {
@@ -148,6 +148,12 @@
  "notices_count": 12,
  "notices": [
   {
+   "title": "Remembrance Day Ceremony 2026",
+   "date": "2026-10-29",
+   "url": "https://brockville.com/announcement/remembrance-day-ceremony-2026/",
+   "excerpt": "Remembrance Day will be observed with a civic ceremony on Wednesday November 11, 2026. Please note that City of Brockville services and facilities run as usual. Civic Ceremony W..."
+  },
+  {
    "title": "Fall Leaf Collection Update",
    "date": "2026-10-28",
    "url": "https://brockville.com/announcement/fall-leaf-collection-update/",
@@ -212,12 +218,6 @@
    "date": "2026-08-07",
    "url": "https://brockville.com/announcement/construction-to-begin-on-john-taylor-park-development-project-august-10/",
    "excerpt": "The City of Brockville is pleased to announce that construction on the John Taylor Park Development Project is set to begin on August 10, 2026. Kehoe Construction has been award..."
-  },
-  {
-   "title": "Construction Notice: Reconstruction of Bartholomew Street",
-   "date": "2026-07-31",
-   "url": "https://brockville.com/announcement/construction-notice-reconstruction-of-bartholomew-street/",
-   "excerpt": "The City of Brockville, Engineering Division, along with their contractor Len Corcoran Excavating, will begin the reconstruction of Bartholomew Street from King Street to James..."
   }
  ]
 }
