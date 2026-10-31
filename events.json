@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-10-30T18:24:03.741264-04:00",
+ "updated_at": "2026-10-31T01:47:34.383563-04:00",
  "count": 20,
  "events": [
   {
@@ -9,27 +9,6 @@
    "start": "2026-10-28 18:00:00",
    "end": "2026-11-01 16:00:00",
    "location": "Brockville Railway"
-  },
-  {
-   "title": "Fulford Place Ghost Tours",
-   "url": "https://brockvilletourism.com/event/fulford-place-ghost-tours-6/",
-   "start": "2026-10-30 18:30:00",
-   "end": "2026-10-30 21:30:00",
-   "location": "Fulford Place, 287 King St. E, Brockville, ON"
-  },
-  {
-   "title": "Witches Broom workshop",
-   "url": "https://brockvilletourism.com/event/witches-broom-workshop/",
-   "start": "2026-10-30 18:30:00",
-   "end": "2026-10-30 20:00:00",
-   "location": "232 king st west brockville"
-  },
-  {
-   "title": "Brockville Braves Home Game",
-   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-6/",
-   "start": "2026-10-30 19:30:00",
-   "end": "2026-10-30 21:30:00",
-   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
   },
   {
    "title": "Holiday Dotting Workshop",
@@ -142,6 +121,27 @@
    "start": "2026-11-22 19:30:00",
    "end": "2026-11-22 21:30:00",
    "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
+  },
+  {
+   "title": "Brockville Braves Home Game",
+   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-10/",
+   "start": "2026-11-27 19:30:00",
+   "end": "2026-11-27 21:30:00",
+   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
+  },
+  {
+   "title": "Santa Claus Parade presented by the City of Brockville",
+   "url": "https://brockvilletourism.com/event/santa-claus-parade-presented-by-the-city-of-brockville/",
+   "start": "2026-11-28 17:00:00",
+   "end": "2026-11-28 19:00:00",
+   "location": "King Street, Brockville"
+  },
+  {
+   "title": "Festival of Small Halls: The Maywoods (John Prine Experience)",
+   "url": "https://brockvilletourism.com/event/festival-of-small-halls-the-maywoods-john-prine-experience/",
+   "start": "2026-11-28 19:30:00",
+   "end": "2026-11-28 21:30:00",
+   "location": "Arts Hub Brockville, 32 Park Street, Brockville"
   }
  ],
  "notices_source": "https://brockville.com/announcements/",
@@ -178,12 +178,6 @@
    "excerpt": "As of 9:00 a.m. on October 26, 5,391 residents have cast their ballots in the 2026 Municipal and School Board Election, representing 26.6% of eligible voters. The voter turnout..."
   },
   {
-   "title": "Reynolds Park Pavilion Breaks Ground, Honouring Former Mayor",
-   "date": "2026-10-09",
-   "url": "https://brockville.com/announcement/reynolds-park-pavilion-breaks-ground-honouring-former-mayor/",
-   "excerpt": "Brockville, ON – October 9, 2026 – The City of Brockville officially marked the beginning of construction on the Reynolds Park Pavilion and Boardwalk Project today, announcing t..."
-  },
-  {
    "title": "Reynolds Park Pavilion Construction Begins This Week",
    "date": "2026-10-05",
    "url": "https://brockville.com/announcement/reynolds-park-pavilion-construction-begins-this-week/",
@@ -218,6 +212,12 @@
    "date": "2026-08-28",
    "url": "https://brockville.com/announcement/brockville-residents-invited-to-design-official-i-voted-sticker/",
    "excerpt": "Brockville, ON – August 28, 2026 – The City of Brockville is inviting residents to play a creative role in the 2026 Municipal and School Board Election through the launch of Bro..."
+  },
+  {
+   "title": "Construction to Begin on John Taylor Park Development Project August 10",
+   "date": "2026-08-07",
+   "url": "https://brockville.com/announcement/construction-to-begin-on-john-taylor-park-development-project-august-10/",
+   "excerpt": "The City of Brockville is pleased to announce that construction on the John Taylor Park Development Project is set to begin on August 10, 2026. Kehoe Construction has been award..."
   }
  ]
 }
