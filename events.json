@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-11-02T01:11:19.503327-05:00",
+ "updated_at": "2026-11-02T11:00:02.182425-05:00",
  "count": 20,
  "events": [
   {
@@ -16,6 +16,13 @@
    "start": "2026-11-06 19:30:00",
    "end": "2026-11-06 21:30:00",
    "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
+  },
+  {
+   "title": "A Festival of Remembrance",
+   "url": "https://brockvilletourism.com/event/a-festival-of-remembrance/",
+   "start": "2026-11-07 14:00:00",
+   "end": "2026-11-07 15:00:00",
+   "location": "Arts Hub Brockville, 32 Park Street, Brockville"
   },
   {
    "title": "History Talks",
@@ -109,6 +116,13 @@
    "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
   },
   {
+   "title": "Nutcracker by The United European Ballet Company",
+   "url": "https://brockvilletourism.com/event/nutcracker-by-the-united-european-ballet-company/",
+   "start": "2026-11-27 19:00:00",
+   "end": "2026-11-27 21:00:00",
+   "location": "Brockville Arts Centre, 235 King St W, Brockville"
+  },
+  {
    "title": "Brockville Braves Home Game",
    "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-10/",
    "start": "2026-11-27 19:30:00",
@@ -116,32 +130,18 @@
    "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
   },
   {
+   "title": "One Magical Night in Brockville",
+   "url": "https://brockvilletourism.com/event/one-magical-night-in-brockville/",
+   "start": "2026-11-28 17:00:00",
+   "end": "2026-11-28 20:30:00",
+   "location": "Downtown Brockville"
+  },
+  {
    "title": "Santa Claus Parade presented by the City of Brockville",
    "url": "https://brockvilletourism.com/event/santa-claus-parade-presented-by-the-city-of-brockville/",
    "start": "2026-11-28 17:00:00",
    "end": "2026-11-28 19:00:00",
    "location": "King Street, Brockville"
-  },
-  {
-   "title": "Festival of Small Halls: The Maywoods (John Prine Experience)",
-   "url": "https://brockvilletourism.com/event/festival-of-small-halls-the-maywoods-john-prine-experience/",
-   "start": "2026-11-28 19:30:00",
-   "end": "2026-11-28 21:30:00",
-   "location": "Arts Hub Brockville, 32 Park Street, Brockville"
-  },
-  {
-   "title": "Brockville Braves Home Game",
-   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-9/",
-   "start": "2026-11-28 19:30:00",
-   "end": "2026-11-28 21:30:00",
-   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
-  },
-  {
-   "title": "BMHA U11 Roger Ladouceur Tournament",
-   "url": "https://brockvilletourism.com/event/bmha-u11-roger-ladouceur-tournament/",
-   "start": "2026-12-04 09:00:00",
-   "end": "2026-12-06 17:00:00",
-   "location": "Brockville Memorial Centre and Brockville Youth Arena"
   }
  ],
  "notices_source": "https://brockville.com/announcements/",
