@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-11-05T01:51:59.927846-05:00",
+ "updated_at": "2026-11-05T14:59:09.590201-05:00",
  "count": 20,
  "events": [
   {
@@ -148,6 +148,12 @@
  "notices_count": 12,
  "notices": [
   {
+   "title": "City Launches $5 Million Your Space to Play Fundraising Campaign",
+   "date": "2026-11-05",
+   "url": "https://brockville.com/announcement/city-launches-5-million-your-space-to-play-fundraising-campaign/",
+   "excerpt": "Brockville, ON – November 4, 2026 – The City of Brockville officially launched its Your Space to Play community fundraising campaign this evening at the Memorial Centre, invitin..."
+  },
+  {
    "title": "Certified Election Results – 2026 School Board Election",
    "date": "2026-10-30",
    "url": "https://brockville.com/announcement/certified-election-results-2026-school-board-election/",
@@ -212,12 +218,6 @@
    "date": "2026-08-07",
    "url": "https://brockville.com/announcement/construction-to-begin-on-john-taylor-park-development-project-august-10/",
    "excerpt": "The City of Brockville is pleased to announce that construction on the John Taylor Park Development Project is set to begin on August 10, 2026. Kehoe Construction has been award..."
-  },
-  {
-   "title": "Public Washroom Now Open in the North End of Brockville",
-   "date": "2026-06-17",
-   "url": "https://brockville.com/announcement/public-washroom-now-open-in-the-north-end-of-brockville/",
-   "excerpt": "Parks staff, in partnership with Brockville Soccer, are pleased to provide additional public access to a washroom facility in the north end of Brockville. Located on the west si..."
   }
  ]
 }
