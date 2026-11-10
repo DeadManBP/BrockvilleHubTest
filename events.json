@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-11-10T02:22:52.093765-05:00",
+ "updated_at": "2026-11-10T14:46:36.981287-05:00",
  "count": 20,
  "events": [
   {
@@ -148,6 +148,12 @@
  "notices_count": 12,
  "notices": [
   {
+   "title": "Brockville Transit Bus Stop Changes Effective December 1",
+   "date": "2026-11-10",
+   "url": "https://brockville.com/announcement/brockville-transit-bus-stop-changes-effective-december-1/",
+   "excerpt": "The City of Brockville is advising transit users of upcoming changes to select bus stops, effective December 1, 2026. As part of ongoing efforts to improve transit service effic..."
+  },
+  {
    "title": "City Launches $5 Million Your Space to Play Fundraising Campaign",
    "date": "2026-11-05",
    "url": "https://brockville.com/announcement/city-launches-5-million-your-space-to-play-fundraising-campaign/",
@@ -212,12 +218,6 @@
    "date": "2026-08-28",
    "url": "https://brockville.com/announcement/brockville-residents-invited-to-design-official-i-voted-sticker/",
    "excerpt": "Brockville, ON – August 28, 2026 – The City of Brockville is inviting residents to play a creative role in the 2026 Municipal and School Board Election through the launch of Bro..."
-  },
-  {
-   "title": "Construction to Begin on John Taylor Park Development Project August 10",
-   "date": "2026-08-07",
-   "url": "https://brockville.com/announcement/construction-to-begin-on-john-taylor-park-development-project-august-10/",
-   "excerpt": "The City of Brockville is pleased to announce that construction on the John Taylor Park Development Project is set to begin on August 10, 2026. Kehoe Construction has been award..."
   }
  ]
 }
