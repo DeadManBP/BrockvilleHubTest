@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-11-11T01:28:55.623189-05:00",
+ "updated_at": "2026-11-11T14:38:10.320521-05:00",
  "count": 20,
  "events": [
   {
@@ -148,6 +148,12 @@
  "notices_count": 12,
  "notices": [
   {
+   "title": "Applications Open for Board and Committee Members",
+   "date": "2026-11-11",
+   "url": "https://brockville.com/announcement/applications-open-for-board-and-committee-members/",
+   "excerpt": "The City of Brockville is currently accepting applications from residents interested in serving on a board or committee. Volunteer members provide valuable community perspective..."
+  },
+  {
    "title": "Brockville Transit Bus Stop Changes Effective December 1",
    "date": "2026-11-10",
    "url": "https://brockville.com/announcement/brockville-transit-bus-stop-changes-effective-december-1/",
@@ -212,12 +218,6 @@
    "date": "2026-09-10",
    "url": "https://brockville.com/announcement/new-specialized-para-transit-booking-platform-improves-rider-experience/",
    "excerpt": "Brockville, ON – September 10, 2026 – The City of Brockville is continuing to invest in accessible public transit services through the implementation of a new Specialized (Para)..."
-  },
-  {
-   "title": "Brockville Residents Invited to Design Official “I Voted” Sticker",
-   "date": "2026-08-28",
-   "url": "https://brockville.com/announcement/brockville-residents-invited-to-design-official-i-voted-sticker/",
-   "excerpt": "Brockville, ON – August 28, 2026 – The City of Brockville is inviting residents to play a creative role in the 2026 Municipal and School Board Election through the launch of Bro..."
   }
  ]
 }
