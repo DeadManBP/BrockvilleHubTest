@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-11-11T14:38:10.320521-05:00",
+ "updated_at": "2026-11-12T02:15:48.728434-05:00",
  "count": 20,
  "events": [
   {
@@ -11,116 +11,25 @@
    "location": "Bridlewood Manor"
   },
   {
-   "title": "Women’s Wellness Art Escape",
-   "url": "https://brockvilletourism.com/event/womens-wellness-art-escape-3/",
-   "start": "2026-11-12 18:30:00",
-   "end": "2026-11-12 20:30:00",
-   "location": "Fun Art Paint Parties 11 Perth St. Brockville"
+   "title": "Free Parent & Tot Skating Sessions at the Memorial Centre",
+   "url": "https://brockvilletourism.com/event/free-parent-tot-skating-sessions-at-the-memorial-centre/",
+   "start": "2026-11-17 09:00:00",
+   "end": "2026-11-17 10:00:00",
+   "location": "Memorial Centre, 100 Magedoma Blvd, Brockville ON"
   },
   {
-   "title": "BMHA U18 Neil McHugh Tournament",
-   "url": "https://brockvilletourism.com/event/bmha-u18-neil-mchugh-tournament/",
-   "start": "2026-11-13 09:00:00",
-   "end": "2026-11-15 17:00:00",
-   "location": "Brockville Memorial Centre and Brockville Youth Arena"
+   "title": "Free Public Skating at Youth Arena Sponsored by LA Knapp Inc",
+   "url": "https://brockvilletourism.com/event/free-public-skating-at-youth-arena-sponsored-by-la-knapp-inc/",
+   "start": "2026-11-21 20:00:00",
+   "end": "2026-11-21 21:00:00",
+   "location": "Youth Arena, 138 Broadway Ave, Brockville ON"
   },
   {
-   "title": "Glow Dance- grades 4-8",
-   "url": "https://brockvilletourism.com/event/glow-dance-grades-4-8/",
-   "start": "2026-11-13 19:00:00",
-   "end": "2026-11-13 21:00:00",
-   "location": "Brockville Memorial Community Center"
-  },
-  {
-   "title": "Brockville Braves Home Game",
-   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-8/",
-   "start": "2026-11-13 19:30:00",
-   "end": "2026-11-13 21:30:00",
-   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
-  },
-  {
-   "title": "Holiday Brushes & Brews Paint Night",
-   "url": "https://brockvilletourism.com/event/holiday-brushes-brews-paint-night/",
-   "start": "2026-11-16 19:00:00",
-   "end": "2026-11-16 21:00:00",
-   "location": "1000 Islands Brewery"
-  },
-  {
-   "title": "Holiday Brushes & Brews Paint Night",
-   "url": "https://brockvilletourism.com/event/holiday-brushes-brews-paint-night-2/",
-   "start": "2026-11-18 19:00:00",
-   "end": "2026-11-18 21:00:00",
-   "location": "1000 Islands Brewery"
-  },
-  {
-   "title": "Raine Maida & Chantal Kreviazuk: Break Your Heart Tour",
-   "url": "https://brockvilletourism.com/event/raine-maida-chantal-kreviazuk-break-your-heart-tour/",
-   "start": "2026-11-19 19:30:00",
-   "end": "2026-11-19 21:30:00",
-   "location": "Brockville Arts Centre, 235 King St W, Brockville"
-  },
-  {
-   "title": "2026 Yuletide Fare: Wall Street United Church, Brockville",
-   "url": "https://brockvilletourism.com/event/2026-yuletide-fare-wall-street-united-church-brockville-2/",
-   "start": "2026-11-20 10:00:00",
-   "end": "2026-11-21 14:00:00",
-   "location": "Wall Street United Church, 5 Wall Street, Brockville"
-  },
-  {
-   "title": "2026 Yuletide Fare: Wall Street United Church, Brockville",
-   "url": "https://brockvilletourism.com/event/2026-yuletide-fare-wall-street-united-church-brockville/",
-   "start": "2026-11-20 10:00:00",
-   "end": "2026-11-21 14:00:00",
-   "location": "Wall Street United Church, 5 Wall Street, Brockville"
-  },
-  {
-   "title": "Brockville Braves Home Game",
-   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-9/",
-   "start": "2026-11-20 19:30:00",
-   "end": "2026-11-20 21:30:00",
-   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
-  },
-  {
-   "title": "The Coniferous Gallery Showcase",
-   "url": "https://brockvilletourism.com/event/the-coniferous-gallery-showcase-feat-summsets-special-guests-tba-medium-effort/",
-   "start": "2026-11-21 19:30:00",
-   "end": "2026-11-21 22:30:00",
-   "location": "Medium Effort Fine Art Supplies"
-  },
-  {
-   "title": "Holiday Porch Leaner Afternoon",
-   "url": "https://brockvilletourism.com/event/holiday-porch-leaner-afternoon/",
-   "start": "2026-11-22 13:00:00",
-   "end": "2026-11-22 15:30:00",
-   "location": "Fun Art Paint Parties Studio, 11 Perth Street, Brockville"
-  },
-  {
-   "title": "Brockville Braves Home Game",
-   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-10/",
-   "start": "2026-11-22 19:30:00",
-   "end": "2026-11-22 21:30:00",
-   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
-  },
-  {
-   "title": "Holiday Brushes & Brews Paint Night",
-   "url": "https://brockvilletourism.com/event/holiday-brushes-brews-paint-night-3/",
-   "start": "2026-11-23 19:00:00",
-   "end": "2026-11-23 21:00:00",
-   "location": "1000 Islands Brewery"
-  },
-  {
-   "title": "Nutcracker by The United European Ballet Company",
-   "url": "https://brockvilletourism.com/event/nutcracker-by-the-united-european-ballet-company/",
-   "start": "2026-11-27 19:00:00",
+   "title": "Paws & Claus: Speakeasy Social",
+   "url": "https://brockvilletourism.com/event/paws-claus-speakeasy-social/",
+   "start": "2026-11-27 18:30:00",
    "end": "2026-11-27 21:00:00",
-   "location": "Brockville Arts Centre, 235 King St W, Brockville"
-  },
-  {
-   "title": "Brockville Braves Home Game",
-   "url": "https://brockvilletourism.com/event/brockville-braves-home-game-8-10/",
-   "start": "2026-11-27 19:30:00",
-   "end": "2026-11-27 21:30:00",
-   "location": "Brockville Memorial Centre, 100 Magedoma Blvd, Brockville"
+   "location": "Cedar Valley Golf & Country Club: 7041 County Rd 29, Brockville, ON K6V 5T4"
   },
   {
    "title": "Ottawa BlackJacks Mini Camp",
@@ -130,18 +39,109 @@
    "location": "YMCA of Eastern Ontario, Brockville YMCA"
   },
   {
-   "title": "One Magical Night in Brockville",
-   "url": "https://brockvilletourism.com/event/one-magical-night-in-brockville/",
-   "start": "2026-11-28 17:00:00",
-   "end": "2026-11-28 20:30:00",
-   "location": "Downtown Brockville"
+   "title": "Paws & Claus: Gala",
+   "url": "https://brockvilletourism.com/event/paws-claus-gala/",
+   "start": "2026-11-28 17:30:00",
+   "end": "2026-11-28 23:00:00",
+   "location": "Cedar Valley Golf & Country Club: 7041 County Rd 29, Brockville, ON K6V 5T4"
   },
   {
-   "title": "Santa Claus Parade presented by the City of Brockville",
-   "url": "https://brockvilletourism.com/event/santa-claus-parade-presented-by-the-city-of-brockville/",
-   "start": "2026-11-28 17:00:00",
-   "end": "2026-11-28 19:00:00",
-   "location": "King Street, Brockville"
+   "title": "Free Public Skating at Youth Arena Sponsored by LA Knapp Inc",
+   "url": "https://brockvilletourism.com/event/free-public-skating-at-youth-arena-sponsored-by-la-knapp-inc-2/",
+   "start": "2026-11-28 20:00:00",
+   "end": "2026-11-28 21:00:00",
+   "location": "Youth Arena, 138 Broadway Ave, Brockville ON"
+  },
+  {
+   "title": "Paws & Claus: Breakfast with Santa",
+   "url": "https://brockvilletourism.com/event/paws-claus-breakfast-with-santa/",
+   "start": "2026-11-29 09:00:00",
+   "end": "2026-11-29 12:00:00",
+   "location": "Cedar Valley Golf & Country Club: 7041 County Rd 29, Brockville, ON K6V 5T4"
+  },
+  {
+   "title": "Free Parent & Tot Skating Sessions at the Memorial Centre",
+   "url": "https://brockvilletourism.com/event/free-parent-tot-skating-sessions-at-the-memorial-centre-2/",
+   "start": "2026-11-30 09:00:00",
+   "end": "2026-11-30 10:00:00",
+   "location": "Memorial Centre, 100 Magedoma Blvd, Brockville ON"
+  },
+  {
+   "title": "Free Public Skating at Youth Arena Sponsored by LA Knapp Inc",
+   "url": "https://brockvilletourism.com/event/free-public-skating-at-youth-arena-sponsored-by-la-knapp-inc-3/",
+   "start": "2026-12-05 20:00:00",
+   "end": "2026-12-05 21:00:00",
+   "location": "Youth Arena, 138 Broadway Ave, Brockville ON"
+  },
+  {
+   "title": "Free Parent & Tot Skating Sessions at the Memorial Centre",
+   "url": "https://brockvilletourism.com/event/free-parent-tot-skating-sessions-at-the-memorial-centre-3/",
+   "start": "2026-12-07 09:00:00",
+   "end": "2026-12-07 10:00:00",
+   "location": "Memorial Centre, 100 Magedoma Blvd, Brockville ON"
+  },
+  {
+   "title": "Free Public Skating at Youth Arena Sponsored by LA Knapp Inc",
+   "url": "https://brockvilletourism.com/event/free-public-skating-at-youth-arena-sponsored-by-la-knapp-inc-4/",
+   "start": "2026-12-12 20:00:00",
+   "end": "2026-12-12 21:00:00",
+   "location": "Youth Arena, 138 Broadway Ave, Brockville ON"
+  },
+  {
+   "title": "Free Public Skating at Memorial Centre Sponsored by LA Knapp Inc",
+   "url": "https://brockvilletourism.com/event/free-public-skating-at-memorial-centre-sponsored-by-la-knapp-inc/",
+   "start": "2026-12-13 13:00:00",
+   "end": "2026-12-13 14:00:00",
+   "location": "Memorial Centre, 100 Magedoma Blvd, Brockville ON"
+  },
+  {
+   "title": "Free Parent & Tot Skating Sessions at the Memorial Centre",
+   "url": "https://brockvilletourism.com/event/free-parent-tot-skating-sessions-at-the-memorial-centre-4/",
+   "start": "2026-12-14 09:00:00",
+   "end": "2026-12-14 10:00:00",
+   "location": "Memorial Centre, 100 Magedoma Blvd, Brockville ON"
+  },
+  {
+   "title": "Free Public Skating at Youth Arena Sponsored by LA Knapp Inc",
+   "url": "https://brockvilletourism.com/event/free-public-skating-at-youth-arena-sponsored-by-la-knapp-inc-5/",
+   "start": "2026-12-19 20:00:00",
+   "end": "2026-12-19 21:00:00",
+   "location": "Youth Arena, 138 Broadway Ave, Brockville ON"
+  },
+  {
+   "title": "Free Public Skating at Memorial Centre Sponsored by LA Knapp Inc",
+   "url": "https://brockvilletourism.com/event/free-public-skating-at-memorial-centre-sponsored-by-la-knapp-inc-2/",
+   "start": "2026-12-20 13:00:00",
+   "end": "2026-12-20 14:00:00",
+   "location": "Memorial Centre, 100 Magedoma Blvd, Brockville ON"
+  },
+  {
+   "title": "Free Parent & Tot Skating Sessions at the Memorial Centre",
+   "url": "https://brockvilletourism.com/event/free-parent-tot-skating-sessions-at-the-memorial-centre-5/",
+   "start": "2026-12-21 09:00:00",
+   "end": "2026-12-21 10:00:00",
+   "location": "Memorial Centre, 100 Magedoma Blvd, Brockville ON"
+  },
+  {
+   "title": "Free Public Skating at Youth Arena Sponsored by LA Knapp Inc",
+   "url": "https://brockvilletourism.com/event/free-public-skating-at-youth-arena-sponsored-by-la-knapp-inc-6/",
+   "start": "2026-12-26 20:00:00",
+   "end": "2026-12-26 21:00:00",
+   "location": "Youth Arena, 138 Broadway Ave, Brockville ON"
+  },
+  {
+   "title": "Free Public Skating at Memorial Centre Sponsored by LA Knapp Inc",
+   "url": "https://brockvilletourism.com/event/free-public-skating-at-memorial-centre-sponsored-by-la-knapp-inc-3/",
+   "start": "2026-12-27 13:00:00",
+   "end": "2026-12-27 14:00:00",
+   "location": "Memorial Centre, 100 Magedoma Blvd, Brockville ON"
+  },
+  {
+   "title": "Free Parent & Tot Skating Sessions at the Memorial Centre",
+   "url": "https://brockvilletourism.com/event/free-parent-tot-skating-sessions-at-the-memorial-centre-6/",
+   "start": "2026-12-28 09:00:00",
+   "end": "2026-12-28 10:00:00",
+   "location": "Memorial Centre, 100 Magedoma Blvd, Brockville ON"
   }
  ],
  "notices_source": "https://brockville.com/announcements/",
