@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-11-12T14:57:24.816356-05:00",
+ "updated_at": "2026-11-13T01:49:14.597659-05:00",
  "count": 20,
  "events": [
   {
@@ -148,6 +148,12 @@
  "notices_count": 12,
  "notices": [
   {
+   "title": "Temporary Email Service Disruption",
+   "date": "2026-11-12",
+   "url": "https://brockville.com/announcement/temporary-email-service-disruption/",
+   "excerpt": "The City of Brockville is currently experiencing an email service disruption due to technical issues affecting Microsoft 365. During this time, City staff are unable to access t..."
+  },
+  {
    "title": "Applications Open for Board and Committee Members",
    "date": "2026-11-11",
    "url": "https://brockville.com/announcement/applications-open-for-board-and-committee-members/",
@@ -212,12 +218,6 @@
    "date": "2026-09-21",
    "url": "https://brockville.com/announcement/city-manager-sandra-macdonald-announces-retirement-after-32-years/",
    "excerpt": "Brockville, ON – Monday, September 21, 2026 – The City of Brockville announces the upcoming retirement of City Manager Sandra MacDonald, effective March 31, 2027, following more..."
-  },
-  {
-   "title": "New Specialized (Para) Transit Booking Platform Improves Rider Experience",
-   "date": "2026-09-10",
-   "url": "https://brockville.com/announcement/new-specialized-para-transit-booking-platform-improves-rider-experience/",
-   "excerpt": "Brockville, ON – September 10, 2026 – The City of Brockville is continuing to invest in accessible public transit services through the implementation of a new Specialized (Para)..."
   }
  ]
 }
