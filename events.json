@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-11-17T02:58:10.543133-05:00",
+ "updated_at": "2026-11-17T15:58:00.331696-05:00",
  "count": 20,
  "events": [
   {
@@ -9,13 +9,6 @@
    "start": "2026-11-06 18:00:00",
    "end": "2026-11-27 20:00:00",
    "location": "Bridlewood Manor"
-  },
-  {
-   "title": "Free Parent & Tot Skating Sessions at the Memorial Centre",
-   "url": "https://brockvilletourism.com/event/free-parent-tot-skating-sessions-at-the-memorial-centre/",
-   "start": "2026-11-17 09:00:00",
-   "end": "2026-11-17 10:00:00",
-   "location": "Memorial Centre, 100 Magedoma Blvd, Brockville ON"
   },
   {
    "title": "Tincap Berry Farm Christmas Market",
@@ -142,6 +135,13 @@
    "start": "2026-12-28 09:00:00",
    "end": "2026-12-28 10:00:00",
    "location": "Memorial Centre, 100 Magedoma Blvd, Brockville ON"
+  },
+  {
+   "title": "Free Public Skating at Youth Arena Sponsored by LA Knapp Inc",
+   "url": "https://brockvilletourism.com/event/free-public-skating-at-youth-arena-sponsored-by-la-knapp-inc-7/",
+   "start": "2027-01-02 20:00:00",
+   "end": "2027-01-02 21:00:00",
+   "location": "Youth Arena, 138 Broadway Ave, Brockville ON"
   }
  ],
  "notices_source": "https://brockville.com/announcements/",
