@@ -1,15 +1,8 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-11-18T02:33:12.712368-05:00",
+ "updated_at": "2026-11-18T15:35:22.287379-05:00",
  "count": 20,
  "events": [
-  {
-   "title": "Light the Tree",
-   "url": "https://brockvilletourism.com/event/light-the-tree/",
-   "start": "2026-11-06 18:00:00",
-   "end": "2026-11-27 20:00:00",
-   "location": "Bridlewood Manor"
-  },
   {
    "title": "Tincap Berry Farm Christmas Market",
    "url": "https://brockvilletourism.com/event/tincap-berry-farm-christmas-market/",
@@ -23,20 +16,6 @@
    "start": "2026-11-21 20:00:00",
    "end": "2026-11-21 21:00:00",
    "location": "Youth Arena, 138 Broadway Ave, Brockville ON"
-  },
-  {
-   "title": "Paws & Claus: Speakeasy Social",
-   "url": "https://brockvilletourism.com/event/paws-claus-speakeasy-social/",
-   "start": "2026-11-27 18:30:00",
-   "end": "2026-11-27 21:00:00",
-   "location": "Cedar Valley Golf & Country Club: 7041 County Rd 29, Brockville, ON K6V 5T4"
-  },
-  {
-   "title": "Ottawa BlackJacks Mini Camp",
-   "url": "https://brockvilletourism.com/event/ottawa-blackjacks-mini-camp/",
-   "start": "2026-11-28 09:00:00",
-   "end": "2026-11-28 16:00:00",
-   "location": "YMCA of Eastern Ontario, Brockville YMCA"
   },
   {
    "title": "Paws & Claus: Gala",
@@ -67,6 +46,13 @@
    "location": "Memorial Centre, 100 Magedoma Blvd, Brockville ON"
   },
   {
+   "title": "Victorian Christmas Market at Fun Art",
+   "url": "https://brockvilletourism.com/event/victorian-christmas-market-at-fun-art/",
+   "start": "2026-12-04 17:00:00",
+   "end": "2026-12-04 20:00:00",
+   "location": "11 Perth St. Brockville Fun Art Paint Parties"
+  },
+  {
    "title": "Free Public Skating at Youth Arena Sponsored by LA Knapp Inc",
    "url": "https://brockvilletourism.com/event/free-public-skating-at-youth-arena-sponsored-by-la-knapp-inc-3/",
    "start": "2026-12-05 20:00:00",
@@ -81,11 +67,25 @@
    "location": "Memorial Centre, 100 Magedoma Blvd, Brockville ON"
   },
   {
+   "title": "Women’s Wellness Art Escape",
+   "url": "https://brockvilletourism.com/event/womens-wellness-art-escape-4/",
+   "start": "2026-12-10 18:30:00",
+   "end": "2026-12-10 21:00:00",
+   "location": "11 Perth St. Brockville Fun Art Paint Parties"
+  },
+  {
    "title": "Free Public Skating at Youth Arena Sponsored by LA Knapp Inc",
    "url": "https://brockvilletourism.com/event/free-public-skating-at-youth-arena-sponsored-by-la-knapp-inc-4/",
    "start": "2026-12-12 20:00:00",
    "end": "2026-12-12 21:00:00",
    "location": "Youth Arena, 138 Broadway Ave, Brockville ON"
+  },
+  {
+   "title": "Sunday Funday",
+   "url": "https://brockvilletourism.com/event/sunday-funday/",
+   "start": "2026-12-13 13:00:00",
+   "end": "2026-12-13 15:30:00",
+   "location": "11 Perth St. Brockville Fun Art Paint Parties"
   },
   {
    "title": "Free Public Skating at Memorial Centre Sponsored by LA Knapp Inc",
@@ -148,22 +148,10 @@
  "notices_count": 12,
  "notices": [
   {
-   "title": "Watermain Break at Perth Street and George Street",
-   "date": "2026-11-16",
-   "url": "https://brockville.com/announcement/watermain-break-at-perth-street-and-george-street/",
-   "excerpt": "City crews are responding to a watermain break at the intersection of Perth Street and George Street. Residents and motorists are asked to avoid the area while repairs are under..."
-  },
-  {
    "title": "New Council and Committee Meeting Portal Now Available",
    "date": "2026-11-13",
    "url": "https://brockville.com/announcement/new-council-and-committee-meeting-portal-now-available/",
    "excerpt": "The City has launched Qualigraf, our new agenda management system. Residents can conveniently access Council and Committee agendas, minutes, and meeting videos in one place. Int..."
-  },
-  {
-   "title": "UPDATE – Temporary Email Service Disruption",
-   "date": "2026-11-12",
-   "url": "https://brockville.com/announcement/temporary-email-service-disruption/",
-   "excerpt": "Update as of Friday, November 13, 2026 at 9:00 a.m. The City of Brockville has regained access to its Microsoft 365 services. We are now able to send and receive emails; however..."
   },
   {
    "title": "Applications Open for Board and Committee Members",
@@ -190,22 +178,10 @@
    "excerpt": "The certified results for the 2026 School Board Election have now been finalized. View the Certified Election Results – 2026 English Public Trustee – UCDSB Ward 5 View the Certi..."
   },
   {
-   "title": "Remembrance Day Ceremony 2026",
-   "date": "2026-10-29",
-   "url": "https://brockville.com/announcement/remembrance-day-ceremony-2026/",
-   "excerpt": "Remembrance Day will be observed with a civic ceremony on Wednesday November 11, 2026. Please note that City of Brockville services and facilities run as usual. Civic Ceremony W..."
-  },
-  {
    "title": "Certified Election Results – 2026 Municipal Council",
    "date": "2026-10-27",
    "url": "https://brockville.com/announcement/certified-election-results-2026-municipal-council/",
    "excerpt": "The certified results for the 2026 Municipal Election have now been finalized. View the certified election results. As of 8:00 p.m. on October 26, a total of 7,460 ballots were..."
-  },
-  {
-   "title": "2026 Election Voter Turnout Update – October 26, 2026",
-   "date": "2026-10-26",
-   "url": "https://brockville.com/announcement/2026-election-voter-turnout-update-october-20-2026/",
-   "excerpt": "As of 9:00 a.m. on October 26, 5,391 residents have cast their ballots in the 2026 Municipal and School Board Election, representing 26.6% of eligible voters. The voter turnout..."
   },
   {
    "title": "Reynolds Park Pavilion Construction Begins This Week",
@@ -218,6 +194,30 @@
    "date": "2026-10-01",
    "url": "https://brockville.com/announcement/indoor-public-skating-2026-2027/",
    "excerpt": "Get ready to lace up your skates! Our indoor public and adult skating schedule is here, and it’s the perfect way to stay active and have fun all season long! Whether you’re glid..."
+  },
+  {
+   "title": "City Manager Sandra MacDonald Announces Retirement After 32 Years",
+   "date": "2026-09-21",
+   "url": "https://brockville.com/announcement/city-manager-sandra-macdonald-announces-retirement-after-32-years/",
+   "excerpt": "Brockville, ON – Monday, September 21, 2026 – The City of Brockville announces the upcoming retirement of City Manager Sandra MacDonald, effective March 31, 2027, following more..."
+  },
+  {
+   "title": "New Specialized (Para) Transit Booking Platform Improves Rider Experience",
+   "date": "2026-09-10",
+   "url": "https://brockville.com/announcement/new-specialized-para-transit-booking-platform-improves-rider-experience/",
+   "excerpt": "Brockville, ON – September 10, 2026 – The City of Brockville is continuing to invest in accessible public transit services through the implementation of a new Specialized (Para)..."
+  },
+  {
+   "title": "Spring Deck Construction Reminder",
+   "date": "2026-06-09",
+   "url": "https://brockville.com/announcement/spring-deck-construction-reminder/",
+   "excerpt": "What Brockville Homeowners Need to Know Before They Build Spring is a popular time for outdoor projects, and deck construction is one of the most common projects requiring City..."
+  },
+  {
+   "title": "Statement from the City of Brockville: Brockville Public Library Investigation",
+   "date": "2026-03-31",
+   "url": "https://brockville.com/announcement/statement-from-the-city-of-brockville-brockville-public-library-investigation/",
+   "excerpt": "On March 30, 2026, Brockville Police Service charged a former Brockville Public Library CEO for matters dating back to 2023 and 2024. The City of Brockville initiated an interna..."
   }
  ]
 }
