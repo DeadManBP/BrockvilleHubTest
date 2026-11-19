@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-11-19T02:29:57.484938-05:00",
+ "updated_at": "2026-11-19T15:41:08.137735-05:00",
  "count": 20,
  "events": [
   {
@@ -16,13 +16,6 @@
    "start": "2026-11-21 20:00:00",
    "end": "2026-11-21 21:00:00",
    "location": "Youth Arena, 138 Broadway Ave, Brockville ON"
-  },
-  {
-   "title": "Paws & Claus: Gala",
-   "url": "https://brockvilletourism.com/event/paws-claus-gala/",
-   "start": "2026-11-28 17:30:00",
-   "end": "2026-11-28 23:00:00",
-   "location": "Cedar Valley Golf & Country Club: 7041 County Rd 29, Brockville, ON K6V 5T4"
   },
   {
    "title": "Free Public Skating at Youth Arena Sponsored by LA Knapp Inc",
@@ -72,6 +65,13 @@
    "start": "2026-12-10 18:30:00",
    "end": "2026-12-10 21:00:00",
    "location": "11 Perth St. Brockville Fun Art Paint Parties"
+  },
+  {
+   "title": "Once Upon A Christmas Market & Community Celebration",
+   "url": "https://brockvilletourism.com/event/once-upon-a-christmas-market-community-celebration/",
+   "start": "2026-12-12 10:00:00",
+   "end": "2026-12-12 17:00:00",
+   "location": "125 Stewart Blvd Brockville"
   },
   {
    "title": "Free Public Skating at Youth Arena Sponsored by LA Knapp Inc",
@@ -148,6 +148,12 @@
  "notices_count": 12,
  "notices": [
   {
+   "title": "Watermain Break at James Street and Bartholomew Street",
+   "date": "2026-11-19",
+   "url": "https://brockville.com/announcement/watermain-break-at-james-street-and-bartholomew-street/",
+   "excerpt": "UPDATE – Water Systems crews have successfully located and isolated the damaged section of watermain, minimizing impacts to the broader distribution system. As the Water Treatme..."
+  },
+  {
    "title": "New Council and Committee Meeting Portal Now Available",
    "date": "2026-11-13",
    "url": "https://brockville.com/announcement/new-council-and-committee-meeting-portal-now-available/",
@@ -212,12 +218,6 @@
    "date": "2026-06-09",
    "url": "https://brockville.com/announcement/spring-deck-construction-reminder/",
    "excerpt": "What Brockville Homeowners Need to Know Before They Build Spring is a popular time for outdoor projects, and deck construction is one of the most common projects requiring City..."
-  },
-  {
-   "title": "Statement from the City of Brockville: Brockville Public Library Investigation",
-   "date": "2026-03-31",
-   "url": "https://brockville.com/announcement/statement-from-the-city-of-brockville-brockville-public-library-investigation/",
-   "excerpt": "On March 30, 2026, Brockville Police Service charged a former Brockville Public Library CEO for matters dating back to 2023 and 2024. The City of Brockville initiated an interna..."
   }
  ]
 }
