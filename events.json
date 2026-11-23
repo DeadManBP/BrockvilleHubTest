@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-11-22T14:43:37.324851-05:00",
+ "updated_at": "2026-11-23T02:43:20.703455-05:00",
  "count": 20,
  "events": [
   {
@@ -148,12 +148,6 @@
  "notices_count": 12,
  "notices": [
   {
-   "title": "Water Conservation Advisory Lifted – James Street and Bartholomew Street",
-   "date": "2026-11-19",
-   "url": "https://brockville.com/announcement/watermain-break-at-james-street-and-bartholomew-street/",
-   "excerpt": "UPDATE – Water Conservation Advisory Lifted The water conservation advisory issued on November 19, 2026, has been lifted. Treated water storage levels have recovered, and reside..."
-  },
-  {
    "title": "New Council and Committee Meeting Portal Now Available",
    "date": "2026-11-13",
    "url": "https://brockville.com/announcement/new-council-and-committee-meeting-portal-now-available/",
@@ -218,6 +212,12 @@
    "date": "2026-06-09",
    "url": "https://brockville.com/announcement/spring-deck-construction-reminder/",
    "excerpt": "What Brockville Homeowners Need to Know Before They Build Spring is a popular time for outdoor projects, and deck construction is one of the most common projects requiring City..."
+  },
+  {
+   "title": "Statement from the City of Brockville: Brockville Public Library Investigation",
+   "date": "2026-03-31",
+   "url": "https://brockville.com/announcement/statement-from-the-city-of-brockville-brockville-public-library-investigation/",
+   "excerpt": "On March 30, 2026, Brockville Police Service charged a former Brockville Public Library CEO for matters dating back to 2023 and 2024. The City of Brockville initiated an interna..."
   }
  ]
 }
