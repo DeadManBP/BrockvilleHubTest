@@ -1,35 +1,14 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-11-23T02:43:20.703455-05:00",
+ "updated_at": "2026-11-23T18:56:56.320838-05:00",
  "count": 20,
  "events": [
-  {
-   "title": "Paws & Claus: Speakeasy Social",
-   "url": "https://brockvilletourism.com/event/paws-claus-speakeasy-social/",
-   "start": "2026-11-27 18:30:00",
-   "end": "2026-11-27 21:00:00",
-   "location": "Cedar Valley Golf & Country Club: 7041 County Rd 29, Brockville, ON K6V 5T4"
-  },
-  {
-   "title": "Paws & Claus: Gala",
-   "url": "https://brockvilletourism.com/event/paws-claus-gala/",
-   "start": "2026-11-28 17:30:00",
-   "end": "2026-11-28 23:00:00",
-   "location": "Cedar Valley Golf & Country Club: 7041 County Rd 29, Brockville, ON K6V 5T4"
-  },
   {
    "title": "Free Public Skating at Youth Arena Sponsored by LA Knapp Inc",
    "url": "https://brockvilletourism.com/event/free-public-skating-at-youth-arena-sponsored-by-la-knapp-inc-2/",
    "start": "2026-11-28 20:00:00",
    "end": "2026-11-28 21:00:00",
    "location": "Youth Arena, 138 Broadway Ave, Brockville ON"
-  },
-  {
-   "title": "Paws & Claus: Breakfast with Santa",
-   "url": "https://brockvilletourism.com/event/paws-claus-breakfast-with-santa/",
-   "start": "2026-11-29 09:00:00",
-   "end": "2026-11-29 12:00:00",
-   "location": "Cedar Valley Golf & Country Club: 7041 County Rd 29, Brockville, ON K6V 5T4"
   },
   {
    "title": "Free Parent & Tot Skating Sessions at the Memorial Centre",
@@ -44,6 +23,13 @@
    "start": "2026-12-04 17:00:00",
    "end": "2026-12-04 20:00:00",
    "location": "11 Perth St. Brockville Fun Art Paint Parties"
+  },
+  {
+   "title": "Brockville Farmers’ Christmas Market at the Aquatarium",
+   "url": "https://brockvilletourism.com/event/brockville-farmers-christmas-market-at-the-aquatarium/",
+   "start": "2026-12-05 10:00:00",
+   "end": "2026-12-05 15:00:00",
+   "location": "Aquatarium, 6 Broad Street, Brockville"
   },
   {
    "title": "Free Public Skating at Youth Arena Sponsored by LA Knapp Inc",
@@ -65,6 +51,13 @@
    "start": "2026-12-10 18:30:00",
    "end": "2026-12-10 21:00:00",
    "location": "11 Perth St. Brockville Fun Art Paint Parties"
+  },
+  {
+   "title": "Brockville Farmers’ Christmas Market at the Aquatarium",
+   "url": "https://brockvilletourism.com/event/brockville-farmers-christmas-market-at-the-aquatarium-2/",
+   "start": "2026-12-12 10:00:00",
+   "end": "2026-12-12 15:00:00",
+   "location": "Aquatarium, 6 Broad Street, Brockville"
   },
   {
    "title": "Once Upon A Christmas Market & Community Celebration",
@@ -100,6 +93,13 @@
    "start": "2026-12-14 09:00:00",
    "end": "2026-12-14 10:00:00",
    "location": "Memorial Centre, 100 Magedoma Blvd, Brockville ON"
+  },
+  {
+   "title": "Brockville Farmers’ Christmas Market at the Aquatarium",
+   "url": "https://brockvilletourism.com/event/brockville-farmers-christmas-market-at-the-aquatarium-3/",
+   "start": "2026-12-19 10:00:00",
+   "end": "2026-12-19 15:00:00",
+   "location": "Aquatarium, 6 Broad Street, Brockville"
   },
   {
    "title": "Free Public Skating at Youth Arena Sponsored by LA Knapp Inc",
@@ -147,6 +147,12 @@
  "notices_source": "https://brockville.com/announcements/",
  "notices_count": 12,
  "notices": [
+  {
+   "title": "Public Notice – Suspicious Look-Alike Domain",
+   "date": "2026-11-23",
+   "url": "https://brockville.com/announcement/public-notice-suspicious-look-alike-domain/",
+   "excerpt": "The City of Brockville has become aware of the registration of broakville.com, a domain that closely resembles the City’s legitimate brockville.com domain. At this time, the Cit..."
+  },
   {
    "title": "New Council and Committee Meeting Portal Now Available",
    "date": "2026-11-13",
@@ -212,12 +218,6 @@
    "date": "2026-06-09",
    "url": "https://brockville.com/announcement/spring-deck-construction-reminder/",
    "excerpt": "What Brockville Homeowners Need to Know Before They Build Spring is a popular time for outdoor projects, and deck construction is one of the most common projects requiring City..."
-  },
-  {
-   "title": "Statement from the City of Brockville: Brockville Public Library Investigation",
-   "date": "2026-03-31",
-   "url": "https://brockville.com/announcement/statement-from-the-city-of-brockville-brockville-public-library-investigation/",
-   "excerpt": "On March 30, 2026, Brockville Police Service charged a former Brockville Public Library CEO for matters dating back to 2023 and 2024. The City of Brockville initiated an interna..."
   }
  ]
 }
