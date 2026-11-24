@@ -1,6 +1,6 @@
 {
  "source": "https://brockvilletourism.com/shows-and-events/",
- "updated_at": "2026-11-24T04:57:53.501440-05:00",
+ "updated_at": "2026-11-24T17:29:33.272687-05:00",
  "count": 20,
  "events": [
   {
@@ -148,6 +148,12 @@
  "notices_count": 12,
  "notices": [
   {
+   "title": "Applications for Boards and Committees Close November 25",
+   "date": "2026-11-24",
+   "url": "https://brockville.com/announcement/applications-for-boards-and-committees-close-november-25/",
+   "excerpt": "The City of Brockville is reminding residents that applications for vacancies on select municipal boards and committees close on Wednesday, November 25, 2026, at 4 p.m. Current..."
+  },
+  {
    "title": "Public Notice – Suspicious Look-Alike Domain",
    "date": "2026-11-23",
    "url": "https://brockville.com/announcement/public-notice-suspicious-look-alike-domain/",
@@ -212,12 +218,6 @@
    "date": "2026-09-10",
    "url": "https://brockville.com/announcement/new-specialized-para-transit-booking-platform-improves-rider-experience/",
    "excerpt": "Brockville, ON – September 10, 2026 – The City of Brockville is continuing to invest in accessible public transit services through the implementation of a new Specialized (Para)..."
-  },
-  {
-   "title": "Spring Deck Construction Reminder",
-   "date": "2026-06-09",
-   "url": "https://brockville.com/announcement/spring-deck-construction-reminder/",
-   "excerpt": "What Brockville Homeowners Need to Know Before They Build Spring is a popular time for outdoor projects, and deck construction is one of the most common projects requiring City..."
   }
  ]
 }
