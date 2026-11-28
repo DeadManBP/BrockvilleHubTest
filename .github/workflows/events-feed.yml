@@ -1,6 +1,10 @@
 name: Update Events Feed
 
 on:
+  push:
+    paths:
+      - "tools/update_events.py"
+      - ".github/workflows/events-feed.yml"
   schedule:
     - cron: "17 */6 * * *"
   workflow_dispatch:
