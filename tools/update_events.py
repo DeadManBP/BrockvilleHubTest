@@ -60,7 +60,7 @@ def get(url, attempts=3):
 def clean_text(value):
     value = re.sub(r"<[^>]+>", " ", value or "")
     value = htmlmod.unescape(value)
-    return re.sub(r"\\s+", " ", value).strip()
+    return re.sub(r"\s+", " ", value).strip()
 
 
 def parse_datetime(value):
@@ -85,7 +85,7 @@ def parse_datetime(value):
 
 def event_jsonld(page_html):
     for match in re.finditer(
-        r'<script[^>]+type=["\\']application/ld\\+json["\\'][^>]*>(.*?)</script>',
+        r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>',
         page_html,
         re.I | re.S,
     ):
@@ -133,7 +133,7 @@ class EventLinkParser(HTMLParser):
         href = dict(attrs).get("href", "")
         if href:
             href = href.split("#", 1)[0]
-            if re.match(r"^https?://brockvilletourism\\.com/event/[^/]+/?$", href):
+            if re.match(r"^https?://brockvilletourism\.com/event/[^/]+/?$", href):
                 self.links.append(href)
             elif href.startswith("/event/"):
                 self.links.append("https://brockvilletourism.com" + href)
@@ -162,7 +162,7 @@ def parse_event_page(page_html):
     title_match = re.search(r"<h1[^>]*>(.*?)</h1>", page_html, re.I | re.S)
     text = clean_text(page_html)
     date_match = re.search(
-        r"([A-Z][a-z]{2} \\d{1,2}, \\d{4})\\s+(\\d{1,2}:\\d{2}\\s*[AP]M)",
+        r"([A-Z][a-z]{2} \d{1,2}, \d{4})\s+(\d{1,2}:\d{2}\s*[AP]M)",
         text,
         re.I,
     )
@@ -251,7 +251,7 @@ def fetch_notices(pages=2, limit=12):
         url = CITY_ANNOUNCEMENTS if pg == 1 else CITY_ANNOUNCEMENTS + f"page/{pg}/"
         page, _ = get(url)
         for match in re.finditer(
-            r'<a href="(https://brockville\\.com/announcement/[^"]+/)"><div class="announcements">(.*?)</a>',
+            r'<a href="(https://brockville\.com/announcement/[^"]+/)"><div class="announcements">(.*?)</a>',
             page,
             re.S,
         ):
@@ -260,7 +260,7 @@ def fetch_notices(pages=2, limit=12):
                 continue
             seen.add(link)
             title_match = re.search(r'<h2 class="announcementstitle">(.*?)</h2>', block, re.S)
-            date_match = re.search(r"([A-Za-z]+ \\d{1,2}, \\d{4})", block)
+            date_match = re.search(r"([A-Za-z]+ \d{1,2}, \d{4})", block)
             excerpt_match = re.search(r'<div class="announcementsexcerpt"><p>(.*?)</p>', block, re.S)
             title = clean_text(title_match.group(1)) if title_match else ""
             if not title:
