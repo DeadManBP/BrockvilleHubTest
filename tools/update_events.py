@@ -299,6 +299,8 @@ def main():
     try:
         events = fetch_events_from_api(now)
         print(f"Tourism API supplied {len(events)} upcoming events")
+        if not events:
+            raise RuntimeError("Tourism API returned no usable upcoming events")
     except Exception as api_error:
         print(f"Tourism API unavailable: {api_error}", file=sys.stderr)
         events = fetch_events_from_page(now)
